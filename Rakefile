@@ -4,3 +4,12 @@
 require_relative 'config/application'
 
 Rails.application.load_tasks
+
+task default: %i[
+  rubocop
+  spec
+  rails_best_practices
+  license_finder
+  brakeman:check
+  bundle:audit
+]
