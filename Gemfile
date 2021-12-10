@@ -26,6 +26,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'brakeman'
   gem 'bundler-audit'
   gem 'rails_best_practices'
   gem 'rubocop'
