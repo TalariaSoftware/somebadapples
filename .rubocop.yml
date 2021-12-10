@@ -83,6 +83,7 @@ RSpec/Capybara/FeatureMethods:
 RSpec/ExampleLength:
   Exclude:
     - spec/features/*
+    - spec/system/*
 
 RSpec/ExpectChange:
   EnforcedStyle: block
@@ -90,6 +91,7 @@ RSpec/ExpectChange:
 RSpec/MultipleExpectations:
   Exclude:
     - spec/features/*
+    - spec/system/*
 
 RSpec/MultipleMemoizedHelpers:
   Max: 10
