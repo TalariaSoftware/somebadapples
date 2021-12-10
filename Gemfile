@@ -28,6 +28,7 @@ end
 group :development do
   gem 'brakeman'
   gem 'bundler-audit'
+  gem 'license_finder'
   gem 'rails_best_practices'
   gem 'rubocop'
   gem 'rubocop-performance'
