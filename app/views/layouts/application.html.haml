@@ -12,3 +12,12 @@
     %p.notice= notice
     %p.alert= alert
     = yield
+
+    - if current_user.present?
+      Signed in as
+      = current_user.email
+      = button_to destroy_user_session_path, method: :delete do
+        Sign out
+    - else
+      = link_to new_user_session_path do
+        Sign in
