@@ -1,1 +1,11 @@
-Incident edit
+= form_for @incident do |f|
+  = f.label :description
+  = f.text_field :description
+
+  = f.label :datetime
+  = f.text_field :datetime
+
+  = f.submit
+
+= button_to @incident, method: :delete do
+  Delete

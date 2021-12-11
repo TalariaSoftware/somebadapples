@@ -1,1 +1,10 @@
-Incident new
+= form_for @incident do |f|
+  = f.hidden_field :officer_id
+
+  = f.label :description
+  = f.text_field :description
+
+  = f.label :datetime
+  = f.text_field :datetime
+
+  = f.submit
