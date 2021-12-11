@@ -11,6 +11,8 @@
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_importmap_tags
   %body
+    = render HeaderComponent.new
+
     %p.notice= notice
     %p.alert= alert
     = yield
