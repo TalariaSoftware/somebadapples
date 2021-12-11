@@ -1,9 +1,22 @@
-%h1 Officers
-%ul
-  - @officers.each do |officer|
-    %li
-      = link_to officer do
-        = officer.name
+%section.grid-container.usa-section
+  = render UswdsComponents::TableComponent.new(striped: true) do
+    %caption Complete list of officers
+    %thead
+      %tr
+        %th{scope: :col} Name
+        %th{scope: :col} Badge no.
+        %th{scope: :col} Serial no.
+        %th{scope: :col} Incidents
+    %tbody
+      - @officers.each do |officer|
+        %tr
+          %th{scope: :row}
+            = link_to officer do
+              = officer.name
+          %td= officer.badge_number.presence || 'Unknown'
+          %td= officer.serial_number.presence || 'Unknown'
+          %td= officer.incidents.size
 
-= link_to new_officer_path do
-  Add officer
+  - if policy(Officer).new?
+    = link_to new_officer_path do
+      Add officer
