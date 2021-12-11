@@ -1,33 +1,34 @@
 class OfficersController < ApplicationController
+  expose :officer
+  expose :officers, -> { Officer.all }
+
   def index
-    @officers = Officer.all
+    @officers = officers
   end
 
   def new
-    @officer = Officer.new
+    @officer = officer
   end
 
   def create
-    officer = Officer.create! officer_params
+    officer.save!
     redirect_to officer
   end
 
   def show
-    @officer = Officer.find params[:id]
+    @officer = officer
   end
 
   def edit
-    @officer = Officer.find params[:id]
+    @officer = officer
   end
 
   def update
-    officer = Officer.find params[:id]
-    officer.update officer_params
+    officer.update! officer_params
     redirect_to officer
   end
 
   def destroy
-    officer = Officer.find params[:id]
     officer.destroy!
     redirect_to officers_path
   end

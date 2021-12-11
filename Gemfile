@@ -6,6 +6,7 @@ ruby '3.0.2'
 gem 'rails', '~> 7.0.0.rc1'
 
 gem 'bootsnap', require: false
+gem 'decent_exposure'
 gem 'devise', github: 'heartcombo/devise'
 gem 'haml-rails'
 gem 'importmap-rails'
