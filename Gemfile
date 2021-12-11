@@ -8,6 +8,7 @@ gem 'rails', '~> 7.0.0.rc1'
 gem 'bootsnap', require: false
 gem 'decent_exposure'
 gem 'devise', github: 'heartcombo/devise'
+gem 'friendly_id'
 gem 'haml-rails'
 gem 'importmap-rails'
 gem 'jbuilder'
