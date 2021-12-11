@@ -1,23 +1,29 @@
-Officer show
+%section.grid-container.usa-section
+  %h1
+    = @officer.name
 
-= @officer.name
+  %p
+    Badge no:
+    = @officer.badge_number.presence || 'Unknown'
 
-Badge number:
-= @officer.badge_number
+  %p
+    Serial no:
+    = @officer.serial_number.presence || 'Unknown'
 
-Serial number:
-= @officer.serial_number
+  - if policy(@officer).edit?
+    = link_to [:edit, @officer] do
+      Edit
 
-= link_to [:edit, @officer] do
-  Edit
+  = render UswdsComponents::CollectionComponent.new do |collection|
+    - @officer.incidents.each do |incident|
+      - collection.item(datetime: incident.datetime,
+        href: '') do |item|
+        - item.header do
+          =l incident.datetime.to_date, format: :long
+        = incident.description
+        - if policy(incident).edit?
+          = link_to [:edit, incident] do
+            Edit incident
 
-%h2 Incidents
-
-- @officer.incidents.each do |incident|
-  = incident.description
-  = l incident.datetime, format: :long
-  = link_to [:edit, incident] do
-    Edit incident
-
-= link_to new_incident_path(incident: {officer_id: @officer.id}) do
-  Add incident
+  = link_to new_incident_path(incident: {officer_id: @officer.id}) do
+    Add incident
