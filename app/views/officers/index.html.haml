@@ -3,8 +3,7 @@
   - @officers.each do |officer|
     %li
       = link_to officer do
-        = officer.first_name
-        = officer.last_name
+        = officer.name
 
 = link_to new_officer_path do
   Add officer
