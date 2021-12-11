@@ -3,7 +3,10 @@ require 'rails_helper'
 RSpec.describe "Officers", type: :system do
   before do
     driven_by(:rack_test)
+    sign_in user
   end
+
+  let(:user) { User.create! email: 'user@example.com', password: 'password' }
 
   scenario "Manage officers" do
     visit officers_path

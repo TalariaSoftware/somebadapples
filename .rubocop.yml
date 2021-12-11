@@ -73,6 +73,10 @@ Rails/SkipsModelValidations:
 Rails/RakeEnvironment:
   Enabled: false
 
+Rails/LexicallyScopedActionFilter:
+  Exclude:
+    - app/controllers/application_controller.rb
+
 RSpec/Capybara/FeatureMethods:
   EnabledMethods:
     - feature

@@ -1,0 +1,2 @@
+class OfficerPolicy < ApplicationPolicy
+end

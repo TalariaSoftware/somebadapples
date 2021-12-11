@@ -1,6 +1,6 @@
 class OfficersController < ApplicationController
-  expose :officer
-  expose :officers, -> { Officer.all }
+  expose :officer, decorate: ->(officer) { authorize officer }
+  expose :officers, -> { policy_scope Officer.all }
 
   def index
     @officers = officers

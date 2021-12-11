@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe OfficersController, type: :controller do
+  let(:user) { User.create! email: 'user@example.com', password: 'password' }
+
   describe '#index' do
     it "returns http success" do
       get :index
@@ -18,6 +20,8 @@ RSpec.describe OfficersController, type: :controller do
   end
 
   describe '#new' do
+    before { sign_in user }
+
     it "returns http success" do
       get :new
       expect(response).to be_ok
@@ -35,6 +39,8 @@ RSpec.describe OfficersController, type: :controller do
   end
 
   describe '#create' do
+    before { sign_in user }
+
     let(:params) do
       {
         officer: {
@@ -86,6 +92,8 @@ RSpec.describe OfficersController, type: :controller do
   end
 
   describe '#edit' do
+    before { sign_in user }
+
     let(:officer) { Officer.create! }
     let(:params) { { id: officer.id } }
 
@@ -101,6 +109,8 @@ RSpec.describe OfficersController, type: :controller do
   end
 
   describe '#update' do
+    before { sign_in user }
+
     let(:officer) { Officer.create! }
     let(:params) do
       {
@@ -149,6 +159,8 @@ RSpec.describe OfficersController, type: :controller do
   end
 
   describe '#delete' do
+    before { sign_in user }
+
     let(:officer) { Officer.create! }
     let(:params) { { id: officer.id } }
 

@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe ApplicationPolicy do
-  subject { ApplicationPolicy.new user, record }
+RSpec.describe OfficerPolicy do
+  subject { OfficerPolicy.new user, record }
 
   let(:resolved_scope) do
-    ApplicationPolicy::Scope.new(user, Officer.all).resolve
+    OfficerPolicy::Scope.new(user, Officer.all).resolve
   end
   let(:record) { Officer.new }
 
