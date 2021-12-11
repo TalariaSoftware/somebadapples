@@ -85,9 +85,6 @@ RSpec/ExampleLength:
     - spec/features/*
     - spec/system/*
 
-RSpec/ExpectChange:
-  EnforcedStyle: block
-
 RSpec/MultipleExpectations:
   Exclude:
     - spec/features/*
