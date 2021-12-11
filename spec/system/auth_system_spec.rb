@@ -14,7 +14,7 @@ RSpec.describe "Authentication", type: :system do
     fill_in "Password", with: 'password'
     click_on "Sign in"
 
-    expect(page).to have_text("Signed in as user@example.com")
+    expect(page).to have_text("user@example.com")
 
     click_on "Sign out"
     expect(page).not_to have_text("user@example.com")

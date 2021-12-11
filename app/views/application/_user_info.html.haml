@@ -1,0 +1,9 @@
+%section.bg-base-light
+  .grid-container.text-right.padding-x-4.padding-y-1
+    - if current_user.present?
+      = current_user.email
+      = button_to destroy_user_session_path, method: :delete, class: 'usa-button--unstyled', form_class: 'display-inline' do
+        Sign out
+    - else
+      = link_to new_user_session_path do
+        Sign in
