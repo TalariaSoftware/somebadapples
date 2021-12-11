@@ -1,0 +1,21 @@
+%header.usa-header.usa-header--basic
+  .usa-nav-container
+    .usa-navbar
+      #basic-logo.usa-logo
+        %em.usa-logo__text
+          = link_to root_path, title: "Bad Apples" do
+            Bad Apples
+      %button.usa-menu-btn Menu
+    %nav.usa-nav{aria: {label: "Primary navigation"}}
+      %button.usa-nav__close
+        %img{alt: "Close", role: :img, src: "https://cdn.jsdelivr.net/npm/uswds@2.12.2/dist/img/usa-icons/close.svg"}
+      %ul.usa-nav__primary.usa-accordion
+        %li.usa-nav__primary-item
+          %a.usa-nav__link{href: officers_path}
+            %span Complete list
+      -# %form.usa-search.usa-search--small{role: :search}
+        %label.usa-sr-only{for: "basic-search-field-en-small"}
+          Search
+        %input#basic-search-field-en-small.usa-input{name: :search, type: :search}
+        %button.usa-button{type: :submit}
+          %span.usa-sr-only Search
