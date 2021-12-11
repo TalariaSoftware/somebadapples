@@ -1,0 +1,22 @@
+.grid-container
+  %section.usa-section
+    = form_for officer, html: {class: 'usa-form usa-form--large margin-x-auto'} do |f|
+      %h1
+        - if officer.persisted?
+          Edit Officer
+        - else
+          New Officer
+
+      = f.label :first_name, class: 'usa-label'
+      = f.text_field :first_name, class: 'usa-input'
+
+      = f.label :last_name, class: 'usa-label'
+      = f.text_field :last_name, class: 'usa-input'
+
+      = f.label :badge_number, class: 'usa-label'
+      = f.text_field :badge_number, class: 'usa-input'
+
+      = f.label :serial_number, class: 'usa-label'
+      = f.text_field :serial_number, class: 'usa-input'
+
+      = f.submit class: 'usa-button width-full'
