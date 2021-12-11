@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe OfficerPolicy do
-  subject { OfficerPolicy.new user, record }
+RSpec.describe IncidentPolicy do
+  subject { IncidentPolicy.new user, record }
 
   let(:resolved_scope) do
-    OfficerPolicy::Scope.new(user, Officer.all).resolve
+    IncidentPolicy::Scope.new(user, Incident.all).resolve
   end
-  let(:record) { build :officer }
+  let(:record) { build :incident }
 
   context "when not logged in" do
     let(:user) { nil }
@@ -20,7 +20,7 @@ RSpec.describe OfficerPolicy do
     it { is_expected.to forbid_action(:destroy) }
 
     describe 'scope' do
-      let!(:record) { create :officer }
+      let!(:record) { create :incident }
 
       it "includes the record from resolved scope" do
         expect(resolved_scope).to include(record)
@@ -40,7 +40,7 @@ RSpec.describe OfficerPolicy do
     it { is_expected.to permit_action(:destroy) }
 
     describe 'scope' do
-      let!(:record) { create :officer }
+      let!(:record) { create :incident }
 
       it "includes the record from resolved scope" do
         expect(resolved_scope).to include(record)

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  resources :officers
   devise_for :users
 
   root 'pages#home'
+
+  resources :officers
+  resources :incidents, only: %i[new create edit update destroy]
 end
