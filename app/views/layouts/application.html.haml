@@ -6,6 +6,8 @@
     %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
     = csrf_meta_tags
     = csp_meta_tag
+    %link{:crossorigin => "anonymous", :href => "https://cdn.jsdelivr.net/npm/uswds@2.12.2/dist/css/uswds.min.css", :integrity => "sha256-w12xmKFX1Bd0luZZr1hehpfX9EgyX9C6QTaKTZGDduE=", :rel => "stylesheet"}/
+    %script{:crossorigin => "anonymous", :integrity => "sha256-9lfV7p6SwtVd8y52fTGAaNFu+rQGUEYODsI5fDErBEI=", :src => "https://cdn.jsdelivr.net/npm/uswds@2.12.2/dist/js/uswds-init.js"}
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_importmap_tags
   %body
@@ -21,3 +23,4 @@
     - else
       = link_to new_user_session_path do
         Sign in
+    %script{:crossorigin => "anonymous", :integrity => "sha256-bEODhV4qVg5PIbshplXC76WhJoADh8mVW2WkWQQbYFg=", :src => "https://cdn.jsdelivr.net/npm/uswds@2.12.2/dist/js/uswds.js"}

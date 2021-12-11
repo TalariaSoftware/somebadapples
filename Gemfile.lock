@@ -1,4 +1,13 @@
 GIT
+  remote: https://github.com/TalariaSoftware/uswds_components.git
+  revision: ab3483539fbfe6b9e57f00fba267b916f2e9fd65
+  specs:
+    uswds_components (0.1.0)
+      haml-rails
+      rails (>= 6.1.4.1)
+      view_component
+
+GIT
   remote: https://github.com/heartcombo/devise.git
   revision: 9f5b83750eef89710b8f2f1e0969c308023e2f05
   specs:
@@ -291,6 +300,9 @@ GEM
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.1.0)
+    view_component (2.46.0)
+      activesupport (>= 5.0.0, < 8.0)
+      method_source (~> 1.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.0)
@@ -349,6 +361,7 @@ DEPENDENCIES
   stimulus-rails
   turbo-rails
   tzinfo-data
+  uswds_components!
   web-console
   webdrivers
 
