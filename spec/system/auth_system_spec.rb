@@ -12,7 +12,7 @@ RSpec.describe "Authentication", type: :system do
     click_on "Sign in"
     fill_in "Email", with: 'user@example.com'
     fill_in "Password", with: 'password'
-    click_on "Log in"
+    click_on "Sign in"
 
     expect(page).to have_text("Signed in as user@example.com")
 
