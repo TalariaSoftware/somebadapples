@@ -163,6 +163,8 @@ GEM
       nio4r (~> 2.0)
     pundit (2.1.1)
       activesupport (>= 3.0.0)
+    pundit-matchers (1.7.0)
+      rspec-rails (>= 3.0.0)
     racc (1.6.0)
     rack (2.2.3)
     rack-test (1.1.0)
@@ -320,6 +322,7 @@ DEPENDENCIES
   pg
   puma
   pundit
+  pundit-matchers
   rails (~> 7.0.0.rc1)
   rails-controller-testing
   rails_best_practices
