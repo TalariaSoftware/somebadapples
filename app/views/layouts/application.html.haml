@@ -15,7 +15,9 @@
 
     %p.notice= notice
     %p.alert= alert
-    = yield
+
+    %main#main-content
+      = yield
 
     - if current_user.present?
       Signed in as
