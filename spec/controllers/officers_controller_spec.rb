@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe OfficersController, type: :controller do
-  let(:user) { User.create! email: 'user@example.com', password: 'password' }
+  let(:user) { create :user }
 
   describe '#index' do
     it "returns http success" do
@@ -77,7 +77,7 @@ RSpec.describe OfficersController, type: :controller do
   end
 
   describe '#show' do
-    let(:officer) { Officer.create! }
+    let(:officer) { create :officer }
     let(:params) { { id: officer.id } }
 
     it "returns http success" do
@@ -94,7 +94,7 @@ RSpec.describe OfficersController, type: :controller do
   describe '#edit' do
     before { sign_in user }
 
-    let(:officer) { Officer.create! }
+    let(:officer) { create :officer }
     let(:params) { { id: officer.id } }
 
     it "returns http success" do
@@ -111,7 +111,7 @@ RSpec.describe OfficersController, type: :controller do
   describe '#update' do
     before { sign_in user }
 
-    let(:officer) { Officer.create! }
+    let(:officer) { create :officer }
     let(:params) do
       {
         id: officer.id,
@@ -161,7 +161,7 @@ RSpec.describe OfficersController, type: :controller do
   describe '#delete' do
     before { sign_in user }
 
-    let(:officer) { Officer.create! }
+    let(:officer) { create :officer }
     let(:params) { { id: officer.id } }
 
     it "redirects to the officer list" do

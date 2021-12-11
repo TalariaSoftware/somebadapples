@@ -42,6 +42,8 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'factory_bot'
+  gem 'faker'
   gem 'pundit-matchers'
   gem 'rails-controller-testing'
   gem 'rspec-rails'

@@ -6,7 +6,7 @@ RSpec.describe "Officers", type: :system do
     sign_in user
   end
 
-  let(:user) { User.create! email: 'user@example.com', password: 'password' }
+  let(:user) { create :user }
 
   scenario "Manage officers" do
     visit officers_path

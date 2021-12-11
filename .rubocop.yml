@@ -47,6 +47,10 @@ Lint/AmbiguousBlockAssociation:
     - "**/*_spec.rb"
     - spec/support/*
 
+Lint/EmptyBlock:
+  Exclude:
+    - spec/factories/*
+
 Metrics/BlockLength:
   Exclude:
     - Guardfile

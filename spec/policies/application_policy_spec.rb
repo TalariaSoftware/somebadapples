@@ -6,7 +6,7 @@ RSpec.describe ApplicationPolicy do
   let(:resolved_scope) do
     ApplicationPolicy::Scope.new(user, Officer.all).resolve
   end
-  let(:record) { Officer.new }
+  let(:record) { build :officer }
 
   context "when not logged in" do
     let(:user) { nil }
@@ -29,7 +29,7 @@ RSpec.describe ApplicationPolicy do
   end
 
   context "when logged in" do
-    let(:user) { User.new }
+    let(:user) { build :user }
 
     it { is_expected.to permit_action(:index) }
     it { is_expected.to permit_action(:show) }

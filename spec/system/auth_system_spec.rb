@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "Authentication", type: :system do
   before do
     driven_by(:rack_test)
-    User.create! email: 'user@example.com', password: 'password'
+    create :user, email: 'user@example.com', password: 'password'
   end
 
   scenario "Allows users to sign in and out" do
