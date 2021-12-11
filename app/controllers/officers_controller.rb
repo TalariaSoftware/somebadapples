@@ -35,6 +35,8 @@ class OfficersController < ApplicationController
   private
 
   def officer_params
-    params.permit(:first_name, :last_name, :badge_number, :serial_number)
+    params
+      .require(:officer)
+      .permit(:first_name, :last_name, :badge_number, :serial_number)
   end
 end

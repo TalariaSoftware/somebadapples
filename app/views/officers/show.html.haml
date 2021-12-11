@@ -1,1 +1,13 @@
 Officer show
+
+= @officer.first_name
+= @officer.last_name
+
+Badge number:
+= @officer.badge_number
+
+Serial number:
+= @officer.serial_number
+
+= link_to [:edit, @officer] do
+  Edit

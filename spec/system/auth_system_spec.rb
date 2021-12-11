@@ -6,7 +6,7 @@ RSpec.describe "Authentication", type: :system do
     User.create! email: 'user@example.com', password: 'password'
   end
 
-  it "Allows users to sign in and out" do
+  scenario "Allows users to sign in and out" do
     visit '/'
 
     click_on "Sign in"

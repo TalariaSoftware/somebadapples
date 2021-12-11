@@ -1,1 +1,14 @@
-Officer edit
+= form_for @officer do |f|
+  = f.label :first_name
+  = f.text_field :first_name
+
+  = f.label :last_name
+  = f.text_field :last_name
+
+  = f.label :badge_number
+  = f.text_field :badge_number
+
+  = f.label :serial_number
+  = f.text_field :serial_number
+
+  = f.submit

@@ -37,10 +37,12 @@ RSpec.describe OfficersController, type: :controller do
   describe '#create' do
     let(:params) do
       {
-        first_name: "Javert",
-        last_name: "Valjean",
-        badge_number: "pi",
-        serial_number: "googol",
+        officer: {
+          first_name: "Javert",
+          last_name: "Valjean",
+          badge_number: "pi",
+          serial_number: "googol",
+        },
       }
     end
 
@@ -103,10 +105,12 @@ RSpec.describe OfficersController, type: :controller do
     let(:params) do
       {
         id: officer.id,
-        first_name: "Allan",
-        last_name: "Pinkerton",
-        badge_number: "7",
-        serial_number: "13",
+        officer: {
+          first_name: "Allan",
+          last_name: "Pinkerton",
+          badge_number: "7",
+          serial_number: "13",
+        },
       }
     end
 
