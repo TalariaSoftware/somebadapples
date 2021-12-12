@@ -1,44 +1,24 @@
 %section.grid-container.usa-section
-  %h1
-    = @officer.name
+  %article.padding-4
+    %h1
+      = @officer.name
 
-  %p
-    Badge no:
-    = @officer.badge_number.presence || 'Unknown'
+    %p
+      Badge no:
+      = @officer.badge_number.presence || 'Unknown'
 
-  %p
-    Serial no:
-    = @officer.serial_number.presence || 'Unknown'
+    %p
+      Serial no:
+      = @officer.serial_number.presence || 'Unknown'
 
-  - if policy(@officer).edit?
-    = link_to [:edit, @officer] do
-      Edit
+    - if policy(@officer).edit?
+      %p
+        = link_to [:edit, @officer] do
+          Edit Officer
 
-  = render UswdsComponents::CollectionComponent.new do |collection|
-    - @officer.incidents.each do |incident|
-      - collection.item(datetime: incident.datetime,
-        href: '') do |item|
-        - item.header do
-          - if incident.datetime?
-            =l incident.datetime.to_date, format: :long
-        = incident.description
-        - if policy(incident).edit?
-          %br
-          = link_to [:edit, incident] do
-            Edit incident
+      %p
+        = link_to new_incident_path(incident: {officer_id: @officer.id}) do
+          Add incident
 
-          %br
-          - incident.external_documents.each do |doc|
-            = link_to doc.url do
-              = doc.name
-            = doc.description
-            %br
-            = link_to [:edit, doc] do
-              Edit external document
+  = render @officer.incidents
 
-          %br
-          = link_to new_external_document_path(external_document: {incident_id: incident.id}) do
-            Add external document
-
-  = link_to new_incident_path(incident: {officer_id: @officer.id}) do
-    Add incident

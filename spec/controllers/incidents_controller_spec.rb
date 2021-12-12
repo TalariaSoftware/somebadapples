@@ -31,6 +31,7 @@ RSpec.describe IncidentsController, type: :controller do
       {
         incident: {
           officer_id: officer.id,
+          heading: "Violence",
           description: "Shot someone",
           datetime: "2021-12-10 21:30",
         },
@@ -55,6 +56,7 @@ RSpec.describe IncidentsController, type: :controller do
       end
 
       specify { expect(incident.officer).to eq(officer) }
+      specify { expect(incident.heading).to eq("Violence") }
       specify { expect(incident.description).to eq("Shot someone") }
 
       specify do
@@ -86,6 +88,7 @@ RSpec.describe IncidentsController, type: :controller do
         id: incident.id,
         incident: {
           officer_id: officer.id,
+          heading: "Assault",
           description: "Punched guy",
           datetime: "2021-12-10 22:30",
         },
@@ -102,6 +105,13 @@ RSpec.describe IncidentsController, type: :controller do
         put :update, params: params
         incident.reload
       }.to change(incident, :officer).to(officer)
+    end
+
+    it "updates the heading" do
+      expect {
+        put :update, params: params
+        incident.reload
+      }.to change(incident, :heading).to("Assault")
     end
 
     it "updates the description" do
