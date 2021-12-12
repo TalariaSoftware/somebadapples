@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/TalariaSoftware/iron_teapot.git
+  revision: 46584630b8be5e57811a274c6502e6070db0510d
+  specs:
+    iron_teapot (0.1.0)
+      rails (>= 6.1.4)
+
+GIT
   remote: https://github.com/TalariaSoftware/uswds_components.git
   revision: 356c4497c17244ee6560a41ce1f368d15c36d147
   specs:
@@ -343,6 +350,7 @@ DEPENDENCIES
   friendly_id
   haml-rails
   importmap-rails
+  iron_teapot!
   jbuilder
   license_finder
   pg
