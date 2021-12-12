@@ -19,11 +19,26 @@
       - collection.item(datetime: incident.datetime,
         href: '') do |item|
         - item.header do
-          =l incident.datetime.to_date, format: :long
+          - if incident.datetime?
+            =l incident.datetime.to_date, format: :long
         = incident.description
         - if policy(incident).edit?
+          %br
           = link_to [:edit, incident] do
             Edit incident
+
+          %br
+          - incident.external_documents.each do |doc|
+            = link_to doc.url do
+              = doc.name
+            = doc.description
+            %br
+            = link_to [:edit, doc] do
+              Edit external document
+
+          %br
+          = link_to new_external_document_path(external_document: {incident_id: incident.id}) do
+            Add external document
 
   = link_to new_incident_path(incident: {officer_id: @officer.id}) do
     Add incident

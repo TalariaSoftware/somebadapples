@@ -1,0 +1,2 @@
+class ExternalDocumentPolicy < ApplicationPolicy
+end

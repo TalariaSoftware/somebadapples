@@ -5,9 +5,10 @@ RSpec.describe IncidentsController, type: :controller do
 
   let(:user) { create :user }
   let(:officer) { create :officer }
-  let(:params) { { incident: { officer_id: officer.id } } }
 
   describe '#new' do
+    let(:params) { { incident: { officer_id: officer.id } } }
+
     it "returns http success" do
       get :new, params: params
       expect(response).to be_ok
