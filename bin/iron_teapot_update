@@ -1,0 +1,12 @@
+#!/bin/bash
+set -e
+
+test -z "$(git status --porcelain)" || (echo "Git repo not clean"; exit 1)
+
+./bin/bundle update iron_teapot
+./bin/rake
+git commit -am "Update iron teapot"
+
+git show HEAD
+echo
+echo "Consider deploying this update with './bin/deploy'"
