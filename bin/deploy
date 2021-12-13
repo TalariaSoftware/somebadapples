@@ -1,0 +1,11 @@
+#!/bin/bash
+set -e
+
+heroku whoami > /dev/null || (echo "Not logged into heroku. Run \`heroku login\`."; exit 1)
+test -z "$(git status --porcelain)" || (echo "Git repo not clean"; exit 1)
+
+./bin/rake
+
+git push origin
+git push heroku main
+heroku run rake db:migrate
