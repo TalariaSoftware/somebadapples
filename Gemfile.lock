@@ -357,6 +357,7 @@ DEPENDENCIES
   jbuilder
   license_finder
   pg
+  public_suffix
   puma
   pundit
   pundit-matchers
