@@ -24,4 +24,46 @@ RSpec.describe ExternalDocument, type: :model do
       it { is_expected.to be_youtube }
     end
   end
+
+  describe '#youtube_id' do
+    subject(:youtube_id) { document.youtube_id }
+
+    let(:document) { build :external_document, url: url }
+
+    context 'when the host is not a YouTube domain' do
+      let(:url) { 'https://www.myspace.com/youtube.com?v=foobar' }
+
+      it { is_expected.to be_nil }
+    end
+
+    context 'when the URL points to a video on YouTube' do
+      let(:url) { 'https://youtube.com/watch?v=videoID' }
+
+      it { is_expected.to eq('videoID') }
+    end
+
+    context 'when the URL does NOT point to a video on YouTube' do
+      let(:url) { 'https://www.youtube.com/feed/explore' }
+
+      it { is_expected.to be_blank }
+    end
+  end
+
+  describe '#youtube_embed_src' do
+    subject(:youtube_embed_src) { document.youtube_embed_src }
+
+    let(:document) { build :external_document, url: url }
+
+    context 'when the URL does NOT point to a video on YouTube' do
+      let(:url) { 'https://www.youtube.com/feed/explore' }
+
+      it { is_expected.to be_blank }
+    end
+
+    context 'when the URL points to a video on YouTube' do
+      let(:url) { 'https://youtube.com/watch?v=videoID' }
+
+      it { is_expected.to eq('https://www.youtube-nocookie.com/embed/videoID') }
+    end
+  end
 end
