@@ -9,7 +9,8 @@ task default: %i[
   rubocop
   spec
   rails_best_practices
-  license_finder
   brakeman:check
   bundle:audit
 ]
+# license_finder removed because it doesn't work with the newer versions of
+# Psych. https://github.com/pivotal/LicenseFinder/issues/841

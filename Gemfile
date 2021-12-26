@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.0.3'
+ruby '3.1.0'
 
-gem 'rails'
+gem 'rails', github: 'rails/rails', branch: '7-0-stable'
 
 gem 'bootsnap', require: false
 gem 'decent_exposure'
@@ -13,6 +13,7 @@ gem 'haml-rails'
 gem 'importmap-rails'
 gem 'iron_teapot', github: 'TalariaSoftware/iron_teapot'
 gem 'jbuilder'
+gem 'net-smtp'
 gem 'pg'
 gem 'public_suffix'
 gem 'puma'
