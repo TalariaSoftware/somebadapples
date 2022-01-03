@@ -38,6 +38,7 @@ class OfficersController < ApplicationController
   def officer_params
     params
       .require(:officer)
-      .permit(:first_name, :last_name, :badge_number, :serial_number)
+      .permit(:first_name, :middle_name, :last_name, :suffix, :badge_number,
+        :serial_number)
   end
 end

@@ -45,7 +45,9 @@ RSpec.describe OfficersController, type: :controller do
       {
         officer: {
           first_name: "Javert",
+          middle_name: "Jon",
           last_name: "Valjean",
+          suffix: "Jr.",
           badge_number: "pi",
           serial_number: "googol",
         },
@@ -70,7 +72,9 @@ RSpec.describe OfficersController, type: :controller do
       end
 
       specify { expect(officer.first_name).to eq("Javert") }
+      specify { expect(officer.middle_name).to eq("Jon") }
       specify { expect(officer.last_name).to eq("Valjean") }
+      specify { expect(officer.suffix).to eq("Jr.") }
       specify { expect(officer.badge_number).to eq("pi") }
       specify { expect(officer.serial_number).to eq("googol") }
     end
@@ -117,7 +121,9 @@ RSpec.describe OfficersController, type: :controller do
         id: officer.id,
         officer: {
           first_name: "Allan",
+          middle_name: "Jay",
           last_name: "Pinkerton",
+          suffix: "Sr.",
           badge_number: "7",
           serial_number: "13",
         },
@@ -136,11 +142,25 @@ RSpec.describe OfficersController, type: :controller do
       }.to change(officer, :first_name).to("Allan")
     end
 
+    it "updates the middle name" do
+      expect {
+        put :update, params: params
+        officer.reload
+      }.to change(officer, :middle_name).to("Jay")
+    end
+
     it "updates the last name" do
       expect {
         put :update, params: params
         officer.reload
       }.to change(officer, :last_name).to("Pinkerton")
+    end
+
+    it "updates the suffix" do
+      expect {
+        put :update, params: params
+        officer.reload
+      }.to change(officer, :suffix).to("Sr.")
     end
 
     it "updates the badge number" do
