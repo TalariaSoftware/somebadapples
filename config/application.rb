@@ -14,5 +14,8 @@ module BadApples
     config.generators.stylesheets = false
     config.generators.test_framework = :rspec
     config.generators.view_specs = false
+
+    config.view_component.preview_paths <<
+      UswdsComponents::Engine.root.join('spec/components/previews')
   end
 end

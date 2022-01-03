@@ -19,7 +19,7 @@
     %main#main-content
       = yield
 
-    = render 'footer'
-    = render 'user_info' unless devise_controller?
+    = render 'application/footer'
+    = render 'application/user_info' unless devise_controller?
 
     %script{src: 'https://cdn.jsdelivr.net/npm/uswds@2.13.0/dist/js/uswds.min.js', integrity: 'sha256-wFSqIde7dSXUsICyl/9wZcm9Cer7aPhCloW7nMjsvPs=', crossorigin: :anonymous}
