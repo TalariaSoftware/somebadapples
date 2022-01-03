@@ -6,28 +6,39 @@ RSpec.describe Officer, type: :model do
   describe '#name' do
     subject(:name) { officer.name }
 
-    context "when there is a first and last name" do
-      let(:officer) { build :officer, first_name: "Jon", last_name: "Doe" }
+    let(:officer) do
+      build :officer, first_name: first_name, middle_name: middle_name,
+        last_name: last_name, suffix: suffix
+    end
+    let(:first_name) { "Jon" }
+    let(:middle_name) { "Quincy" }
+    let(:last_name) { "Public" }
+    let(:suffix) { "Jr." }
 
-      it "is a combination of first and last name" do
-        expect(name).to eq("Jon Doe")
-      end
+    it { is_expected.to eq("Jon Quincy Public Jr.") }
+
+    context "when there is no first name" do
+      let(:first_name) { '' }
+
+      it { is_expected.to eq("Quincy Public Jr.") }
     end
 
-    context "when there is only a first name" do
-      let(:officer) { build :officer, first_name: "Jon", last_name: nil }
+    context "when there is no middle name" do
+      let(:middle_name) { '' }
 
-      it "is the first name" do
-        expect(name).to eq("Jon")
-      end
+      it { is_expected.to eq("Jon Public Jr.") }
     end
 
-    context "when there is only a last name" do
-      let(:officer) { build :officer, first_name: nil, last_name: "Doe" }
+    context "when there is no last name" do
+      let(:last_name) { '' }
 
-      it "is the first name" do
-        expect(name).to eq("Doe")
-      end
+      it { is_expected.to eq("Jon Quincy Jr.") }
+    end
+
+    context "when there is no suffix name" do
+      let(:suffix) { '' }
+
+      it { is_expected.to eq("Jon Quincy Public") }
     end
   end
 
