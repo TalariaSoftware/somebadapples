@@ -17,7 +17,7 @@
     %p.alert= alert
 
     %main#main-content
-      = yield
+      = content_for?(:content) ? yield(:content) : yield
 
     = render 'application/footer'
     = render 'application/user_info' unless devise_controller?

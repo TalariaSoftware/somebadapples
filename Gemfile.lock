@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: https://github.com/TalariaSoftware/uswds_components.git
-  revision: 44085917ab3f199257b5596c00f50722570b99d0
+  revision: 140a19861814b5c7422c5d9f7505f25c4591cf49
   specs:
     uswds_components (0.1.0)
       haml-rails
@@ -340,7 +340,7 @@ GEM
       rexml
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.5.1)
+    zeitwerk (2.5.3)
 
 PLATFORMS
   arm64-darwin-21
