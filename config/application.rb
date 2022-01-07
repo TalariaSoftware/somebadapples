@@ -17,7 +17,7 @@ module BadApples
 
     config.view_component.preview_paths <<
       UswdsComponents::Engine.root.join('spec/components/previews')
-    config.view_component.default_preview_layout = "component_preview"
+    config.view_component.default_preview_layout = 'component_preview'
     config.view_component.show_previews = true
     config.view_component.show_previews_source = true
   end
