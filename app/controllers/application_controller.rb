@@ -6,21 +6,26 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :not_authorized
 
   def not_authorized(exception)
-    if current_user.present?
-      policy_name = exception.policy.class.to_s.underscore
-      flash[:error] = t("#{policy_name}.#{exception.query}", scope: :pundit,
-                default: :default)
-      redirect_back fallback_location: root_path, status: :see_other
+    return require_login if current_user.blank?
+
+    policy_name = exception.policy.class.to_s.underscore
+    flash[:error] = t("#{policy_name}.#{exception.query}", scope: :pundit,
+              default: :default)
+
+    redirect_back fallback_location: root_path, status: :see_other
+  end
+
+  private
+
+  def require_login
+    flash[:notice] = t('pundit.not_logged_in')
+
+    if request.get? || request.head?
+      store_location_for(:user, request.path)
     else
-      flash[:notice] = t('pundit.not_logged_in')
-
-      if request.get? || request.head?
-        store_location_for(:user, request.path)
-      else
-        store_location_for(:user, request.referer)
-      end
-
-      redirect_to new_user_session_path, status: :see_other
+      store_location_for(:user, request.referer)
     end
+
+    redirect_to new_user_session_path, status: :see_other
   end
 end
