@@ -6,14 +6,12 @@ RSpec.describe ApplicationController, type: :controller do
   context "when the user is unauthorized" do
     controller do
       def index
-        # council = FactoryBot.create :neighborhood_council # rubocop:disable RSpec/FactoryBot/SyntaxMethods
-        policy =  ExternalDocumentPolicy.new(current_user, nil)
+        policy = ExternalDocumentPolicy.new(current_user, nil)
         raise Pundit::NotAuthorizedError.new(policy: policy, query: 'index')
       end
 
       def create
-        # council = FactoryBot.create :neighborhood_council # rubocop:disable RSpec/FactoryBot/SyntaxMethods
-        policy =  ExternalDocumentPolicy.new(current_user, nil)
+        policy = ExternalDocumentPolicy.new(current_user, nil)
         raise Pundit::NotAuthorizedError.new(policy: policy, query: 'create')
       end
     end
