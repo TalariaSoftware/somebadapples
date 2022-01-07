@@ -13,9 +13,7 @@
   %body
     = render partial: 'application/header'
 
-    %p.notice= notice
-    %p.alert= alert
-
+    = render FlashHashComponent.new(flash_hash: flash)
     %main#main-content
       = content_for?(:content) ? yield(:content) : yield
 

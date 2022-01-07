@@ -16,6 +16,8 @@ module BadApples
     config.generators.view_specs = false
 
     config.view_component.preview_paths <<
+      Rails.root.join('spec/components/previews')
+    config.view_component.preview_paths <<
       UswdsComponents::Engine.root.join('spec/components/previews')
     config.view_component.default_preview_layout = 'component_preview'
     config.view_component.show_previews = true
