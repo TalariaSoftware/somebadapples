@@ -8,7 +8,7 @@ gem 'rails'
 gem 'bootsnap', require: false
 gem 'decent_exposure'
 gem 'devise', github: 'heartcombo/devise'
-gem 'elasticsearch', '~>7.15'
+gem 'elasticsearch', '<=7.13' # https://docs.bonsai.io/article/99-searchkick
 gem 'friendly_id'
 gem 'haml-rails'
 gem 'importmap-rails'

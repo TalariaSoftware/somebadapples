@@ -126,12 +126,12 @@ GEM
       activesupport (>= 4.0)
     diff-lcs (1.5.0)
     digest (3.1.0)
-    elasticsearch (7.17.1)
-      elasticsearch-api (= 7.17.1)
-      elasticsearch-transport (= 7.17.1)
-    elasticsearch-api (7.17.1)
+    elasticsearch (7.13.0)
+      elasticsearch-api (= 7.13.0)
+      elasticsearch-transport (= 7.13.0)
+    elasticsearch-api (7.13.0)
       multi_json
-    elasticsearch-transport (7.17.1)
+    elasticsearch-transport (7.13.0)
       faraday (~> 1)
       multi_json
     erubi (1.10.0)
@@ -413,7 +413,7 @@ DEPENDENCIES
   debug
   decent_exposure
   devise!
-  elasticsearch (~> 7.15)
+  elasticsearch (<= 7.13)
   factory_bot
   faker
   friendly_id
