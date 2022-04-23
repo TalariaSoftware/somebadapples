@@ -126,6 +126,10 @@ GEM
       activesupport (>= 4.0)
     diff-lcs (1.5.0)
     digest (3.1.0)
+    dotenv (2.7.6)
+    dotenv-rails (2.7.6)
+      dotenv (= 2.7.6)
+      railties (>= 3.2)
     elasticsearch (7.13.0)
       elasticsearch-api (= 7.13.0)
       elasticsearch-transport (= 7.13.0)
@@ -413,6 +417,7 @@ DEPENDENCIES
   debug
   decent_exposure
   devise!
+  dotenv-rails
   elasticsearch (<= 7.13)
   factory_bot
   faker

@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.1.1'
 
+gem 'dotenv-rails', groups: %i[development test]
+
 gem 'rails'
 
 gem 'bootsnap', require: false
