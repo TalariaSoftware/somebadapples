@@ -1,4 +1,30 @@
-%h1 Search results
+%section.grid-container.usa-section
 
-- @search_results.each do |result|
-  = result.inspect
+  %h1 Search for Officers
+
+  %form.usa-search.usa-search--big{action: search_path, role: :search}
+    %label.usa-sr-only{for: :query} Search
+    %input#query.usa-input{name: :q, type: :search, value: params[:q]}
+    %button.usa-button{type: :submit}
+      %span.usa-search__submit-text Search
+      %img.usa-search__submit-icon{alt: "Search", src: "https://cdn.jsdelivr.net/npm/uswds@2.13.0/src/img/usa-icons-bg/search--white.svg"}
+
+  %h2 Results
+
+  = render UswdsComponents::TableComponent.new(striped: true) do
+    %caption Officers matching "#{params[:q]}"
+    %thead
+      %tr
+        %th{scope: :col} Name
+        %th{scope: :col} Badge no.
+        %th{scope: :col} Serial no.
+        %th{scope: :col} Incidents
+    %tbody
+      - @search_results.each do |officer|
+        %tr
+          %th{scope: :row}
+            = link_to officer do
+              = officer.name
+          %td= officer.badge_number.presence || 'Unknown'
+          %td= officer.serial_number.presence || 'Unknown'
+          %td= officer.incidents.size
