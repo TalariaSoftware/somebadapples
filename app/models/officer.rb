@@ -1,4 +1,6 @@
 class Officer < ApplicationRecord
+  searchkick
+
   extend FriendlyId
   friendly_id :name, use: :slugged
 
