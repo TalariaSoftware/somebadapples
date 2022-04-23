@@ -2,3 +2,9 @@
   - header.logo(href: root_path, title: 'Bad Apples')
 
   - header.primary_item(title: 'Complete list', href: officers_path)
+
+  %form.usa-search.usa-search--small{action: search_path, role: :search}
+    %label.usa-sr-only{for: :query} Search
+    %input#query.usa-input{name: :q, type: :search, value: params[:q]}
+    %button.usa-button{type: :submit}
+      %img.usa-search__submit-icon{alt: "Search", src: "https://cdn.jsdelivr.net/npm/uswds@2.13.0/src/img/usa-icons-bg/search--white.svg"}
