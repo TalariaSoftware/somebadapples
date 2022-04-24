@@ -1,0 +1,23 @@
+name: RSpec
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+env:
+  CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      name: Checkout repository
+    - uses: ruby/setup-ruby@v1
+      name: Setup ruby
+      with:
+        bundler-cache: true
+    - run: bundle exec rspec
+      name: Run specs
+    - uses: paambaati/codeclimate-action@v3.0.0
+      name: Publish code coverage
