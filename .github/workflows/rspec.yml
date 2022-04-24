@@ -35,6 +35,8 @@ jobs:
         bundler-cache: true
     - name: Setup database
       run: bundle exec rails db:create db:schema:load
+    - uses: ankane/setup-elasticsearch@v1
+      name: Setup Elasticsearch
     - run: bundle exec rspec
       name: Run specs
     - uses: paambaati/codeclimate-action@v3.0.0
