@@ -5,6 +5,8 @@ ruby File.read('.ruby-version').strip
 
 gem 'dotenv-rails', groups: %i[development test]
 
+gem 'simplecov', require: false, group: :test
+
 gem 'rails'
 
 gem 'bootsnap', require: false
