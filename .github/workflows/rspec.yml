@@ -10,6 +10,8 @@ env:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: postgres://postgres:postgres@localhost:5432/postgres
     services:
       postgres:
         image: postgres
@@ -32,8 +34,6 @@ jobs:
       with:
         bundler-cache: true
     - name: Setup database
-      env:
-        DATABASE_URL: postgres://postgres:postgres@localhost:5432/postgres
       run: bundle exec rails db:create db:schema:load
     - run: bundle exec rspec
       name: Run specs
