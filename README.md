@@ -3,6 +3,7 @@
 [![Brakeman](https://github.com/TalariaSoftware/somebadapples/actions/workflows/brakeman.yml/badge.svg)](https://github.com/TalariaSoftware/somebadapples/actions/workflows/brakeman.yml)
 [![Bundler audit](https://github.com/TalariaSoftware/somebadapples/actions/workflows/bundler-audit.yml/badge.svg)](https://github.com/TalariaSoftware/somebadapples/actions/workflows/bundler-audit.yml)
 [![CodeQL analysis](https://github.com/TalariaSoftware/somebadapples/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/TalariaSoftware/somebadapples/actions/workflows/codeql-analysis.yml)
+[![License finder](https://github.com/TalariaSoftware/somebadapples/actions/workflows/license-finder.yml/badge.svg)](https://github.com/TalariaSoftware/somebadapples/actions/workflows/license-finder.yml)
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/ceed13ca74e86e5a4f9c/maintainability)](https://codeclimate.com/github/TalariaSoftware/somebadapples/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/ceed13ca74e86e5a4f9c/test_coverage)](https://codeclimate.com/github/TalariaSoftware/somebadapples/test_coverage)
