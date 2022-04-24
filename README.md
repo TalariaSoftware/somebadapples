@@ -1,5 +1,8 @@
 [![RSpec](https://github.com/TalariaSoftware/somebadapples/actions/workflows/rspec.yml/badge.svg)](https://github.com/TalariaSoftware/somebadapples/actions/workflows/rspec.yml)
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/ceed13ca74e86e5a4f9c/maintainability)](https://codeclimate.com/github/TalariaSoftware/somebadapples/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/ceed13ca74e86e5a4f9c/test_coverage)](https://codeclimate.com/github/TalariaSoftware/somebadapples/test_coverage)
+
 # README
 
 This README would normally document whatever steps are necessary to get the
