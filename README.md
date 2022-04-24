@@ -1,3 +1,5 @@
+[![RSpec](https://github.com/TalariaSoftware/somebadapples/actions/workflows/rspec.yml/badge.svg)](https://github.com/TalariaSoftware/somebadapples/actions/workflows/rspec.yml)
+
 # README
 
 This README would normally document whatever steps are necessary to get the
