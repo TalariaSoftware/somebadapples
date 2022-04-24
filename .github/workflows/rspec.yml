@@ -13,10 +13,6 @@ jobs:
     services:
       postgres:
         image: postgres
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: postgres
         ports:
           - 5432:5432
         options: >-
@@ -34,10 +30,8 @@ jobs:
     - name: Setup database
       env:
         RAILS_ENV: test
-        POSTGRES_HOST: localhost
-        POSTGRES_USER: postgres
-        POSTGRES_PASSWORD: postgres
-        POSTGRES_DB: postgres
+        PGHOST: localhost
+        PGUSER: postgres
       run: bundle exec rails db:create db:schema:load
     - run: bundle exec rspec
       name: Run specs
