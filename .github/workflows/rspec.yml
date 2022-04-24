@@ -10,6 +10,20 @@ env:
 jobs:
   test:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
     - uses: actions/checkout@v3
       name: Checkout repository
@@ -17,6 +31,14 @@ jobs:
       name: Setup ruby
       with:
         bundler-cache: true
+    - name: Setup database
+        env:
+          RAILS_ENV: test
+          POSTGRES_HOST: localhost
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
+        run: bundle exec rails db:create db:schema:load
     - run: bundle exec rspec
       name: Run specs
     - uses: paambaati/codeclimate-action@v3.0.0
