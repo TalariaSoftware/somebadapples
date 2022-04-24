@@ -1,5 +1,6 @@
 [![RSpec](https://github.com/TalariaSoftware/somebadapples/actions/workflows/rspec.yml/badge.svg)](https://github.com/TalariaSoftware/somebadapples/actions/workflows/rspec.yml)
 [![Rubocop](https://github.com/TalariaSoftware/somebadapples/actions/workflows/rubocop.yml/badge.svg)](https://github.com/TalariaSoftware/somebadapples/actions/workflows/rubocop.yml)
+[![Brakeman](https://github.com/TalariaSoftware/somebadapples/actions/workflows/brakeman.yml/badge.svg)](https://github.com/TalariaSoftware/somebadapples/actions/workflows/brakeman.yml)
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/ceed13ca74e86e5a4f9c/maintainability)](https://codeclimate.com/github/TalariaSoftware/somebadapples/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/ceed13ca74e86e5a4f9c/test_coverage)](https://codeclimate.com/github/TalariaSoftware/somebadapples/test_coverage)
