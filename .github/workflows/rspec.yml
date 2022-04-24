@@ -32,13 +32,13 @@ jobs:
       with:
         bundler-cache: true
     - name: Setup database
-        env:
-          RAILS_ENV: test
-          POSTGRES_HOST: localhost
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: postgres
-        run: bundle exec rails db:create db:schema:load
+      env:
+        RAILS_ENV: test
+        POSTGRES_HOST: localhost
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: postgres
+        POSTGRES_DB: postgres
+      run: bundle exec rails db:create db:schema:load
     - run: bundle exec rspec
       name: Run specs
     - uses: paambaati/codeclimate-action@v3.0.0
