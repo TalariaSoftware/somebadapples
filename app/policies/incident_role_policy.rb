@@ -1,0 +1,2 @@
+class IncidentRolePolicy < ApplicationPolicy
+end

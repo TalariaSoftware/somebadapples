@@ -1,0 +1,15 @@
+%section.usa-section
+  = form_for [incident_role.incident, incident_role], html: {class: 'usa-form usa-form--large margin-x-auto'} do |f|
+    %h1
+      - if incident_role.persisted?
+        Edit Role
+      - else
+        New Role
+
+    = f.label :officer_id, class: 'usa-label'
+    = f.select :officer_id, Officer.all.map { |officer| [officer.name, officer.id] }, class: 'usa-textarea'
+
+    = f.label :description, class: 'usa-label'
+    = f.text_area :description, class: 'usa-textarea'
+
+    = f.submit class: 'usa-button width-full'

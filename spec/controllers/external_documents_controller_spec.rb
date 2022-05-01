@@ -38,9 +38,9 @@ RSpec.describe ExternalDocumentsController, type: :controller do
       }
     end
 
-    it "redirects to the officer" do
+    it "redirects to the incident" do
       post :create, params: params
-      expect(response).to redirect_to(incident.officer)
+      expect(response).to redirect_to(incident)
     end
 
     it "creates an external document" do
@@ -90,9 +90,9 @@ RSpec.describe ExternalDocumentsController, type: :controller do
       }
     end
 
-    it "redirects to the officer" do
+    it "redirects to the incident" do
       put :update, params: params
-      expect(response).to redirect_to(external_document.incident.officer)
+      expect(response).to redirect_to(external_document.incident)
     end
 
     it "updates the name" do
@@ -121,9 +121,9 @@ RSpec.describe ExternalDocumentsController, type: :controller do
     let(:external_document) { create :external_document }
     let(:params) { { id: external_document.id } }
 
-    it "redirects to the officer" do
+    it "redirects to the incident" do
       delete :destroy, params: params
-      expect(response).to redirect_to(external_document.incident.officer)
+      expect(response).to redirect_to(external_document.incident)
     end
 
     it "deletes the external document" do

@@ -1,6 +1,10 @@
 class IncidentsController < ApplicationController
-  expose :incident, build_params: -> { incident_params },
-    decorate: ->(incident) { authorize incident }
+  expose :incident, decorate: ->(incident) { authorize incident }
+  expose :incidents, -> { policy_scope Incident.all }
+
+  def index
+    @incidents = incidents
+  end
 
   def new
     @incident = incident
@@ -8,7 +12,11 @@ class IncidentsController < ApplicationController
 
   def create
     incident.save!
-    redirect_to incident.officer
+    redirect_to incident
+  end
+
+  def show
+    @incident = incident
   end
 
   def edit
@@ -17,12 +25,12 @@ class IncidentsController < ApplicationController
 
   def update
     incident.update incident_params
-    redirect_to incident.officer
+    redirect_to incident
   end
 
   def destroy
     incident.destroy!
-    redirect_to incident.officer
+    redirect_to incident
   end
 
   private
@@ -30,6 +38,6 @@ class IncidentsController < ApplicationController
   def incident_params
     params
       .require(:incident)
-      .permit(:officer_id, :heading, :description, :datetime)
+      .permit(:heading, :description, :datetime)
   end
 end

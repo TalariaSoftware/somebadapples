@@ -10,18 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_02_235712) do
-
+ActiveRecord::Schema[7.0].define(version: 2022_04_24_173335) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "deprecated_incidents", force: :cascade do |t|
+    t.datetime "datetime"
+    t.string "description", default: "", null: false
+    t.bigint "officer_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "heading", default: "", null: false
+    t.index ["officer_id"], name: "index_deprecated_incidents_on_officer_id"
+  end
 
   create_table "external_documents", force: :cascade do |t|
     t.bigint "incident_id", null: false
     t.string "name"
     t.string "description"
     t.string "url"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["incident_id"], name: "index_external_documents_on_incident_id"
   end
 
@@ -30,20 +39,28 @@ ActiveRecord::Schema.define(version: 2022_01_02_235712) do
     t.integer "sluggable_id", null: false
     t.string "sluggable_type", limit: 50
     t.string "scope"
-    t.datetime "created_at", precision: 6
+    t.datetime "created_at"
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
-  create_table "incidents", force: :cascade do |t|
-    t.datetime "datetime", precision: 6
-    t.string "description", default: "", null: false
+  create_table "incident_roles", force: :cascade do |t|
     t.bigint "officer_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "incident_id", null: false
+    t.string "description", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["incident_id"], name: "index_incident_roles_on_incident_id"
+    t.index ["officer_id"], name: "index_incident_roles_on_officer_id"
+  end
+
+  create_table "incidents", force: :cascade do |t|
     t.string "heading", default: "", null: false
-    t.index ["officer_id"], name: "index_incidents_on_officer_id"
+    t.string "description", default: "", null: false
+    t.datetime "datetime"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "officers", force: :cascade do |t|
@@ -51,8 +68,8 @@ ActiveRecord::Schema.define(version: 2022_01_02_235712) do
     t.string "last_name"
     t.string "serial_number"
     t.string "badge_number"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "slug"
     t.string "middle_name", default: "", null: false
     t.string "suffix", default: "", null: false
@@ -63,14 +80,15 @@ ActiveRecord::Schema.define(version: 2022_01_02_235712) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
-    t.datetime "reset_password_sent_at", precision: 6
-    t.datetime "remember_created_at", precision: 6
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "external_documents", "incidents"
-  add_foreign_key "incidents", "officers"
+  add_foreign_key "deprecated_incidents", "officers"
+  add_foreign_key "incident_roles", "incidents"
+  add_foreign_key "incident_roles", "officers"
 end

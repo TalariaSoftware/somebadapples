@@ -4,25 +4,37 @@ RSpec.describe IncidentsController, type: :controller do
   before { sign_in user }
 
   let(:user) { create :user }
-  let(:officer) { create :officer }
+
+  describe '#index' do
+    it "returns http success" do
+      get :index
+      expect(response).to be_ok
+    end
+
+    context "when there are incidents" do
+      let(:incident) { create :incident }
+
+      it "returns the incidents" do
+        get :index
+        expect(assigns(:incidents)).to eq([incident])
+      end
+    end
+  end
 
   describe '#new' do
-    let(:params) { { incident: { officer_id: officer.id } } }
-
     it "returns http success" do
-      get :new, params: params
+      get :new
       expect(response).to be_ok
     end
 
     describe 'incident' do
       subject(:incident) do
-        get :new, params: params
+        get :new
         assigns(:incident)
       end
 
       it { is_expected.to be_an(Incident) }
       it { is_expected.not_to be_persisted }
-      specify { expect(incident.officer).to eq(officer) }
     end
   end
 
@@ -30,7 +42,6 @@ RSpec.describe IncidentsController, type: :controller do
     let(:params) do
       {
         incident: {
-          officer_id: officer.id,
           heading: "Violence",
           description: "Shot someone",
           datetime: "2021-12-10 21:30",
@@ -38,9 +49,9 @@ RSpec.describe IncidentsController, type: :controller do
       }
     end
 
-    it "redirects to the officer" do
+    it "redirects to the incident" do
       post :create, params: params
-      expect(response).to redirect_to(officer)
+      expect(response).to redirect_to(Incident.order(:created_at).last)
     end
 
     it "creates an incident" do
@@ -55,13 +66,27 @@ RSpec.describe IncidentsController, type: :controller do
         Incident.all.order(:created_at).last
       end
 
-      specify { expect(incident.officer).to eq(officer) }
       specify { expect(incident.heading).to eq("Violence") }
       specify { expect(incident.description).to eq("Shot someone") }
 
       specify do
         expect(incident.datetime).to eq(DateTime.parse("2021-12-10 21:30"))
       end
+    end
+  end
+
+  describe '#show' do
+    let(:incident) { create :incident }
+    let(:params) { { id: incident.id } }
+
+    it "returns http success" do
+      get :show, params: params
+      expect(response).to be_ok
+    end
+
+    it "assigns the incident" do
+      get :show, params: params
+      expect(assigns(:incident)).to eq(incident)
     end
   end
 
@@ -82,29 +107,15 @@ RSpec.describe IncidentsController, type: :controller do
 
   describe '#update' do
     let(:incident) { create :incident }
-    let(:officer) { create :officer }
     let(:params) do
       {
         id: incident.id,
         incident: {
-          officer_id: officer.id,
           heading: "Assault",
           description: "Punched guy",
           datetime: "2021-12-10 22:30",
         },
       }
-    end
-
-    it "redirects to the officer" do
-      put :update, params: params
-      expect(response).to redirect_to(officer)
-    end
-
-    it "updates the officer" do
-      expect {
-        put :update, params: params
-        incident.reload
-      }.to change(incident, :officer).to(officer)
     end
 
     it "updates the heading" do
@@ -130,13 +141,12 @@ RSpec.describe IncidentsController, type: :controller do
   end
 
   describe '#delete' do
-    let(:incident) { create :incident, officer: officer }
-    let(:officer) { create :officer }
+    let(:incident) { create :incident }
     let(:params) { { id: incident.id } }
 
-    it "redirects to the officer" do
+    it "redirects to the incident list" do
       delete :destroy, params: params
-      expect(response).to redirect_to(officer)
+      expect(response).to redirect_to(incidents_path)
     end
 
     it "deletes the incident" do

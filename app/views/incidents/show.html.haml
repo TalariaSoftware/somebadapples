@@ -1,0 +1,28 @@
+%section.grid-container.usa-section
+  %article.padding-4
+    %h1
+      = @incident.heading
+
+    %p
+      = @incident.description
+
+    %p
+      =l @incident.datetime, format: :long if @incident.datetime
+
+    %ul
+      - @incident.incident_roles.each do |role|
+        %li
+          = role.officer.name
+          = role.description
+
+    %ul
+      - @incident.external_documents.each do |document|
+        %li
+          = link_to document.url do
+            = document.name
+          = document.description
+
+    - if policy(@incident).edit?
+      %p
+        = link_to [:edit, @incident] do
+          Edit incident

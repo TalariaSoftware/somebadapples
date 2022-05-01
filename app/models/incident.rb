@@ -1,4 +1,4 @@
 class Incident < ApplicationRecord
-  belongs_to :officer
+  has_many :incident_roles, dependent: :destroy
   has_many :external_documents, dependent: :destroy
 end

@@ -8,7 +8,7 @@ class ExternalDocumentsController < ApplicationController
 
   def create
     external_document.save!
-    redirect_to external_document.incident.officer
+    redirect_to external_document.incident
   end
 
   def edit
@@ -17,12 +17,12 @@ class ExternalDocumentsController < ApplicationController
 
   def update
     external_document.update! external_document_params
-    redirect_to external_document.incident.officer
+    redirect_to external_document.incident
   end
 
   def destroy
     external_document.destroy!
-    redirect_to external_document.incident.officer
+    redirect_to external_document.incident
   end
 
   private
