@@ -23,6 +23,12 @@ RSpec.describe ExternalDocument, type: :model do
 
       it { is_expected.to be_youtube }
     end
+
+    context 'when the URL is invalid' do
+      let(:url) { 'this is not a url' }
+
+      it { is_expected.not_to be_youtube }
+    end
   end
 
   describe '#youtube_id' do
