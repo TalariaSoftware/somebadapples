@@ -21,6 +21,10 @@ Style/HashSyntax:
 Layout/ArgumentAlignment:
   EnforcedStyle: with_fixed_indentation
 
+Layout/EmptyLineAfterGuardClause:
+  Exclude:
+    - app/views/**/*
+
 Layout/FirstArrayElementIndentation:
   EnforcedStyle: consistent
 
@@ -125,6 +129,10 @@ Style/FrozenStringLiteralComment:
 Style/FormatStringToken:
   Exclude:
     - config/routes.rb
+
+Style/SafeNavigation:
+  Exclude:
+    - app/views/**/*
 
 Style/StringLiterals:
   Exclude:

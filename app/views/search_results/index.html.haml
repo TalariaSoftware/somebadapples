@@ -2,7 +2,7 @@
 
   %h1 Search for Officers
 
-  = render UswdsComponents::SearchComponent.new(form_options: { url: search_path, method: :get }, size: :big, submit_icon: "https://cdn.jsdelivr.net/npm/uswds@2.13.0/src/img/usa-icons-bg/search--white.svg")
+  = render UswdsComponents::SearchComponent.new(form_options: { url: search_path, method: :get }, size: :big, submit_icon: 'https://cdn.jsdelivr.net/npm/uswds@2.13.0/src/img/usa-icons-bg/search--white.svg')
 
   %h2 Results
 
@@ -10,14 +10,14 @@
     %caption Officers matching "#{params[:q]}"
     %thead
       %tr
-        %th{scope: :col} Name
-        %th{scope: :col} Badge no.
-        %th{scope: :col} Serial no.
-        %th{scope: :col} Incidents
+        %th{ scope: :col } Name
+        %th{ scope: :col } Badge no.
+        %th{ scope: :col } Serial no.
+        %th{ scope: :col } Incidents
     %tbody
       - @search_results.each do |officer|
         %tr
-          %th{scope: :row}
+          %th{ scope: :row }
             = link_to officer do
               = officer.name
           %td= officer.badge_number.presence || 'Unknown'

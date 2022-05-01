@@ -17,7 +17,7 @@
           Edit Officer
 
       %p
-        = link_to new_incident_path(incident: {officer_id: @officer.id}) do
+        = link_to new_incident_path(incident: { officer_id: @officer.id }) do
           Add incident
 
   = render @officer.incidents

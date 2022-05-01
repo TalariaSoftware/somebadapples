@@ -7,7 +7,7 @@
       = @incident.description
 
     %p
-      =l @incident.datetime, format: :long if @incident.datetime
+      = l @incident.datetime, format: :long if @incident.datetime
 
     %ul
       - @incident.incident_roles.each do |role|

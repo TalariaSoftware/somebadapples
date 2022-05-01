@@ -18,8 +18,8 @@
     = render 'youtube_embed', embed_src: document.youtube_embed_src
 
     - if policy(document).edit?
-      %p= link_to "Edit external document", [:edit, document]
+      %p= link_to 'Edit external document', [:edit, document]
 
   - if policy(incident).edit?
-    = link_to new_external_document_path(external_document: {incident_id: incident.id}) do
+    = link_to new_external_document_path(external_document: { incident_id: incident.id }) do
       Add external document

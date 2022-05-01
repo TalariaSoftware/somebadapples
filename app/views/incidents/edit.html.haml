@@ -13,7 +13,7 @@
   = link_to new_incident_incident_role_path(incident_id: @incident.id) do
     Add officer
 
-  = link_to new_external_document_path(external_document: {incident_id: @incident.id}) do
+  = link_to new_external_document_path(external_document: { incident_id: @incident.id }) do
     Add document
 
   = button_to @incident, method: :delete do

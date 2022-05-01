@@ -181,6 +181,12 @@ GEM
       haml (>= 4.0.6, < 6.0)
       html2haml (>= 1.0.1)
       railties (>= 5.1)
+    haml_lint (0.40.0)
+      haml (>= 4.0, < 5.3)
+      parallel (~> 1.10)
+      rainbow
+      rubocop (>= 0.50.0)
+      sysexits (~> 1.1)
     hashie (5.0.0)
     html2haml (2.2.0)
       erubis (~> 2.7.0)
@@ -379,6 +385,7 @@ GEM
     stimulus-rails (1.0.4)
       railties (>= 6.0.0)
     strscan (3.0.1)
+    sysexits (1.2.0)
     temple (0.8.2)
     thor (1.2.1)
     tilt (2.0.10)
@@ -432,6 +439,7 @@ DEPENDENCIES
   faker
   friendly_id
   haml-rails
+  haml_lint
   importmap-rails
   iron_teapot!
   jbuilder
