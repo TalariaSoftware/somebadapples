@@ -11,6 +11,7 @@ module BadApples
     config.generators.controller_specs = true
     config.generators.helper = false
     config.generators.request_specs = false
+    config.generators.orm :active_record, primary_key_type: :uuid
     config.generators.stylesheets = false
     config.generators.test_framework = :rspec
     config.generators.view_specs = false
