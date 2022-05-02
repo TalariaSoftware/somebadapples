@@ -1,5 +1,8 @@
 [![RSpec](https://github.com/TalariaSoftware/somebadapples/actions/workflows/rspec.yml/badge.svg)](https://github.com/TalariaSoftware/somebadapples/actions/workflows/rspec.yml)
+
 [![Rubocop](https://github.com/TalariaSoftware/somebadapples/actions/workflows/rubocop.yml/badge.svg)](https://github.com/TalariaSoftware/somebadapples/actions/workflows/rubocop.yml)
+[![HAML-Lint](https://github.com/TalariaSoftware/somebadapples/actions/workflows/haml_lint.yml/badge.svg)](https://github.com/TalariaSoftware/somebadapples/actions/workflows/haml_lint.yml)
+
 [![Brakeman](https://github.com/TalariaSoftware/somebadapples/actions/workflows/brakeman.yml/badge.svg)](https://github.com/TalariaSoftware/somebadapples/actions/workflows/brakeman.yml)
 [![Bundler audit](https://github.com/TalariaSoftware/somebadapples/actions/workflows/bundler-audit.yml/badge.svg)](https://github.com/TalariaSoftware/somebadapples/actions/workflows/bundler-audit.yml)
 [![CodeQL analysis](https://github.com/TalariaSoftware/somebadapples/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/TalariaSoftware/somebadapples/actions/workflows/codeql-analysis.yml)
