@@ -7,6 +7,7 @@ Rails.application.load_tasks
 
 task default: %i[
   rubocop
+  haml_lint
   spec
   rails_best_practices
   license_finder
