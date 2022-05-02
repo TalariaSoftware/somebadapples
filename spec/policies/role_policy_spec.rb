@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe IncidentRolePolicy do
-  subject { IncidentRolePolicy.new user, record }
+RSpec.describe RolePolicy do
+  subject { RolePolicy.new user, record }
 
   let(:resolved_scope) do
-    IncidentRolePolicy::Scope.new(user, IncidentRole.all).resolve
+    RolePolicy::Scope.new(user, Role.all).resolve
   end
-  let(:record) { build :incident_role }
+  let(:record) { build :role }
 
   context "when not logged in" do
     let(:user) { nil }
@@ -20,7 +20,7 @@ RSpec.describe IncidentRolePolicy do
     it { is_expected.to forbid_action(:destroy) }
 
     describe 'scope' do
-      let!(:record) { create :incident_role }
+      let!(:record) { create :role }
 
       it "includes the record from resolved scope" do
         expect(resolved_scope).to include(record)
@@ -40,7 +40,7 @@ RSpec.describe IncidentRolePolicy do
     it { is_expected.to permit_action(:destroy) }
 
     describe 'scope' do
-      let!(:record) { create :incident_role }
+      let!(:record) { create :role }
 
       it "includes the record from resolved scope" do
         expect(resolved_scope).to include(record)

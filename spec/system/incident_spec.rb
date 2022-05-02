@@ -38,7 +38,7 @@ RSpec.describe "Incident", type: :system do
 
     select "Javert Valjean", from: "Officer"
     fill_in "Description", with: "Restrained victim"
-    click_on "Create Incident role"
+    click_on "Create Role"
 
     expect(page).to have_content("Excessive violence")
     expect(page).to have_content("Beat pedestrian")

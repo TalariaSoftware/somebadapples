@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :incident_role do
+  factory :role do
     officer
     incident
   end

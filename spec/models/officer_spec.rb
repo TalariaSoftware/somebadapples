@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Officer, type: :model do
-  it { is_expected.to have_many(:incident_roles) }
-  it { is_expected.to have_many(:incidents).through(:incident_roles) }
+  it { is_expected.to have_many(:roles) }
+  it { is_expected.to have_many(:incidents).through(:roles) }
 
   describe '#name' do
     subject(:name) { officer.name }

@@ -10,7 +10,7 @@
       = l @incident.datetime, format: :long if @incident.datetime
 
     %ul
-      - @incident.incident_roles.each do |role|
+      - @incident.roles.each do |role|
         %li
           = role.officer.name
           = role.description

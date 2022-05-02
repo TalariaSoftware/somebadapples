@@ -10,7 +10,7 @@
         = link_to edit_external_document_path(document) do
           Edit external document
 
-  = link_to new_incident_incident_role_path(incident_id: @incident.id) do
+  = link_to new_incident_role_path(incident_id: @incident.id) do
     Add officer
 
   = link_to new_external_document_path(external_document: { incident_id: @incident.id }) do

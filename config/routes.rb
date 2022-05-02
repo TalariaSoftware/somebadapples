@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :external_documents, only: %i[new create edit update destroy]
   resources :incidents do
-    resources :incident_roles, only: %i[new create edit update destroy]
+    resources :roles, only: %i[new create edit update destroy]
   end
   resources :officers
 

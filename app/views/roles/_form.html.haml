@@ -1,7 +1,7 @@
 %section.usa-section
-  = form_for [incident_role.incident, incident_role], html: { class: 'usa-form usa-form--large margin-x-auto' } do |f|
+  = form_for [role.incident, role], html: { class: 'usa-form usa-form--large margin-x-auto' } do |f|
     %h1
-      - if incident_role.persisted?
+      - if role.persisted?
         Edit Role
       - else
         New Role

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_01_200756) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_02_015229) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -36,16 +36,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_01_200756) do
     t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
   end
 
-  create_table "incident_roles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "description", default: "", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.uuid "officer_id", null: false
-    t.uuid "incident_id", null: false
-    t.index ["incident_id"], name: "index_incident_roles_on_incident_id"
-    t.index ["officer_id"], name: "index_incident_roles_on_officer_id"
-  end
-
   create_table "incidents", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "heading", default: "", null: false
     t.string "description", default: "", null: false
@@ -67,6 +57,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_01_200756) do
     t.index ["slug"], name: "index_officers_on_slug", unique: true
   end
 
+  create_table "roles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "description", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.uuid "officer_id", null: false
+    t.uuid "incident_id", null: false
+    t.index ["incident_id"], name: "index_roles_on_incident_id"
+    t.index ["officer_id"], name: "index_roles_on_officer_id"
+  end
+
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -79,6 +79,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_01_200756) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "incident_roles", "incidents"
-  add_foreign_key "incident_roles", "officers"
+  add_foreign_key "roles", "incidents"
+  add_foreign_key "roles", "officers"
 end
