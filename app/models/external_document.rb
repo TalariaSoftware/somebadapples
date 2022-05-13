@@ -1,6 +1,8 @@
 class ExternalDocument < ApplicationRecord
   belongs_to :incident
 
+  searchkick
+
   def youtube?
     domain = PublicSuffix.domain(URI.parse(url).host)
     domain.in? ['youtube.com', 'youtu.be']

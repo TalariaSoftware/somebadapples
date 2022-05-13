@@ -14,12 +14,32 @@ RSpec.describe SearchResultsController, type: :controller do
       end
     end
 
-    context "when there are results" do
+    context "when there are officer results" do
       let!(:officer) { create :officer, :reindex, first_name: 'Bob' }
 
       it "returns the results" do
         get :index, params: { q: 'bob' }
         expect(assigns(:search_results).to_a).to eq([officer])
+      end
+    end
+
+    context "when there are incident results" do
+      let!(:incident) { create :incident, :reindex, heading: 'The fruit saga' }
+
+      it "returns the results" do
+        get :index, params: { q: 'fruit' }
+        expect(assigns(:search_results).to_a).to eq([incident])
+      end
+    end
+
+    context "when there are document results" do
+      let!(:document) do
+        create :external_document, :reindex, name: 'Frooty Tooty'
+      end
+
+      it "returns the results" do
+        get :index, params: { q: 'frooty' }
+        expect(assigns(:search_results).to_a).to eq([document])
       end
     end
   end

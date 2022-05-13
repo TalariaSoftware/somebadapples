@@ -1,0 +1,37 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Dynamic Render Path",
+      "warning_code": 15,
+      "fingerprint": "fb70180c12a154ca93903d247b1aff56db3983247017deb1a1f5418122a95fd0",
+      "check_name": "Render",
+      "message": "Render path contains parameter value",
+      "file": "app/views/search_results/index.html.haml",
+      "line": 9,
+      "link": "https://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
+      "code": "render(action => policy_scope(Searchkick.search(params[:q], :models => ([Officer, Incident, ExternalDocument]))), {})",
+      "render_path": [
+        {
+          "type": "controller",
+          "class": "SearchResultsController",
+          "method": "index",
+          "line": 4,
+          "file": "app/controllers/search_results_controller.rb",
+          "rendered": {
+            "name": "search_results/index",
+            "file": "app/views/search_results/index.html.haml"
+          }
+        }
+      ],
+      "location": {
+        "type": "template",
+        "template": "search_results/index"
+      },
+      "user_input": "params[:q]",
+      "confidence": "Weak",
+      "note": ""
+    }
+  ],
+  "updated": "2022-05-13 16:09:50 -0500",
+  "brakeman_version": "5.2.3"
+}

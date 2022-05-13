@@ -1,6 +1,9 @@
 RSpec.configure do |config|
   config.before(:suite) do
     Officer.reindex
+    Incident.reindex
+    ExternalDocument.reindex
+
     Searchkick.disable_callbacks
   end
 
