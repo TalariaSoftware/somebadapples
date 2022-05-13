@@ -16,7 +16,7 @@
           = role.description
 
     %ul
-      - @incident.external_documents.each do |document|
+      - @incident.documents.each do |document|
         %li
           = link_to document.url do
             = document.name

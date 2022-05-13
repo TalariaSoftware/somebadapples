@@ -7,12 +7,12 @@ RSpec.describe ResultPolicy, :search do
   let(:user) { nil }
 
   let(:results) do
-    Searchkick.search('*', models: [Officer, Incident, ExternalDocument])
+    Searchkick.search('*', models: [Officer, Incident, Document])
   end
 
   let!(:officer) { create :officer, :reindex }
   let!(:incident) { create :incident, :reindex }
-  let!(:document) { create :external_document, :reindex }
+  let!(:document) { create :document, :reindex }
 
   describe 'scope' do
     it "includes the officer" do

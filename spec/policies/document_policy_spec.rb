@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe ExternalDocumentPolicy do
-  subject { ExternalDocumentPolicy.new user, record }
+RSpec.describe DocumentPolicy do
+  subject { DocumentPolicy.new user, record }
 
   let(:resolved_scope) do
-    ExternalDocumentPolicy::Scope.new(user, ExternalDocument.all).resolve
+    DocumentPolicy::Scope.new(user, Document.all).resolve
   end
-  let(:record) { build :external_document }
+  let(:record) { build :document }
 
   context "when not logged in" do
     let(:user) { nil }
@@ -20,7 +20,7 @@ RSpec.describe ExternalDocumentPolicy do
     it { is_expected.to forbid_action(:destroy) }
 
     describe 'scope' do
-      let!(:record) { create :external_document }
+      let!(:record) { create :document }
 
       it "includes the record from resolved scope" do
         expect(resolved_scope).to include(record)
@@ -40,7 +40,7 @@ RSpec.describe ExternalDocumentPolicy do
     it { is_expected.to permit_action(:destroy) }
 
     describe 'scope' do
-      let!(:record) { create :external_document }
+      let!(:record) { create :document }
 
       it "includes the record from resolved scope" do
         expect(resolved_scope).to include(record)

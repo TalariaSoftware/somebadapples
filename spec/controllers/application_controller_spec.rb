@@ -6,12 +6,12 @@ RSpec.describe ApplicationController, type: :controller do
   context "when the user is unauthorized" do
     controller do
       def index
-        policy = ExternalDocumentPolicy.new(current_user, nil)
+        policy = DocumentPolicy.new(current_user, nil)
         raise Pundit::NotAuthorizedError.new(policy: policy, query: 'index')
       end
 
       def create
-        policy = ExternalDocumentPolicy.new(current_user, nil)
+        policy = DocumentPolicy.new(current_user, nil)
         raise Pundit::NotAuthorizedError.new(policy: policy, query: 'create')
       end
     end

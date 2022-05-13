@@ -1,4 +1,4 @@
-class ExternalDocument < ApplicationRecord
+class Document < ApplicationRecord
   belongs_to :incident
 
   searchkick

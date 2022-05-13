@@ -10,19 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_02_015229) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_13_212444) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
-  create_table "external_documents", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "documents", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "incident_id", null: false
-    t.index ["incident_id"], name: "index_external_documents_on_incident_id"
+    t.index ["incident_id"], name: "index_documents_on_incident_id"
   end
 
   create_table "friendly_id_slugs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

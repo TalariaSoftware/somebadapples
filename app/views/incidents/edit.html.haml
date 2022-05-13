@@ -2,18 +2,18 @@
   = render 'form', locals: { incident: @incident }
 
   %ul
-    - @incident.external_documents.each do |document|
+    - @incident.documents.each do |document|
       %li
         = link_to document.url do
           = document.name
         = document.description
-        = link_to edit_external_document_path(document) do
-          Edit external document
+        = link_to edit_document_path(document) do
+          Edit document
 
   = link_to new_incident_role_path(incident_id: @incident.id) do
     Add officer
 
-  = link_to new_external_document_path(external_document: { incident_id: @incident.id }) do
+  = link_to new_document_path(document: { incident_id: @incident.id }) do
     Add document
 
   = button_to @incident, method: :delete do

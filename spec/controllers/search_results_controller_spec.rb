@@ -33,9 +33,7 @@ RSpec.describe SearchResultsController, type: :controller do
     end
 
     context "when there are document results" do
-      let!(:document) do
-        create :external_document, :reindex, name: 'Frooty Tooty'
-      end
+      let!(:document) { create :document, :reindex, name: 'Frooty Tooty' }
 
       it "returns the results" do
         get :index, params: { q: 'frooty' }

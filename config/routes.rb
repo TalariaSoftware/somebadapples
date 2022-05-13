@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'pages#home'
 
-  resources :external_documents, only: %i[new create edit update destroy]
+  resources :documents, only: %i[new create edit update destroy]
   resources :incidents do
     resources :roles, only: %i[new create edit update destroy]
   end

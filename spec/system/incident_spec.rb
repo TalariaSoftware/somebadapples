@@ -63,12 +63,12 @@ RSpec.describe "Incident", type: :system do
     expect(page).to have_link(href: "https://example.com/tweet")
 
     click_on "Edit incident"
-    click_on "Edit external document"
+    click_on "Edit document"
 
     fill_in "Name", with: "Insta"
     fill_in "Description", with: "Photo of arrest"
     fill_in "Url", with: "https://example.com/insta"
-    click_on "Update External document"
+    click_on "Update Document"
 
     expect(page).to have_content("Photo of arrest")
     expect(page).to have_link(href: "https://example.com/insta")

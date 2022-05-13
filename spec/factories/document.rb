@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :external_document do
+  factory :document do
     incident
     # NOTE: This should be the last trait in the list so `reindex` is called
     # after all the other callbacks complete.

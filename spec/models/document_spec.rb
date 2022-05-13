@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe ExternalDocument, type: :model do
+RSpec.describe Document, type: :model do
   it { is_expected.to belong_to(:incident) }
 
   describe '#youtube?' do
-    subject(:document) { build :external_document, url: url }
+    subject(:document) { build :document, url: url }
 
     context 'when the host is not a YouTube domain' do
       let(:url) { 'https://www.myspace.com/youtube.com' }
@@ -34,7 +34,7 @@ RSpec.describe ExternalDocument, type: :model do
   describe '#youtube_id' do
     subject(:youtube_id) { document.youtube_id }
 
-    let(:document) { build :external_document, url: url }
+    let(:document) { build :document, url: url }
 
     context 'when the host is not a YouTube domain' do
       let(:url) { 'https://www.myspace.com/youtube.com?v=foobar' }
@@ -58,7 +58,7 @@ RSpec.describe ExternalDocument, type: :model do
   describe '#youtube_embed_src' do
     subject(:youtube_embed_src) { document.youtube_embed_src }
 
-    let(:document) { build :external_document, url: url }
+    let(:document) { build :document, url: url }
 
     context 'when the URL does NOT point to a video on YouTube' do
       let(:url) { 'https://www.youtube.com/feed/explore' }
