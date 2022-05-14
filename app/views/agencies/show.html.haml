@@ -1,0 +1,12 @@
+%section.grid-container.usa-section
+  %article.padding-4
+    %h1
+      #{@agency.name} (#{@agency.short_name})
+
+    %p
+      = link_to agencies_path do
+        Agency list
+    - if policy(@agency).edit?
+      %p
+        = link_to [:edit, @agency] do
+          Edit Agency

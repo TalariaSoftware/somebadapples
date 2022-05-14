@@ -1,0 +1,20 @@
+%section.grid-container.usa-section
+  %h1 Agencies
+
+  = render UswdsComponents::TableComponent.new(striped: true) do
+    %caption Complete list of agencies
+    %thead
+      %tr
+        %th{ scope: :col } Name
+        %th{ scope: :col } Short name
+    %tbody
+      - @agencies.each do |agency|
+        %tr
+          %th{ scope: :row }
+            = link_to agency do
+              = agency.name
+          %td= agency.short_name
+
+  - if policy(Agency).new?
+    = link_to new_agency_path do
+      Add agency

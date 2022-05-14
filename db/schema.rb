@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_13_212444) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_13_215415) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "agencies", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.string "short_name", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "documents", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
@@ -57,6 +64,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_13_212444) do
     t.index ["slug"], name: "index_officers_on_slug", unique: true
   end
 
+  create_table "positions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "officer_id", null: false
+    t.uuid "agency_id", null: false
+    t.string "badge_number"
+    t.string "serial_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["agency_id"], name: "index_positions_on_agency_id"
+    t.index ["officer_id"], name: "index_positions_on_officer_id"
+  end
+
   create_table "roles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "description", default: "", null: false
     t.datetime "created_at", null: false
@@ -79,6 +97,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_13_212444) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "positions", "agencies"
+  add_foreign_key "positions", "officers"
   add_foreign_key "roles", "incidents"
   add_foreign_key "roles", "officers"
 end
