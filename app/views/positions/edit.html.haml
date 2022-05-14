@@ -1,0 +1,5 @@
+.grid-container
+  = render 'form', locals: { position: @position }
+
+  = button_to [@position.officer, @position], method: :delete do
+    Delete

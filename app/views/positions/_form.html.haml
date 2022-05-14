@@ -1,0 +1,18 @@
+%section.usa-section
+  = form_for [position.officer, position], html: { class: 'usa-form usa-form--large margin-x-auto' } do |f|
+    %h1
+      - if position.persisted?
+        Edit Position for #{position.officer.name}
+      - else
+        New Position for #{position.officer.name}
+
+    = f.label :agency_id, class: 'usa-label'
+    = f.select :agency_id, Agency.all.map { |agency| [agency.name, agency.id] }, class: 'usa-textarea'
+
+    = f.label :badge_number, class: 'usa-label'
+    = f.text_field :badge_number, class: 'usa-input'
+
+    = f.label :serial_number, class: 'usa-label'
+    = f.text_field :serial_number, class: 'usa-input'
+
+    = f.submit class: 'usa-button width-full'

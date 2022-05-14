@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   resources :incidents do
     resources :roles, only: %i[new create edit update destroy]
   end
-  resources :officers
+  resources :officers do
+    resources :positions, only: %i[new create edit update destroy]
+  end
   resources :agencies
 
   get '/search', to: 'search_results#index'

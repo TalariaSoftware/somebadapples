@@ -4,6 +4,7 @@ class Officer < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
 
+  has_many :positions, dependent: :destroy
   has_many :roles, dependent: :destroy
   has_many :incidents, through: :roles
 
