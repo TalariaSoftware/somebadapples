@@ -3,14 +3,6 @@
     %h1
       = @officer.name
 
-    %p
-      Badge no:
-      = @officer.badge_number.presence || 'Unknown'
-
-    %p
-      Serial no:
-      = @officer.serial_number.presence || 'Unknown'
-
     %ul
       - @officer.positions.each do |position|
         %li

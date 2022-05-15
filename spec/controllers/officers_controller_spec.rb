@@ -48,8 +48,6 @@ RSpec.describe OfficersController, type: :controller do
           middle_name: "Jon",
           last_name: "Valjean",
           suffix: "Jr.",
-          badge_number: "pi",
-          serial_number: "googol",
         },
       }
     end
@@ -75,8 +73,6 @@ RSpec.describe OfficersController, type: :controller do
       specify { expect(officer.middle_name).to eq("Jon") }
       specify { expect(officer.last_name).to eq("Valjean") }
       specify { expect(officer.suffix).to eq("Jr.") }
-      specify { expect(officer.badge_number).to eq("pi") }
-      specify { expect(officer.serial_number).to eq("googol") }
     end
   end
 
@@ -124,8 +120,6 @@ RSpec.describe OfficersController, type: :controller do
           middle_name: "Jay",
           last_name: "Pinkerton",
           suffix: "Sr.",
-          badge_number: "7",
-          serial_number: "13",
         },
       }
     end
@@ -161,20 +155,6 @@ RSpec.describe OfficersController, type: :controller do
         put :update, params: params
         officer.reload
       }.to change(officer, :suffix).to("Sr.")
-    end
-
-    it "updates the badge number" do
-      expect {
-        put :update, params: params
-        officer.reload
-      }.to change(officer, :badge_number).to("7")
-    end
-
-    it "updates the serial number" do
-      expect {
-        put :update, params: params
-        officer.reload
-      }.to change(officer, :serial_number).to("13")
     end
   end
 

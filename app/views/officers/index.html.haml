@@ -6,8 +6,6 @@
     %thead
       %tr
         %th{ scope: :col } Name
-        %th{ scope: :col } Badge no.
-        %th{ scope: :col } Serial no.
         %th{ scope: :col } Incidents
     %tbody
       - @officers.each do |officer|
@@ -15,8 +13,6 @@
           %th{ scope: :row }
             = link_to officer do
               = officer.name
-          %td= officer.badge_number.presence || 'Unknown'
-          %td= officer.serial_number.presence || 'Unknown'
           %td= officer.incidents.size
 
   - if policy(Officer).new?
