@@ -11,7 +11,9 @@ RSpec.describe "Incident", type: :system do
 
   scenario "Manage incident" do
     visit incidents_path
-    click_on "Add incident"
+    within 'main' do
+      click_on "Add incident"
+    end
 
     fill_in "Heading", with: "Excessive force"
     fill_in "Description", with: "Beat driver"
@@ -37,8 +39,8 @@ RSpec.describe "Incident", type: :system do
     click_on "Add officer"
 
     select "Javert Valjean", from: "Officer"
-    fill_in "Description", with: "Restrained victim"
-    click_on "Create Role"
+    fill_in "Role", with: "Restrained victim"
+    click_on "Add officer"
 
     expect(page).to have_content("Excessive violence")
     expect(page).to have_content("Beat pedestrian")
@@ -85,5 +87,56 @@ RSpec.describe "Incident", type: :system do
     click_on "Delete"
 
     expect(page).not_to have_content("Excessive violence")
+  end
+
+  scenario "Create incident" do
+    visit root_path
+    click_on "Add incident"
+    fill_in "Heading", with: "Murder of Valentina"
+    fill_in "Description", with: "Shot and killed in a coat store"
+    click_on "Create Incident"
+
+    expect(page).to have_current_path(incident_path(Incident.last))
+    expect(page).to have_content("Murder of Valentina")
+    expect(page).to have_content("Shot and killed in a coat store")
+  end
+
+  context "when an incident exists" do
+    let(:incident) { create :incident }
+
+    context "when the officer exists" do
+      let(:jones) { create :officer, first_name: "Will", last_name: "Jones" }
+      let(:lapd) { create :agency, short_name: "LAPD" }
+
+      before { create :position, officer: jones, agency: lapd }
+
+      scenario "Add existing officer" do
+        visit incident_path(incident)
+        click_on "Add officer"
+        select "Will Jones (LAPD)", from: "Officer"
+        fill_in "Role", with: "Shot Valentina with an M16"
+        click_on "Add officer"
+
+        expect(page).to have_current_path(incident_path(incident))
+        expect(page).to have_content("Will Jones")
+        expect(page).to have_content("Shot Valentina with an M16")
+      end
+    end
+
+    scenario "Add new officer" do
+      visit incident_path(incident)
+      click_on "Add officer"
+      check "New Officer"
+      fill_in "First name", with: "Javert"
+      fill_in "Middle name", with: "Paul"
+      fill_in "Last name", with: "Valjean"
+      fill_in "Suffix", with: "Jr."
+      fill_in "Role", with: "Shot Valentina with a musket"
+      click_on "Add officer"
+
+      expect(page).to have_current_path(incident_path(incident))
+      expect(page).to have_content("Javert Paul Valjean Jr.")
+      expect(page).to have_content("Shot Valentina with a musket")
+    end
   end
 end

@@ -2,14 +2,36 @@
   = form_for [role.incident, role], html: { class: 'usa-form usa-form--large margin-x-auto' } do |f|
     %h1
       - if role.persisted?
-        Edit Role
+        Edit officer's role in incident
       - else
-        New Role
+        Add officer to incident
 
-    = f.label :officer_id, class: 'usa-label'
-    = f.select :officer_id, Officer.all.map { |officer| [officer.name, officer.id] }, class: 'usa-textarea'
+    .usa-form-group
+      = f.label :officer_id, class: 'usa-label'
+      = f.select :officer_id, Officer.select_choices, { prompt: 'Choose…' }, class: 'usa-select'
+    .usa-form-group
+      .usa-checkbox
+        = check_box_tag :new_officer, false, false, class: 'usa-checkbox__input', name: :new_officer
+        %label.usa-checkbox__label{ for: :new_officer }
+          New Officer
 
-    = f.label :description, class: 'usa-label'
-    = f.text_area :description, class: 'usa-textarea'
+    .usa-form-group
+      = f.fields_for :officer do |officer_form|
+        .usa-form-group
+          = officer_form.label :first_name
+          = officer_form.text_field :first_name, class: 'usa-input'
+        .usa-form-group
+          = officer_form.label :middle_name
+          = officer_form.text_field :middle_name, class: 'usa-input'
+        .usa-form-group
+          = officer_form.label :last_name
+          = officer_form.text_field :last_name, class: 'usa-input'
+        .usa-form-group
+          = officer_form.label :suffix
+          = officer_form.text_field :suffix, class: 'usa-input'
+
+    .usa-form-group
+      = f.label :description, class: 'usa-label'
+      = f.text_area :description, class: 'usa-textarea'
 
     = f.submit class: 'usa-button width-full'

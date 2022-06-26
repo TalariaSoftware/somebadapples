@@ -24,5 +24,9 @@
 
     - if policy(@incident).edit?
       %p
+        = link_to new_incident_role_path(incident_id: @incident.id) do
+          Add officer
+
+      %p
         = link_to [:edit, @incident] do
           Edit incident

@@ -1,6 +1,17 @@
 # Files in the config/locales directory are used for internationalization
 # and are automatically loaded by Rails. If you want to use locales other
 en:
+  activerecord:
+    attributes:
+      role:
+        description: Role
+  helpers:
+    submit:
+      role:
+        create: Add officer
   pundit:
     default: You are not authorized for that.
     not_logged_in: Sign in to continue.
+  roles:
+    create:
+      save: Add

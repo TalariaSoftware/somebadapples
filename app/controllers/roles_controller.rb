@@ -4,6 +4,7 @@ class RolesController < ApplicationController
 
   def new
     @role = role
+    @role.officer = Officer.new
   end
 
   def create
@@ -28,8 +29,27 @@ class RolesController < ApplicationController
   private
 
   def role_params
+    return existing_officer_role_params if params[:role][:officer_id].present?
+
+    new_officer_role_params
+  end
+
+  def new_officer_role_params
+    params
+      .require(:role)
+      .permit(
+        :incident_id, :description,
+        officer_attributes: officer_attribute_keys
+      )
+  end
+
+  def existing_officer_role_params
     params
       .require(:role)
       .permit(:incident_id, :officer_id, :description)
+  end
+
+  def officer_attribute_keys
+    %i[first_name middle_name last_name suffix]
   end
 end

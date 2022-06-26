@@ -27,6 +27,7 @@ RSpec.describe RolesController, type: :controller do
       it { is_expected.to be_an(Role) }
       it { is_expected.not_to be_persisted }
       specify { expect(role.incident).to eq(incident) }
+      specify { expect(role.officer).not_to be_persisted }
     end
   end
 
@@ -37,6 +38,12 @@ RSpec.describe RolesController, type: :controller do
         role: {
           officer_id: officer.id,
           description: "Was at the scene",
+          officer_attributes: {
+            first_name: "",
+            middle_name: "",
+            last_name: "",
+            suffix: "",
+          },
         },
       }
     end
@@ -63,6 +70,48 @@ RSpec.describe RolesController, type: :controller do
       specify { expect(role.officer).to eq(officer) }
       specify { expect(role.incident).to eq(incident) }
       specify { expect(role.description).to eq("Was at the scene") }
+    end
+
+    context "with a new officer" do
+      let(:params) do
+        {
+          incident_id: incident.id,
+          role: {
+            officer_id: '',
+            description: "Was at the scene",
+            officer_attributes: {
+              first_name: "Joe",
+              middle_name: "Not",
+              last_name: "Kool",
+              suffix: "Sr.",
+            },
+          },
+        }
+      end
+
+      it "creates an incident role" do
+        expect {
+          post :create, params: params
+        }.to change(Role, :count).by(1)
+      end
+
+      it "creates an officer" do
+        expect {
+          post :create, params: params
+        }.to change(Officer, :count).by(1)
+      end
+
+      describe "new officer" do
+        subject(:officer) do
+          post :create, params: params
+          Officer.all.order(:created_at).last
+        end
+
+        specify { expect(officer.first_name).to eq("Joe") }
+        specify { expect(officer.middle_name).to eq("Not") }
+        specify { expect(officer.last_name).to eq("Kool") }
+        specify { expect(officer.suffix).to eq("Sr.") }
+      end
     end
   end
 
