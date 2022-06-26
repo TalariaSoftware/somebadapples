@@ -1,4 +1,4 @@
-%section.usa-section
+%section.usa-section{ data: { controller: 'role-form' } }
   = form_for [role.incident, role], html: { class: 'usa-form usa-form--large margin-x-auto' } do |f|
     %h1
       - if role.persisted?
@@ -11,11 +11,11 @@
       = f.select :officer_id, Officer.select_choices, { prompt: 'Choose…' }, class: 'usa-select'
     .usa-form-group
       .usa-checkbox
-        = check_box_tag :new_officer, false, false, class: 'usa-checkbox__input', name: :new_officer
+        = check_box_tag :new_officer, false, false, class: 'usa-checkbox__input', name: :new_officer, data: { 'role-form-target' => 'newOfficerToggle', action: 'change->role-form#toggleNewOfficer' }
         %label.usa-checkbox__label{ for: :new_officer }
           New Officer
 
-    .usa-form-group
+    .usa-form-group{ data: { 'role-form-target' => 'newOfficerFields' } }
       = f.fields_for :officer do |officer_form|
         .usa-form-group
           = officer_form.label :first_name
