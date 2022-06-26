@@ -1,26 +1,21 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ['newOfficerFields', 'newOfficerToggle']
+  static targets = ['newOfficerFields', 'officerSelect']
 
-  connect() {
-    console.log(this.newOfficerFieldsTarget)
-    this.newOfficerFieldsTarget.classList.add('display-none')
-  }
-
-  toggleNewOfficer() {
-    if(this.newOfficerToggleTarget.checked) {
-      this.enableNewOfficer()
+  selectOfficer() {
+    if(this.officerSelectTarget.value == 'new_officer') {
+      this.showNewOfficerFields()
     } else {
-      this.disableNewOfficer()
+      this.hideNewOfficerFields()
     }
   }
 
-  enableNewOfficer() {
+  showNewOfficerFields() {
     this.newOfficerFieldsTarget.classList.remove('display-none')
   }
 
-  disableNewOfficer() {
+  hideNewOfficerFields() {
     this.newOfficerFieldsTarget.classList.add('display-none')
   }
 }

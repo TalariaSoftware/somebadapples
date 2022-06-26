@@ -126,7 +126,7 @@ RSpec.describe "Incident", type: :system do
     scenario "Add new officer" do
       visit incident_path(incident)
       click_on "Add officer"
-      check "New Officer"
+      select "New officer"
       fill_in "First name", with: "Javert"
       fill_in "Middle name", with: "Paul"
       fill_in "Last name", with: "Valjean"

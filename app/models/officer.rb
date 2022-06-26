@@ -21,6 +21,7 @@ class Officer < ApplicationRecord
   end
 
   def self.select_choices
-    all.map { |officer| [officer.selection_string, officer.id] }
+    all.map { |officer| [officer.selection_string, officer.id] } +
+      [['New officer', 'new_officer']]
   end
 end
