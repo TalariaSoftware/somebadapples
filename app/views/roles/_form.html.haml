@@ -8,7 +8,8 @@
 
     .usa-form-group
       = f.label :officer_id, class: 'usa-label'
-      = f.select :officer_id, Officer.select_choices, { prompt: 'Choose…' }, class: 'usa-select'
+      .usa-combo-box
+        = f.select :officer_id, Officer.select_choices, { class: 'usa-select' }, required: true
     .usa-form-group
       .usa-checkbox
         = check_box_tag :new_officer, false, false, class: 'usa-checkbox__input', name: :new_officer, data: { 'role-form-target' => 'newOfficerToggle', action: 'change->role-form#toggleNewOfficer' }
