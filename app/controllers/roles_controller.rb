@@ -29,9 +29,14 @@ class RolesController < ApplicationController
   private
 
   def role_params
-    return existing_officer_role_params if params[:role][:officer_id].present?
+    return existing_officer_role_params if existing_officer?
 
     new_officer_role_params
+  end
+
+  def existing_officer?
+    params[:role][:officer_id].present?
+    UUID.validate(params[:role][:officer_id])
   end
 
   def new_officer_role_params

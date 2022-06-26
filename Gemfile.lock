@@ -215,6 +215,8 @@ GEM
     loofah (2.18.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
+    macaddr (1.7.2)
+      systemu (~> 2.6.5)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     marcel (1.0.2)
@@ -387,6 +389,7 @@ GEM
       railties (>= 6.0.0)
     strscan (3.0.3)
     sysexits (1.2.0)
+    systemu (2.6.5)
     temple (0.8.2)
     thor (1.2.1)
     tilt (2.0.10)
@@ -399,6 +402,8 @@ GEM
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.1.0)
+    uuid (2.3.9)
+      macaddr (~> 1.0)
     view_component (2.56.2)
       activesupport (>= 5.0.0, < 8.0)
       method_source (~> 1.0)
@@ -474,6 +479,7 @@ DEPENDENCIES
   turbo-rails
   tzinfo-data
   uswds_components!
+  uuid
   web-console
   webdrivers
 

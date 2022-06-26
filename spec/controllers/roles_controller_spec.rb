@@ -77,7 +77,7 @@ RSpec.describe RolesController, type: :controller do
         {
           incident_id: incident.id,
           role: {
-            officer_id: '',
+            officer_id: 'new_officer',
             description: "Was at the scene",
             officer_attributes: {
               first_name: "Joe",
