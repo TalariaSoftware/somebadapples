@@ -6,21 +6,21 @@ class OfficersController < ApplicationController
     @officers = officers
   end
 
+  def show
+    @officer = officer
+  end
+
   def new
+    @officer = officer
+  end
+
+  def edit
     @officer = officer
   end
 
   def create
     officer.save!
     redirect_to officer
-  end
-
-  def show
-    @officer = officer
-  end
-
-  def edit
-    @officer = officer
   end
 
   def update

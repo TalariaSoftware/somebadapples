@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Officer, type: :model do
+RSpec.describe Officer do
   it { is_expected.to have_many(:roles) }
   it { is_expected.to have_many(:positions) }
   it { is_expected.to have_many(:incidents).through(:roles) }

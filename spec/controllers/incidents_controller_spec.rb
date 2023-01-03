@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe IncidentsController, type: :controller do
+RSpec.describe IncidentsController do
   before { sign_in user }
 
   let(:user) { create :user }

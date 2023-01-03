@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ApplicationController, type: :controller do
+RSpec.describe ApplicationController do
   include Rails.application.routes.url_helpers
 
   context "when the user is unauthorized" do

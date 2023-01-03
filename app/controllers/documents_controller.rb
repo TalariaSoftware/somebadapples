@@ -6,13 +6,13 @@ class DocumentsController < ApplicationController
     @document = document
   end
 
+  def edit
+    @document = document
+  end
+
   def create
     document.save!
     redirect_to document.incident
-  end
-
-  def edit
-    @document = document
   end
 
   def update

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Incident", type: :system do
+RSpec.describe "Incident" do
   before do
     create :officer, first_name: "Javert", last_name: "Valjean"
     driven_by(:rack_test)

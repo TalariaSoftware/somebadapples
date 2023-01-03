@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Component Previews", type: :system do
+RSpec.describe "Component Previews" do
   before { driven_by(:rack_test) }
 
   ViewComponent::Preview.all.each do |preview|

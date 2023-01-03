@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
+RSpec.describe User do
   specify { expect(true).to be_truthy }
 end

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe RolesController, type: :controller do
+RSpec.describe RolesController do
   before { sign_in user }
 
   let(:user) { create :user }

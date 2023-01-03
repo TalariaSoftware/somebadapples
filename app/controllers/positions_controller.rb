@@ -7,13 +7,13 @@ class PositionsController < ApplicationController
     @position = position
   end
 
+  def edit
+    @position = position
+  end
+
   def create
     position.save!
     redirect_to officer
-  end
-
-  def edit
-    @position = position
   end
 
   def update

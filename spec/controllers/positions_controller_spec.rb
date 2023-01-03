@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe PositionsController, type: :controller do
+RSpec.describe PositionsController do
   before { sign_in user }
 
   let(:user) { create :user }

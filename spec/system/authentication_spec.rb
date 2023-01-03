@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Authentication", type: :system do
+RSpec.describe "Authentication" do
   before do
     driven_by(:rack_test)
     create :user, email: 'user@example.com', password: 'password'

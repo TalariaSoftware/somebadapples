@@ -6,21 +6,21 @@ class AgenciesController < ApplicationController
     @agencies = agencies
   end
 
+  def show
+    @agency = agency
+  end
+
   def new
+    @agency = agency
+  end
+
+  def edit
     @agency = agency
   end
 
   def create
     agency.save!
     redirect_to agency
-  end
-
-  def show
-    @agency = agency
-  end
-
-  def edit
-    @agency = agency
   end
 
   def update

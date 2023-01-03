@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Incident, type: :model do
+RSpec.describe Incident do
   it { is_expected.to have_many(:roles) }
   it { is_expected.to have_many(:documents) }
 end

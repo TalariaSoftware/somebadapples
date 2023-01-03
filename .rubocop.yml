@@ -78,6 +78,9 @@ RSpec/ContextWording:
 RSpec/DescribedClass:
   Enabled: false
 
+RSpec/FactoryBot/ConsistentParenthesesStyle:
+  EnforcedStyle: omit_parentheses
+
 Rails/SkipsModelValidations:
   Exclude:
     - db/migrate/*.rb

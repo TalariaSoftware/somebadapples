@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe AgenciesController, type: :controller do
+RSpec.describe AgenciesController do
   before { sign_in user }
 
   let(:user) { create :user }

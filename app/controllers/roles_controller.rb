@@ -7,13 +7,13 @@ class RolesController < ApplicationController
     @role.officer = Officer.new
   end
 
+  def edit
+    @role = role
+  end
+
   def create
     role.save!
     redirect_to incident
-  end
-
-  def edit
-    @role = role
   end
 
   def update

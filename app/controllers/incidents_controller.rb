@@ -6,21 +6,21 @@ class IncidentsController < ApplicationController
     @incidents = incidents
   end
 
+  def show
+    @incident = incident
+  end
+
   def new
+    @incident = incident
+  end
+
+  def edit
     @incident = incident
   end
 
   def create
     incident.save!
     redirect_to incident
-  end
-
-  def show
-    @incident = incident
-  end
-
-  def edit
-    @incident = incident
   end
 
   def update

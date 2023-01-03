@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Officers", type: :system do
+RSpec.describe "Officers" do
   before do
     driven_by(:rack_test)
     sign_in user

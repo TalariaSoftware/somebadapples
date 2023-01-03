@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe DocumentsController, type: :controller do
+RSpec.describe DocumentsController do
   before { sign_in user }
 
   let(:user) { create :user }
