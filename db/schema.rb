@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_15_032556) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_03_052408) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -69,6 +69,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_15_032556) do
     t.string "serial_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "employment_start"
+    t.date "employment_end"
+    t.string "rank"
     t.index ["agency_id"], name: "index_positions_on_agency_id"
     t.index ["officer_id"], name: "index_positions_on_officer_id"
   end
