@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: https://github.com/TalariaSoftware/uswds_components.git
-  revision: 3371555a37366766f4a3028720f0108df8ba97c0
+  revision: e2c27a54b7e9e2da126a76dd2f3295becf9458cc
   specs:
     uswds_components (0.1.0)
       haml-rails
