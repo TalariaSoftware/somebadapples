@@ -62,6 +62,7 @@ group :test do
   gem 'faker'
   gem 'pundit-matchers'
   gem 'rails-controller-testing'
+  gem 'rspec-its'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
