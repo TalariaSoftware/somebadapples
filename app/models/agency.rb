@@ -1,3 +1,3 @@
 class Agency < ApplicationRecord
-  validates_uniqueness_of :name
+  validates :name, uniqueness: true
 end

@@ -10,6 +10,8 @@ class Officer < ApplicationRecord
   has_many :roles, dependent: :destroy
   has_many :incidents, through: :roles
 
+  validates :post_id, uniqueness: true
+
   def name
     [first_name, middle_name, last_name, suffix].compact_blank.join(' ')
   end

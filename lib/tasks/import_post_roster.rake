@@ -16,11 +16,33 @@ end
 
 desc "Populate agencies from POST roster"
 task create_post_agencies: :environment do
-  agencies = PostPosition.pluck(:agency).uniq
+  agencies = PostPosition.distinct.pluck(:agency)
 
   agency_parameters = agencies.map do |name|
     { name: name }
   end
 
-  Agency.upsert_all(agency_parameters, unique_by: :name)
+  Agency.upsert_all(agency_parameters, unique_by: :name) # rubocop:disable Rails/SkipsModelValidations
+end
+
+desc "Populate officers from POST roster"
+task create_post_officers: :environment do
+  puts "Getting officers"
+  officers = PostPosition.all.select(:officer_name, :post_id).group(
+    :officer_name, :post_id
+  )
+
+  puts "Getting officer parameters"
+  officer_attributes = officers.map do |officer|
+    {
+      post_id: officer.post_id,
+      first_name: officer.first_name,
+      middle_name: officer.middle_names.join(' '),
+      last_name: officer.last_name,
+      suffix: officer.suffix,
+    }
+  end
+
+  puts "Creating records"
+  Officer.upsert_all(officer_attributes) # rubocop:disable Rails/SkipsModelValidations
 end
