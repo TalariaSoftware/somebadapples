@@ -17,6 +17,11 @@ RSpec.describe OfficersController do
         expect(assigns(:officers)).to eq([officer])
       end
     end
+
+    it "paginates the list" do
+      get :index
+      expect(assigns(:pagy)).to be_a(Pagy)
+    end
   end
 
   describe '#new' do

@@ -18,3 +18,5 @@
   - if policy(Officer).new?
     = link_to new_officer_path do
       Add officer
+
+  = pagy_nav(@pagy).html_safe # rubocop:disable Rails/OutputSafety
