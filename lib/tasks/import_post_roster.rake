@@ -50,18 +50,19 @@ end
 desc "Populate positions from POST roster"
 task create_post_positions: :environment do
   puts "Getting positions"
-  post_positions = PostPosition.all
-    .select(:post_id, :agency, :employment_start_date, :employment_end_date, :rank)
+  post_positions = PostPosition.all.select(
+    :post_id, :agency, :employment_start_date, :employment_end_date, :rank
+  )
 
   puts "Preloading officers"
-  officer_hash = Hash.new
+  officer_hash = {}
   Officer.all.select(:id, :post_id).each do |officer|
     officer_hash[officer.post_id] = officer.id
   end
 
   puts "Preloading agencies"
-  agency_hash = Hash.new
-  agencies = Agency.all.select(:id, :name).each do |agency|
+  agency_hash = {}
+  Agency.all.select(:id, :name).each do |agency|
     agency_hash[agency.name] = agency.id
   end
 
