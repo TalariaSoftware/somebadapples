@@ -19,6 +19,16 @@ RSpec.describe AgenciesController do
         expect(assigns(:agencies)).to eq([agency])
       end
     end
+
+    context "when there are multiple agencies" do
+      let!(:agency_b) { create :agency, name: "Beta" }
+      let!(:agency_a) { create :agency, name: "Alpha" }
+
+      it "puts the agencies in alphabetical order" do
+        get :index
+        expect(assigns(:agencies)).to eq([agency_a, agency_b])
+      end
+    end
   end
 
   describe '#new' do

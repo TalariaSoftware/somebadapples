@@ -3,7 +3,7 @@ class AgenciesController < ApplicationController
   expose :agencies, -> { policy_scope Agency.all }
 
   def index
-    @agencies = agencies
+    @agencies = agencies.order(:name)
   end
 
   def show
