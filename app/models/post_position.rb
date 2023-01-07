@@ -57,41 +57,6 @@ class PostPosition < ApplicationRecord
     officer_name == 'Name Withheld'
   end
 
-  def ensure_agency
-    Agency.find_or_create_by(name: agency)
-  end
-
-  def ensure_officer
-    raise inspect if middle_names.nil?
-
-    Officer.find_or_create_by(post_id: post_id) do |officer|
-      officer.first_name = given_names.first
-      officer.middle_name = middle_names.join(' ')
-      officer.last_name = last_name
-      officer.suffix = suffix
-    end
-  end
-
-  def ensure_position
-    Position.find_or_create_by(
-      agency: ensure_agency,
-      officer: ensure_officer,
-      employment_start: employment_start,
-      employment_end: employment_end,
-      rank: rank,
-    )
-  end
-
-  def position_params
-    {
-      agency: ensure_agency,
-      officer: ensure_officer,
-      employment_start: employment_start,
-      employment_end: employment_end,
-      rank: rank,
-    }
-  end
-
   private
 
   def non_last_names
