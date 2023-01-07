@@ -11,7 +11,7 @@ task import_post_roster: :environment do
   attributes = table.map(&:to_hash)
 
   puts "Creating records"
-  PostPosition.insert_all(attributes) # rubocop:disable Rails/SkipsModelValidations
+  PostPosition.insert_all(attributes)
 end
 
 desc "Populate agencies from POST roster"
@@ -22,7 +22,7 @@ task create_post_agencies: :environment do
     { name: name }
   end
 
-  Agency.upsert_all(agency_parameters, unique_by: :name) # rubocop:disable Rails/SkipsModelValidations
+  Agency.upsert_all(agency_parameters, unique_by: :name)
 end
 
 desc "Populate officers from POST roster"
@@ -44,11 +44,11 @@ task create_post_officers: :environment do
   end
 
   puts "Creating records"
-  Officer.upsert_all(officer_attributes) # rubocop:disable Rails/SkipsModelValidations
+  Officer.upsert_all(officer_attributes)
 end
 
 desc "Populate positions from POST roster"
-task create_post_positions: :environment do
+task create_post_positions: :environment do # rubocop:disable Metrics/BlockLength
   puts "Getting positions"
   post_positions = PostPosition.all.select(
     :post_id, :agency, :employment_start_date, :employment_end_date, :rank
@@ -78,5 +78,5 @@ task create_post_positions: :environment do
   end
 
   puts "Creating records"
-  Position.upsert_all(position_attributes) # rubocop:disable Rails/SkipsModelValidations
+  Position.upsert_all(position_attributes)
 end

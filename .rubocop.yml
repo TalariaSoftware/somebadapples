@@ -84,6 +84,7 @@ RSpec/FactoryBot/ConsistentParenthesesStyle:
 Rails/SkipsModelValidations:
   Exclude:
     - db/migrate/*.rb
+    - lib/tasks/import_post_roster.rake
 
 Rails/RakeEnvironment:
   Enabled: false
