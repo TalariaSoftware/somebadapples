@@ -13,25 +13,64 @@
 
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[Some Bad Apples](https://somebadapples.org) attempts to provide a searchable
+interface to identify some of the bad apples in policing agencies.
 
-Things you may want to cover:
+## Data sources
 
-* Ruby version
+### POST Roster
 
-* System dependencies
+The list of officers and their positions was acquired by [Police
+Files](https://policefiles.org/2022/12/24/half-million-cops/) via a public records request to the [California Commission on Peace Officer Standards and Traning](https://post.ca.gov)
 
-* Configuration
+## Development
 
-* Database creation
+### Setup
 
-* Database initialization
+1. Install Ruby (version in `.ruby-version`)
+2. Install PosgreSQL
+2. Install bundler: `gem install bundler`
+3. Install gems: `bundle`
+4. Setup database: `rake db:setup`
+5. Install and start ElasticSearch
+  Via Homebrew:
+    ```sh
+    brew install elastic/tap/elasticsearch-full
+    brew services start elasticsearch-full
+    ```
 
-* How to run the test suite
+### Tests
 
-* Services (job queues, cache servers, search engines, etc.)
+Run all automated tests: `rake`
 
-* Deployment instructions
+Individual tests
 
-* ...
+- [Rubocop](https://rubocop.org) (ruby linting): `rubocop`
+- [HAML Lint](https://github.com/sds/haml-lint#haml-lint): `haml-lint`
+- [RSpec](https://rspec.info) (executable specifications): `rspec`
+- [Rails Best Practices](https://rails-bestpractices.com) (Rails-specific linting): `rail_best_practices`
+- [License Finder](https://github.com/pivotal/LicenseFinder) (library license checking): `license_finder`
+- [Brakeman](https://brakemanscanner.org) (security testing via static analysis): `brakeman`
+- [bundler-audit](https://github.com/rubysec/bundler-audit#readme) (Find vulnerable ruby libraries) `bundler-audit`
+
+Code Coverage is provided by
+[SimpleCov.](https://github.com/simplecov-ruby/simplecov#simplecov----) After
+running `rspec` you can view the code coverage report in your default browser
+with `open coverage/index.html`
+
+### Import POST data
+
+The POST data is a collection of over 400,000 officer positions. The CSV file is
+in `app/public/data`. Import it into the database with this command:
+
+```sh
+rake import_post_roster create_post_agencies create_post_officers create_post_positions
+```
+
+### Reindex for search
+
+After loading new data the search database has to be re-indexed.
+
+```sh
+bin/rails runner "[Officer, Incident, Document].map(&:reindex)"
+```
