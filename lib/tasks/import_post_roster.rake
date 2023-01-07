@@ -32,7 +32,7 @@ task create_post_officers: :environment do
     :officer_name, :post_id
   )
 
-  puts "Getting officer parameters"
+  puts "Getting officer attributes"
   officer_attributes = officers.map do |officer|
     {
       post_id: officer.post_id,
@@ -45,4 +45,37 @@ task create_post_officers: :environment do
 
   puts "Creating records"
   Officer.upsert_all(officer_attributes) # rubocop:disable Rails/SkipsModelValidations
+end
+
+desc "Populate positions from POST roster"
+task create_post_positions: :environment do
+  puts "Getting positions"
+  post_positions = PostPosition.all
+    .select(:post_id, :agency, :employment_start_date, :employment_end_date, :rank)
+
+  puts "Preloading officers"
+  officer_hash = Hash.new
+  Officer.all.select(:id, :post_id).each do |officer|
+    officer_hash[officer.post_id] = officer.id
+  end
+
+  puts "Preloading agencies"
+  agency_hash = Hash.new
+  agencies = Agency.all.select(:id, :name).each do |agency|
+    agency_hash[agency.name] = agency.id
+  end
+
+  puts "Getting position attributes"
+  position_attributes = post_positions.map do |post_position|
+    {
+      officer_id: officer_hash[post_position.post_id],
+      agency_id: agency_hash[post_position.agency],
+      employment_start: post_position.employment_start,
+      employment_end: post_position.employment_end,
+      rank: post_position.rank,
+    }
+  end
+
+  puts "Creating records"
+  Position.upsert_all(position_attributes) # rubocop:disable Rails/SkipsModelValidations
 end
