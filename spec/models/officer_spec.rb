@@ -128,4 +128,45 @@ RSpec.describe Officer do
       expect(choices.last).to eq(["New officer", 'new_officer'])
     end
   end
+
+  describe '.alphabetical' do
+    subject(:list) { Officer.alphabetical }
+
+    context "when officers have different last names" do
+      let!(:officer_b) { create :officer, last_name: "Beta" }
+      let!(:officer_a) { create :officer, last_name: "Alpha" }
+
+      it "returns the officers in alphabetical order by last name" do
+        expect(list).to eq([officer_a, officer_b])
+      end
+    end
+
+    context "when officers have the same last names" do
+      let!(:officer_b) do
+        create :officer, last_name: "Doe", first_name: "Beta"
+      end
+      let!(:officer_a) do
+        create :officer, last_name: "Doe", first_name: "Alpha"
+      end
+
+      it "returns the officers in alphabetical order by first name" do
+        expect(list).to eq([officer_a, officer_b])
+      end
+    end
+
+    context "when officers have the same last and first names" do
+      let!(:officer_b) do
+        create :officer, last_name: "Doe", first_name: "Jon",
+          middle_name: "Beta"
+      end
+      let!(:officer_a) do
+        create :officer, last_name: "Doe", first_name: "Jon",
+          middle_name: "Alpha"
+      end
+
+      it "returns the officers in alphabetical order by middle name" do
+        expect(list).to eq([officer_a, officer_b])
+      end
+    end
+  end
 end

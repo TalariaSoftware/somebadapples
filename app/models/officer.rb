@@ -12,6 +12,8 @@ class Officer < ApplicationRecord
 
   validates :post_id, uniqueness: true
 
+  scope :alphabetical, -> { order(:last_name, :first_name, :middle_name) }
+
   def name
     [first_name, middle_name, last_name, suffix].compact_blank.join(' ')
   end

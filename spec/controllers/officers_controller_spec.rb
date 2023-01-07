@@ -9,6 +9,11 @@ RSpec.describe OfficersController do
       expect(response).to be_ok
     end
 
+    it "paginates the list" do
+      get :index
+      expect(assigns(:pagy)).to be_a(Pagy)
+    end
+
     context "when there are officers" do
       let!(:officer) { Officer.create! }
 
@@ -18,9 +23,14 @@ RSpec.describe OfficersController do
       end
     end
 
-    it "paginates the list" do
-      get :index
-      expect(assigns(:pagy)).to be_a(Pagy)
+    context "when there are multiple officers" do
+      let!(:officer_b) { create :officer, last_name: "Beta" }
+      let!(:officer_a) { create :officer, last_name: "Alpha" }
+
+      it "puts the officers in alphabetical order" do
+        get :index
+        expect(assigns(:officers)).to eq([officer_a, officer_b])
+      end
     end
   end
 

@@ -5,7 +5,7 @@ class OfficersController < ApplicationController
   expose :officers, -> { policy_scope Officer.all }
 
   def index
-    @pagy, @officers = pagy(officers)
+    @pagy, @officers = pagy(officers.alphabetical)
   end
 
   def show
