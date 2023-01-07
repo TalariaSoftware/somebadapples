@@ -75,7 +75,42 @@ RSpec.describe Officer do
     end
   end
 
-  describe ".select_choices" do
+  describe '#selection_string' do
+    subject { officer.selection_string }
+
+    let(:officer) do
+      create :officer, first_name: "John", middle_name: "Edgar",
+        last_name: "Hoover"
+    end
+
+    context "when the officer does not have an agency" do
+      it { is_expected.to eq("John Edgar Hoover") }
+    end
+
+    context "when the officer has an agency" do
+      let(:fbi) { create :agency, short_name: 'FBI' }
+
+      before do
+        create :position, officer: officer, agency: fbi
+      end
+
+      it { is_expected.to eq("John Edgar Hoover (FBI)") }
+    end
+
+    context "when the officer has multiple agencies" do
+      let(:fbi) { create :agency, short_name: 'FBI' }
+      let(:kgb) { create :agency, short_name: 'KGB' }
+
+      before do
+        create :position, officer: officer, agency: fbi
+        create :position, officer: officer, agency: kgb
+      end
+
+      it { is_expected.to eq("John Edgar Hoover (FBI, KGB)") }
+    end
+  end
+
+  describe '.select_choices' do
     subject(:choices) { Officer.select_choices }
 
     let(:officer) { create :officer, last_name: "Hoover" }
