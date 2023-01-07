@@ -74,4 +74,23 @@ RSpec.describe Officer do
       end
     end
   end
+
+  describe ".select_choices" do
+    subject(:choices) { Officer.select_choices }
+
+    let(:officer) { create :officer, last_name: "Hoover" }
+    let(:fbi) { create :agency, short_name: 'FBI' }
+
+    before do
+      create :position, officer: officer, agency: fbi
+    end
+
+    it "includes the exising officer" do
+      expect(choices.first).to eq(["Hoover (FBI)", officer.id])
+    end
+
+    it "includes a new officer" do
+      expect(choices.last).to eq(["New officer", 'new_officer'])
+    end
+  end
 end
