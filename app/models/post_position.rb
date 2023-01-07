@@ -1,5 +1,5 @@
 class PostPosition < ApplicationRecord
-  SUFFIXES = %w[SR JR JR. JRS II III IV ESQ MR MRS MS]
+  SUFFIXES = %w[SR JR JR. JRS II III IV ESQ MR MRS MS].freeze
 
   belongs_to :position
 
@@ -32,12 +32,12 @@ class PostPosition < ApplicationRecord
   end
 
   def suffix
-    return "" if name_withheld?
+    return '' if name_withheld?
 
     if non_last_names.last.in?(SUFFIXES)
       non_last_names.last
     else
-      ""
+      ''
     end
   end
 
@@ -54,7 +54,7 @@ class PostPosition < ApplicationRecord
   end
 
   def name_withheld?
-    officer_name == "Name Withheld"
+    officer_name == 'Name Withheld'
   end
 
   def ensure_agency
@@ -62,7 +62,7 @@ class PostPosition < ApplicationRecord
   end
 
   def ensure_officer
-    raise self.inspect if middle_names.nil?
+    raise inspect if middle_names.nil?
 
     Officer.find_or_create_by(post_id: post_id) do |officer|
       officer.first_name = given_names.first
@@ -98,6 +98,6 @@ class PostPosition < ApplicationRecord
     second_half = officer_name.split(',').last
     return [] if second_half.nil?
 
-    second_half.split(' ')
+    second_half.split
   end
 end

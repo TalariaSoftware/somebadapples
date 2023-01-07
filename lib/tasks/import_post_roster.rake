@@ -1,6 +1,6 @@
 desc "Populate officers, positions, and agencies from POST roster"
 task import_post_roster: :environment do
-  file_path = Rails.root.join("public/data/california-post-roster-2022.csv")
+  file_path = Rails.public_path.join('data/california-post-roster-2022.csv')
 
   table = File.open(file_path) do |file|
     CSV.parse(file, headers: true)
@@ -18,11 +18,11 @@ task import_post_roster: :environment do
   position_params = table.map do |values|
     record = PostRecord.new(values)
     print '.'
-    STDOUT.flush
+    $stdout.flush
     record.position_params
   end
 
   puts "Creating records"
-  STDOUT.flush
+  $stdout.flush
   Position.insert_all(position_params)
 end

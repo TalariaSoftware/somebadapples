@@ -57,9 +57,11 @@ RSpec.describe PostPosition do
     end
 
     context "when the record has multiple given names" do
-      let(:record) { described_class.new(officer_name: "Doe, Jane Hillary Rodham") }
+      let(:record) do
+        described_class.new(officer_name: "Doe, Jane Hillary Rodham")
+      end
 
-      it { is_expected.to eq(["Hillary", "Rodham"]) }
+      it { is_expected.to eq(%w[Hillary Rodham]) }
     end
 
     context "when the record has a suffix" do
@@ -93,7 +95,7 @@ RSpec.describe PostPosition do
     context "when the record has multiple given names" do
       let(:record) { described_class.new(officer_name: "Doe, Jane Rodham") }
 
-      it { is_expected.to eq(["Jane", "Rodham"]) }
+      it { is_expected.to eq(%w[Jane Rodham]) }
     end
 
     context "when the record has a suffix" do
@@ -113,6 +115,7 @@ RSpec.describe PostPosition do
     subject { record.suffix }
 
     let(:record) { described_class.new(officer_name: officer_name) }
+
     context "when the name is not given" do
       let(:officer_name) { "Name Withheld" }
 
@@ -198,7 +201,7 @@ RSpec.describe PostPosition do
     context "when no date is given" do
       let(:record) { described_class.new(employment_start_date: "") }
 
-      it { is_expected.to eq(nil) }
+      it { is_expected.to be_nil }
     end
   end
 
@@ -214,7 +217,7 @@ RSpec.describe PostPosition do
     context "when no date is given" do
       let(:record) { described_class.new(employment_start_date: "") }
 
-      it { is_expected.to eq(nil) }
+      it { is_expected.to be_nil }
     end
   end
 

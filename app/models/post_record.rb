@@ -4,7 +4,7 @@ class PostRecord
   attr_accessor :officer_id, :officer_name, :post_id, :agency,
     :employment_start_date, :employment_end_date, :rank
 
-  SUFFIXES = %w[SR JR JR. JRS II III IV ESQ MR MRS MS]
+  SUFFIXES = %w[SR JR JR. JRS II III IV ESQ MR MRS MS].freeze
 
   def first_name
     return nil if name_withheld?
@@ -35,12 +35,12 @@ class PostRecord
   end
 
   def suffix
-    return "" if name_withheld?
+    return '' if name_withheld?
 
     if non_last_names.last.in?(SUFFIXES)
       non_last_names.last
     else
-      ""
+      ''
     end
   end
 
@@ -57,7 +57,7 @@ class PostRecord
   end
 
   def name_withheld?
-    officer_name == "Name Withheld"
+    officer_name == 'Name Withheld'
   end
 
   def ensure_agency
@@ -65,7 +65,7 @@ class PostRecord
   end
 
   def ensure_officer
-    raise self.inspect if middle_names.nil?
+    raise inspect if middle_names.nil?
 
     Officer.find_or_create_by(post_id: post_id) do |officer|
       officer.first_name = given_names.first
@@ -98,6 +98,6 @@ class PostRecord
   private
 
   def non_last_names
-    officer_name.split(',').last.split(' ')
+    officer_name.split(',').last.split
   end
 end
