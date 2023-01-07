@@ -60,11 +60,8 @@ class PostPosition < ApplicationRecord
   private
 
   def non_last_names
-    return [] if officer_name.blank?
+    second_half = officer_name.to_s.split(',').last
 
-    second_half = officer_name.split(',').last
-    return [] if second_half.blank?
-
-    second_half.split
+    second_half.to_s.split
   end
 end

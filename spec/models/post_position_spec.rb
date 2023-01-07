@@ -109,6 +109,12 @@ RSpec.describe PostPosition do
 
       it { is_expected.to be_empty }
     end
+
+    context "when the officer's name is nil" do
+      let(:record) { described_class.new(officer_name: nil) }
+
+      it { is_expected.to be_empty }
+    end
   end
 
   describe "#suffix" do
