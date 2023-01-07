@@ -78,13 +78,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_07_050634) do
   end
 
   create_table "post_positions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "officer_id", default: "", null: false
-    t.string "officer_name", default: "", null: false
-    t.string "post_id", default: "", null: false
-    t.string "agency", default: "", null: false
-    t.string "employment_start_date", default: "", null: false
-    t.string "employment_end_date", default: "", null: false
-    t.string "rank", default: "", null: false
+    t.string "officer_id"
+    t.string "officer_name"
+    t.string "post_id"
+    t.string "agency"
+    t.string "employment_start_date"
+    t.string "employment_end_date"
+    t.string "rank"
     t.bigint "position_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
