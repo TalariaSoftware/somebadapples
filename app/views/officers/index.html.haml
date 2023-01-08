@@ -3,7 +3,7 @@
     = @agency.name
     Officers
 
-  = render UswdsComponents::TableComponent.new(striped: true) do
+  = render UswdsComponents::TableComponent.new(striped: true, borderless: true) do
     %thead
       %tr
         %th{ scope: :col } Name
