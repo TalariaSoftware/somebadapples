@@ -35,9 +35,9 @@ end
 desc "Populate officers from POST roster"
 task create_post_officers: :environment do
   puts "Getting officers from POST positions"
-  officers = PostPosition.all.select(:officer_name, :post_id).group(
-    :officer_name, :post_id
-  )
+  officers = PostPosition.all
+    .select(:officer_id, :officer_name, :post_id)
+    .group(:officer_id, :officer_name, :post_id)
 
   puts "Getting officer attributes"
   officer_attributes = officers.map do |officer|
@@ -59,7 +59,8 @@ desc "Populate positions from POST roster"
 task create_post_positions: :environment do # rubocop:disable Metrics/BlockLength
   puts "Getting POST positions"
   post_positions = PostPosition.all.select(
-    :post_id, :agency, :employment_start_date, :employment_end_date, :rank
+    :officer_id, :post_id, :agency, :rank,
+    :employment_start_date, :employment_end_date
   )
 
   puts "Preloading officers"
@@ -77,7 +78,7 @@ task create_post_positions: :environment do # rubocop:disable Metrics/BlockLengt
   puts "Getting position attributes"
   position_attributes = post_positions.map do |post_position|
     {
-      officer_id: officer_hash[post_position.post_id],
+      officer_id: officer_hash[post_position.derived_post_id],
       agency_id: agency_hash[post_position.agency],
       employment_start: post_position.employment_start,
       employment_end: post_position.employment_end,
