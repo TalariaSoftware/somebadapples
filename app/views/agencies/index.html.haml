@@ -18,3 +18,5 @@
   - if policy(Agency).new?
     = link_to new_agency_path do
       Add agency
+
+  = pagy_nav(@pagy).html_safe # rubocop:disable Rails/OutputSafety

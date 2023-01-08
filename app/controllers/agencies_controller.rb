@@ -1,9 +1,11 @@
 class AgenciesController < ApplicationController
+  include Pagy::Backend
+
   expose :agency, decorate: ->(agency) { authorize agency }
   expose :agencies, -> { policy_scope Agency.all }
 
   def index
-    @agencies = agencies.order(:name)
+    @pagy, @agencies = pagy_arel(agencies.order(:name), items: 50)
   end
 
   def show

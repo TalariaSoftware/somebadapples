@@ -11,6 +11,11 @@ RSpec.describe AgenciesController do
       expect(response).to be_ok
     end
 
+    it "paginates the list" do
+      get :index
+      expect(assigns(:pagy)).to be_a(Pagy)
+    end
+
     context "when there are agencies" do
       let!(:agency) { create :agency }
 
