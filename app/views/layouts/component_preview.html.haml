@@ -1,11 +1,7 @@
 - content_for :content do
   .grid-container
     .grid-row
-      .tablet:grid-col-auto.margin-y-2.margin-right-3
-        = render 'preview_menu', previews: ViewComponent::Preview.all
-
-      .tablet:grid-col-fill
-        %h1= @preview.preview_name.camelize if @preview
+      %section.usa-section
         = yield
 
 = render template: 'layouts/application'

@@ -16,5 +16,6 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  mount Lookbook::Engine, at: '/lookbook'
   mount IronTeapot::Engine => '/'
 end
