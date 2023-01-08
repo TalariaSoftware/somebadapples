@@ -1,3 +1,5 @@
+require 'csv'
+
 desc "Populate POST positions"
 task import_post_roster: :environment do
   file_path = Rails.public_path.join('data/california-post-roster-2022.csv')
