@@ -13,7 +13,7 @@
         %tr
           %th{ scope: :row }
             = link_to officer do
-              = "Unknown" if officer.name.blank?
+              = 'Unknown' if officer.name.blank?
               = officer.name
           %td= officer.incidents.size
 

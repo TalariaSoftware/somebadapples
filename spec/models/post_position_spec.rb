@@ -232,7 +232,7 @@ RSpec.describe PostPosition do
 
     let(:record) do
       described_class.new(
-        officer_id: 33, officer_name: "Doe, Jon", post_id: "post_123"
+        officer_id: 33, officer_name: "Doe, Jon", post_id: "post_123",
       )
     end
 
@@ -241,7 +241,7 @@ RSpec.describe PostPosition do
     context "when the officer's name and POST id are withheld" do
       let(:record) do
         described_class.new(officer_id: 33, officer_name: "Name Withheld",
-                            post_id: "POST ID Withheld")
+          post_id: "POST ID Withheld")
       end
 
       it { is_expected.to eq("withheld-33") }

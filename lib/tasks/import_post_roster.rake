@@ -36,8 +36,8 @@ desc "Populate officers from POST roster"
 task create_post_officers: :environment do
   puts "Getting officers from POST positions"
   officers = PostPosition.all
-    .select(:officer_id, :officer_name, :post_id)
-    .group(:officer_id, :officer_name, :post_id)
+                         .select(:officer_id, :officer_name, :post_id)
+                         .group(:officer_id, :officer_name, :post_id)
 
   puts "Getting officer attributes"
   officer_attributes = officers.map do |officer|

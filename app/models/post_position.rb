@@ -55,12 +55,12 @@ class PostPosition < ApplicationRecord
 
   def slug
     ActiveSupport::Inflector.parameterize(
-      [first_name, last_name, derived_post_id].compact.join(' ')
+      [first_name, last_name, derived_post_id].compact.join(' '),
     )
   end
 
   def derived_post_id
-    return "withheld-#{officer_id}" if post_id == "POST ID Withheld"
+    return "withheld-#{officer_id}" if post_id == 'POST ID Withheld'
 
     post_id
   end
