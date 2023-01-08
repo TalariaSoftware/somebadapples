@@ -2,7 +2,7 @@ class Officer < ApplicationRecord
   searchkick
 
   extend FriendlyId
-  friendly_id :name, use: :slugged
+  friendly_id :slug_candidate, use: :slugged
 
   has_many :positions, dependent: :destroy
   has_many :agencies, through: :positions
@@ -27,5 +27,11 @@ class Officer < ApplicationRecord
   def self.select_choices
     all.map { |officer| [officer.selection_string, officer.id] } +
       [['New officer', 'new_officer']]
+  end
+
+  private
+
+  def slug_candidate
+    [first_name, last_name, post_id].compact.join(' ')
   end
 end

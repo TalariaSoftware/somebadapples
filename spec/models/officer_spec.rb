@@ -50,16 +50,20 @@ RSpec.describe Officer do
       officer.slug
     end
 
-    context "when there is a first and last name" do
-      let(:officer) { build :officer, first_name: "Jon", last_name: "Doe" }
+    context "when there is a first name, last name, and post id" do
+      let(:officer) do
+        build :officer, first_name: "Jon", last_name: "Doe", post_id: "post_12"
+      end
 
-      it "is a combination of first and last name" do
-        expect(slug).to eq("jon-doe")
+      it "is a combination of first name, last name, and post ID" do
+        expect(slug).to eq("jon-doe-post_12")
       end
     end
 
     context "when there is only a first name" do
-      let(:officer) { build :officer, first_name: "Jon", last_name: nil }
+      let(:officer) do
+        build :officer, first_name: "Jon", last_name: nil, post_id: nil
+      end
 
       it "is the first name" do
         expect(slug).to eq("jon")
@@ -67,10 +71,22 @@ RSpec.describe Officer do
     end
 
     context "when there is only a last name" do
-      let(:officer) { build :officer, first_name: nil, last_name: "Doe" }
+      let(:officer) do
+        build :officer, first_name: nil, last_name: "Doe", post_id: nil
+      end
 
-      it "is the first name" do
+      it "is the last name" do
         expect(slug).to eq("doe")
+      end
+    end
+
+    context "when there is only a POST id" do
+      let(:officer) do
+        build :officer, first_name: nil, last_name: nil, post_id: 'POST_21'
+      end
+
+      it "is the POST ID" do
+        expect(slug).to eq("post_21")
       end
     end
   end
