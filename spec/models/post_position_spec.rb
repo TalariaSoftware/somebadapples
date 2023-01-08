@@ -248,6 +248,26 @@ RSpec.describe PostPosition do
     end
   end
 
+  describe "#derived_post_id" do
+    subject { record.derived_post_id }
+
+    context "when a POST ID is given" do
+      let(:record) do
+        described_class.new(officer_id: 33, post_id: "post_123")
+      end
+
+      it { is_expected.to eq("post_123") }
+    end
+
+    context "when the POST ID is withheld" do
+      let(:record) do
+        described_class.new(officer_id: 33, post_id: "POST ID Withheld")
+      end
+
+      it { is_expected.to eq("withheld-33") }
+    end
+  end
+
   describe "#name_withheld?" do
     subject { described_class.new(officer_name: officer_name) }
 
