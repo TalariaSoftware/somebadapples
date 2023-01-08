@@ -7,49 +7,57 @@ task import_post_roster: :environment do
     CSV.parse(file, headers: true)
   end
 
-  puts "Getting attributes"
+  puts "Getting POST position attributes"
   attributes = table.map(&:to_hash)
 
-  puts "Creating records"
+  puts "Creating POST position records"
   PostPosition.insert_all(attributes)
 end
 
 desc "Populate agencies from POST roster"
 task create_post_agencies: :environment do
+  puts "Getting agency names"
   agencies = PostPosition.distinct.pluck(:agency)
 
   agency_parameters = agencies.map do |name|
     { name: name }
   end
 
+  puts "Creating agency records"
   Agency.upsert_all(agency_parameters, unique_by: :name)
 end
 
 desc "Populate officers from POST roster"
 task create_post_officers: :environment do
-  puts "Getting officers"
+  puts "Getting officers from POST positions"
   officers = PostPosition.all.select(:officer_name, :post_id).group(
     :officer_name, :post_id
   )
 
   puts "Getting officer attributes"
   officer_attributes = officers.map do |officer|
+    slug = ActiveSupport::Inflector.parameterize(
+      [officer.first_name, officer.last_name, officer.post_id]
+        .compact
+        .join(' '),
+    )
     {
       post_id: officer.post_id,
       first_name: officer.first_name,
       middle_name: officer.middle_names.join(' '),
       last_name: officer.last_name,
       suffix: officer.suffix,
+      slug: slug,
     }
   end
 
-  puts "Creating records"
+  puts "Creating officer records"
   Officer.upsert_all(officer_attributes)
 end
 
 desc "Populate positions from POST roster"
 task create_post_positions: :environment do # rubocop:disable Metrics/BlockLength
-  puts "Getting positions"
+  puts "Getting POST positions"
   post_positions = PostPosition.all.select(
     :post_id, :agency, :employment_start_date, :employment_end_date, :rank
   )
@@ -77,6 +85,6 @@ task create_post_positions: :environment do # rubocop:disable Metrics/BlockLengt
     }
   end
 
-  puts "Creating records"
+  puts "Creating position records"
   Position.upsert_all(position_attributes)
 end

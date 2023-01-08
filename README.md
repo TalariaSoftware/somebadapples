@@ -72,5 +72,5 @@ rake import_post_roster create_post_agencies create_post_officers create_post_po
 After loading new data the search database has to be re-indexed.
 
 ```sh
-bin/rails runner "[Officer, Incident, Document].map(&:reindex)"
+bin/rails runner "[Officer, Incident, Document].each(&:reindex)"
 ```
