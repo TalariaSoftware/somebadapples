@@ -14,7 +14,9 @@
           %th{ scope: :row }
             = link_to officer do
               = 'Unknown' if officer.name.blank?
-              = officer.name
+              #{officer.last_name},
+              = officer.first_name
+              = officer.middle_name
           %td= officer.incidents.size
 
   - if policy(Officer).new?
