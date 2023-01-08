@@ -16,7 +16,7 @@
           %th{ scope: :col } Rank
 
       %tbody
-        - @officer.positions.each do |position|
+        - @officer.positions.order(employment_start: :desc).each do |position|
           %tr
             %td= position.agency.name
             %td= position.employment_start
