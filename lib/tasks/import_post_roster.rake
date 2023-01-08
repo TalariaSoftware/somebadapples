@@ -20,7 +20,10 @@ task create_post_agencies: :environment do
   agencies = PostPosition.distinct.pluck(:agency)
 
   agency_parameters = agencies.map do |name|
-    { name: name }
+    {
+      name: name,
+      slug: ActiveSupport::Inflector.parameterize(name),
+    }
   end
 
   puts "Creating agency records"
