@@ -4,31 +4,59 @@ RSpec.describe OfficersController do
   let(:user) { create :user }
 
   describe '#index' do
+    let(:params) { { agency_id: agency.id } }
+
+    let(:agency) { create :agency }
+
     it "returns http success" do
-      get :index
+      get :index, params: params
       expect(response).to be_ok
     end
 
     it "paginates the list" do
-      get :index
+      get :index, params: params
       expect(assigns(:pagy)).to be_a(Pagy)
     end
 
-    context "when there are officers" do
+    context "when there is an officer" do
       let!(:officer) { Officer.create! }
 
-      it "assigns the officers" do
-        get :index
-        expect(assigns(:officers)).to eq([officer])
+      context "when the officer is in a different agency" do
+        before do
+          create :position, officer: officer, agency: other_agency
+        end
+
+        let(:other_agency) { create :agency }
+
+        it "assigns no officers" do
+          get :index, params: params
+          expect(assigns(:officers)).to be_empty
+        end
+      end
+
+      context "when the officer is in the agency" do
+        before do
+          create :position, officer: officer, agency: agency
+        end
+
+        it "assigns the officers" do
+          get :index, params: params
+          expect(assigns(:officers)).to eq([officer])
+        end
       end
     end
 
     context "when there are multiple officers" do
-      let!(:officer_b) { create :officer, last_name: "Beta" }
-      let!(:officer_a) { create :officer, last_name: "Alpha" }
+      let(:officer_b) { create :officer, last_name: "Beta" }
+      let(:officer_a) { create :officer, last_name: "Alpha" }
+
+      before do
+        create :position, officer: officer_b, agency: agency
+        create :position, officer: officer_a, agency: agency
+      end
 
       it "puts the officers in alphabetical order" do
-        get :index
+        get :index, params: params
         expect(assigns(:officers)).to eq([officer_a, officer_b])
       end
     end

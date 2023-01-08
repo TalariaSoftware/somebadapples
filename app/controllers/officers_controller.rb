@@ -1,8 +1,9 @@
 class OfficersController < ApplicationController
   include Pagy::Backend
 
+  expose :agency
   expose :officer, decorate: ->(officer) { authorize officer }
-  expose :officers, -> { policy_scope Officer.all }
+  expose :officers, -> { policy_scope Officer.in_agency(agency) }
 
   def index
     @pagy, @officers = pagy(officers.alphabetical)

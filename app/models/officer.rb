@@ -13,6 +13,11 @@ class Officer < ApplicationRecord
   validates :post_id, uniqueness: true
 
   scope :alphabetical, -> { order(:last_name, :first_name, :middle_name) }
+  scope :in_agency, lambda { |agency|
+    joins(positions: :agency)
+      .where(positions: { agency: agency })
+      .distinct
+  }
 
   def name
     [first_name, middle_name, last_name, suffix].compact_blank.join(' ')

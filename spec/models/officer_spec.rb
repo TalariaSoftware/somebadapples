@@ -185,4 +185,46 @@ RSpec.describe Officer do
       end
     end
   end
+
+  describe '.in_agency' do
+    subject(:list) { Officer.in_agency(agency) }
+
+    let(:agency) { create :agency }
+
+    context "when there are no officers" do
+      it { is_expected.to be_empty }
+    end
+
+    context "when there is an officer in a different agency" do
+      let!(:officer) { create :officer }
+      let(:other_agency) { create :agency }
+
+      before do
+        create :position, officer: officer, agency: other_agency
+      end
+
+      it { is_expected.to be_empty }
+    end
+
+    context "when there is an officer in the agency" do
+      let!(:officer) { create :officer }
+
+      before do
+        create :position, officer: officer, agency: agency
+      end
+
+      it { is_expected.to eq([officer]) }
+    end
+
+    context "when the officer has multiple positions in the agency" do
+      let!(:officer) { create :officer }
+
+      before do
+        create :position, officer: officer, agency: agency, rank: "PFC"
+        create :position, officer: officer, agency: agency, rank: "LTN"
+      end
+
+      it { is_expected.to eq([officer]) }
+    end
+  end
 end
