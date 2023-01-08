@@ -53,6 +53,16 @@ class PostPosition < ApplicationRecord
     Date.strptime(employment_end_date, '%m/%d/%Y')
   end
 
+  def slug
+    if post_id == "POST ID Withheld"
+      "withheld-#{officer_id}"
+    else
+      ActiveSupport::Inflector.parameterize(
+        [first_name, last_name, post_id].compact.join(' ')
+      )
+    end
+  end
+
   def name_withheld?
     officer_name == 'Name Withheld'
   end

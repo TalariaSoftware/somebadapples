@@ -227,6 +227,27 @@ RSpec.describe PostPosition do
     end
   end
 
+  describe "#slug" do
+    subject { record.slug }
+
+    let(:record) do
+      described_class.new(
+        officer_id: 33, officer_name: "Doe, Jon", post_id: "post_123"
+      )
+    end
+
+    it { is_expected.to eq("jon-doe-post_123") }
+
+    context "when the officer's name and POST id are withheld" do
+      let(:record) do
+        described_class.new(officer_id: 33, officer_name: "Name Withheld",
+                            post_id: "POST ID Withheld")
+      end
+
+      it { is_expected.to eq("withheld-33") }
+    end
+  end
+
   describe "#name_withheld?" do
     subject { described_class.new(officer_name: officer_name) }
 

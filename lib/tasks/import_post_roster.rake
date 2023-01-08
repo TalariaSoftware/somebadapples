@@ -41,18 +41,13 @@ task create_post_officers: :environment do
 
   puts "Getting officer attributes"
   officer_attributes = officers.map do |officer|
-    slug = ActiveSupport::Inflector.parameterize(
-      [officer.first_name, officer.last_name, officer.post_id]
-        .compact
-        .join(' '),
-    )
     {
       post_id: officer.post_id,
       first_name: officer.first_name,
       middle_name: officer.middle_names.join(' '),
       last_name: officer.last_name,
       suffix: officer.suffix,
-      slug: slug,
+      slug: officer.slug,
     }
   end
 
