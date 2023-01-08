@@ -1,8 +1,9 @@
 %section.grid-container.usa-section
-  %h1 Officers
+  %h1
+    = @agency.name
+    Officers
 
   = render UswdsComponents::TableComponent.new(striped: true) do
-    %caption Complete list of officers
     %thead
       %tr
         %th{ scope: :col } Name

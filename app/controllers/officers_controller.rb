@@ -6,6 +6,7 @@ class OfficersController < ApplicationController
   expose :officers, -> { policy_scope Officer.in_agency(agency) }
 
   def index
+    @agency = agency
     @pagy, @officers = pagy(officers.alphabetical)
   end
 

@@ -11,7 +11,7 @@
       - @agencies.each do |agency|
         %tr
           %th{ scope: :row }
-            = link_to agency do
+            = link_to [agency, :officers] do
               = agency.name
           %td= agency.short_name
 
