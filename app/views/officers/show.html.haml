@@ -1,20 +1,31 @@
 %section.grid-container.usa-section
   %article.padding-4
-    %h1
-      = @officer.name
+    %h1= @officer.name
 
-    %ul
-      - @officer.positions.each do |position|
-        %li
-          = position.agency_name
-          - if position.serial_number?
-            (Serial: #{position.serial_number})
-          - if position.badge_number?
-            (Badge: #{position.badge_number})
+    %p
+      Post ID:
+      = @officer.post_id
 
-          - if policy(position).edit?
-            = link_to [:edit, @officer, position] do
-              Edit position
+    = render UswdsComponents::TableComponent.new(striped: true) do
+      %caption Positions
+      %thead
+        %tr
+          %th{ scope: :col } Agency
+          %th{ scope: :col } Start
+          %th{ scope: :col } End
+          %th{ scope: :col } Rank
+
+      %tbody
+        - @officer.positions.each do |position|
+          %tr
+            %td= position.agency.name
+            %td= position.employment_start
+            %td= position.employment_end
+            %td= position.rank
+            - if policy(position).edit?
+              %td
+                = link_to [:edit, @officer, position] do
+                  Edit position
 
 
     - if policy(Position).new?
