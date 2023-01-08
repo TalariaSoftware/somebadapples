@@ -61,10 +61,22 @@ with `open coverage/index.html`
 ### Import POST data
 
 The POST data is a collection of over 400,000 officer positions. The CSV file is
-in `app/public/data`. Import it into the database with this command:
+in `app/public/data`. After changing the way the data is imported you may want
+to reimport it.
+
+#### Development
 
 ```sh
-rake import_post_roster create_post_agencies create_post_officers create_post_positions
+rake db:reset import_post_roster create_post_agencies create_post_officers create_post_positions
+```
+
+#### Production
+
+```
+heroku maintenance:on
+heroku pg:reset
+heroku run -s standard-2x rake db:schema:load import_post_roster create_post_agencies create_post_officers create_post_positions
+heroku maintenance:off
 ```
 
 ### Reindex for search
