@@ -1,25 +1,4 @@
-%article.incident.shadow-2.padding-4
-  %h1= incident.heading
-  %p.incident__date= l incident.datetime.to_date, format: :long if incident.datetime?
-  %p= incident.description
-
-  - if policy(incident).edit?
-    %p
-      = link_to [:edit, incident] do
-        Edit incident
-
-  %h2 Documents
-
-  - incident.documents.each do |document|
-    %h3= link_to document.name, document.url
-
-    %p= document.description
-
-    = render 'youtube_embed', embed_src: document.youtube_embed_src
-
-    - if policy(document).edit?
-      %p= link_to 'Edit document', [:edit, document]
-
-  - if policy(incident).edit?
-    = link_to new_document_path(document: { incident_id: incident.id }) do
-      Add document
+%tr
+  %th{ scope: :row }
+    = link_to incident do
+      incident.heading

@@ -6,4 +6,10 @@
 
   %h2 Results
 
-  = render @search_results
+  = render UswdsComponents::TableComponent.new(striped: true, borderless: true) do
+    %thead
+      %tr
+        %th{ scope: :col } Name
+    %tbody
+      - @search_results.each do |result|
+        = render result

@@ -1,2 +1,7 @@
-= link_to officer do
-  = officer.name
+%tr
+  %th{ scope: :row }
+    = link_to officer do
+      = 'Unknown' if officer.name.blank?
+      #{officer.last_name},
+      = officer.first_name
+      = officer.middle_name

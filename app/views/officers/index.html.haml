@@ -7,17 +7,8 @@
     %thead
       %tr
         %th{ scope: :col } Name
-        %th{ scope: :col } Incidents
     %tbody
-      - @officers.each do |officer|
-        %tr
-          %th{ scope: :row }
-            = link_to officer do
-              = 'Unknown' if officer.name.blank?
-              #{officer.last_name},
-              = officer.first_name
-              = officer.middle_name
-          %td= officer.incidents.size
+      = render @officers
 
   - if policy(Officer).new?
     = link_to new_officer_path do
