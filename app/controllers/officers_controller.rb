@@ -7,7 +7,7 @@ class OfficersController < ApplicationController
 
   def index
     @agency = agency
-    @pagy, @officers = pagy(officers.alphabetical, items: 50)
+    @pagy, @officers = pagy_arel(officers.alphabetical, items: 50)
   end
 
   def show

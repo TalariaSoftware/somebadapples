@@ -30,7 +30,7 @@
 
 # Backend Extras
 
-# require 'pagy/extras/arel'
+require 'pagy/extras/arel'
 
 # Array extra: Paginate arrays efficiently, avoiding expensive array-wrapping and without overriding
 # See https://ddnexus.github.io/pagy/docs/extras/array

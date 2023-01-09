@@ -5,7 +5,7 @@ class AgenciesController < ApplicationController
   expose :agencies, -> { policy_scope Agency.all }
 
   def index
-    @pagy, @agencies = pagy(agencies.order(:name), items: 50)
+    @pagy, @agencies = pagy_arel(agencies.order(:name), items: 50)
   end
 
   def show
