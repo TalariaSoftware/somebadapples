@@ -13,3 +13,5 @@
     %tbody
       - @search_results.each do |result|
         = render result
+
+  = pagy_nav(@pagy).html_safe # rubocop:disable Rails/OutputSafety

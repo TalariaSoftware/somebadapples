@@ -1,7 +1,8 @@
 class Document < ApplicationRecord
-  belongs_to :incident
-
+  extend Pagy::Searchkick
   searchkick
+
+  belongs_to :incident
 
   def youtube?
     domain = PublicSuffix.domain(URI.parse(url).host)

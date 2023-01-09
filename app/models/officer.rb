@@ -1,4 +1,5 @@
 class Officer < ApplicationRecord
+  extend Pagy::Searchkick
   searchkick
 
   extend FriendlyId
