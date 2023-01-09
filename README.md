@@ -84,5 +84,5 @@ heroku maintenance:off
 After loading new data the search database has to be re-indexed.
 
 ```sh
-bin/rails runner "[Officer, Incident, Document].each(&:reindex)"
+bin/rails runner "[Agency, Document, Incident, Officer].each(&:reindex)"
 ```

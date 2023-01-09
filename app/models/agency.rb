@@ -1,4 +1,7 @@
 class Agency < ApplicationRecord
+  extend Pagy::Searchkick
+  searchkick
+
   extend FriendlyId
   friendly_id :name, use: :slugged
 

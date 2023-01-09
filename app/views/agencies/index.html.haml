@@ -7,11 +7,7 @@
       %tr
         %th{ scope: :col } Name
     %tbody
-      - @agencies.each do |agency|
-        %tr
-          %th{ scope: :row }
-            = link_to [agency, :officers] do
-              = agency.name
+      = render @agencies
 
   - if policy(Agency).new?
     = link_to new_agency_path do

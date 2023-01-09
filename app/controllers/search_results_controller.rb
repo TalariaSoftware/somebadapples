@@ -6,7 +6,7 @@ class SearchResultsController < ApplicationController
 
     collection = Searchkick.pagy_search(
       params[:q],
-      models: [Officer, Incident, Document],
+      models: [Agency, Document, Incident, Officer],
     )
 
     @pagy, @search_results = pagy_searchkick(collection, items: 50)
