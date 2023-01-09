@@ -41,8 +41,12 @@ gem 'uuid'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :development, :test do
-  # See https://edgeguides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem 'debug', platforms: %i[mri mingw x64_mingw]
+  # Version 1.7.1 incorrectly leaves irb and readline out of its dependencies
+  # This causes an error on GitHub actions:
+  # "Downloading debug-1.7.1 revealed dependencies not in the API or the
+  # lockfile (irb (>= 1.5.0), reline (>= 0.3.1))."
+  # GitHub issue: https://github.com/ruby/debug/issues/852
+  gem 'debug', '< 1.7.0', platforms: %i[mri mingw x64_mingw]
 end
 
 group :development do
