@@ -6,10 +6,11 @@ class Officer < ApplicationRecord
   friendly_id :slug_candidate, use: :slugged
 
   has_many :positions, dependent: :destroy
-  has_many :agencies, through: :positions
-
   has_many :roles, dependent: :destroy
   has_many :incidents, through: :roles
+
+  has_many :agencies_officers, class_name: 'AgencyOfficer', dependent: :destroy
+  has_many :agencies, through: :agencies_officers
 
   validates :post_id, uniqueness: true
 

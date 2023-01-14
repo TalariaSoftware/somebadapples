@@ -4,6 +4,8 @@ RSpec.describe Officer do
   it { is_expected.to have_many(:roles) }
   it { is_expected.to have_many(:positions) }
   it { is_expected.to have_many(:incidents).through(:roles) }
+  it { is_expected.to have_many(:agencies_officers) }
+  it { is_expected.to have_many(:agencies).through(:agencies_officers) }
 
   describe '#name' do
     subject(:name) { officer.name }
@@ -108,6 +110,7 @@ RSpec.describe Officer do
 
       before do
         create :position, officer: officer, agency: fbi
+        Scenic.database.refresh_materialized_view('agencies_officers')
       end
 
       it { is_expected.to eq("John Edgar Hoover (FBI)") }
@@ -120,6 +123,7 @@ RSpec.describe Officer do
       before do
         create :position, officer: officer, agency: fbi
         create :position, officer: officer, agency: kgb
+        Scenic.database.refresh_materialized_view('agencies_officers')
       end
 
       it { is_expected.to eq("John Edgar Hoover (FBI, KGB)") }
@@ -134,6 +138,7 @@ RSpec.describe Officer do
 
     before do
       create :position, officer: officer, agency: fbi
+      Scenic.database.refresh_materialized_view('agencies_officers')
     end
 
     it "includes the exising officer" do

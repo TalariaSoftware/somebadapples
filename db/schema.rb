@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_09_043620) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_14_055854) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -121,4 +121,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_09_043620) do
   add_foreign_key "positions", "officers"
   add_foreign_key "roles", "incidents"
   add_foreign_key "roles", "officers"
+
+  create_view "agencies_officers", materialized: true, sql_definition: <<-SQL
+      SELECT officers.id AS officer_id,
+      positions.agency_id
+     FROM (officers
+       JOIN positions ON ((officers.id = positions.officer_id)));
+  SQL
+  add_index "agencies_officers", ["agency_id"], name: "index_agencies_officers_on_agency_id"
+  add_index "agencies_officers", ["officer_id"], name: "index_agencies_officers_on_officer_id"
+
 end

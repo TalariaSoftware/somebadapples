@@ -1,5 +1,6 @@
 RemoveUnusedMethodsInModelsCheck: {
   except_methods: [
+    'AgencyOfficer#readonly?',
     'Document#youtube_embed_src',
     'Officer#select_choices',
     'Officer#slug_candidate',

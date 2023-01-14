@@ -8,5 +8,7 @@ class Agency < ApplicationRecord
   validates :name, uniqueness: true
 
   has_many :positions, dependent: :destroy
-  has_many :officers, through: :positions
+
+  has_many :agencies_officers, class_name: 'AgencyOfficer', dependent: :destroy
+  has_many :officers, through: :agencies_officers
 end

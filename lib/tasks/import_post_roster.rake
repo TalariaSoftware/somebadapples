@@ -88,4 +88,7 @@ task create_post_positions: :environment do # rubocop:disable Metrics/BlockLengt
 
   puts "Creating position records"
   Position.upsert_all(position_attributes)
+
+  puts "Updating agency/officer join table"
+  Scenic.database.refresh_materialized_view('agencies_officers')
 end
