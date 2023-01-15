@@ -1,6 +1,30 @@
 require 'rails_helper'
 
 RSpec.describe CaCriminalIncident do
+  describe "#agency" do
+    subject { incident.agency }
+
+    let(:incident) do
+      create :ca_criminal_incident, department: "Anaheim Police"
+    end
+
+    context "when no agencies exists" do
+      it { is_expected.to be_blank }
+    end
+
+    context "when no matching agencies exists" do
+      before { create :agency, name: "UTOPIA PD" }
+
+      it { is_expected.to be_blank }
+    end
+
+    context "when a matching agencu exists" do
+      let!(:existing_agency) { create :agency, name: "ANAHEIM PD" }
+
+      it { is_expected.to eq(existing_agency) }
+    end
+  end
+
   describe "#officer" do
     subject(:officer) { incident.officers }
 
