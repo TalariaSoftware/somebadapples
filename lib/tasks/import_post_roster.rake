@@ -23,7 +23,7 @@ task create_post_agencies: :environment do
 
   agency_parameters = agencies.map do |name|
     {
-      name: name,
+      name: name.split.join(' '), # normalize spacing
       slug: ActiveSupport::Inflector.parameterize(name),
     }
   end
@@ -79,7 +79,7 @@ task create_post_positions: :environment do # rubocop:disable Metrics/BlockLengt
   position_attributes = post_positions.map do |post_position|
     {
       officer_id: officer_hash[post_position.derived_post_id],
-      agency_id: agency_hash[post_position.agency],
+      agency_id: agency_hash[post_position.agency.split.join(' ')],
       employment_start: post_position.employment_start,
       employment_end: post_position.employment_end,
       rank: post_position.rank,
