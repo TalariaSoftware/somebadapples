@@ -35,5 +35,18 @@ RSpec.describe CaCriminalIncident do
 
       it { is_expected.to eq([matching_officer]) }
     end
+
+    context "when the criminal incident has a nickname" do
+      let(:incident) do
+        create :ca_criminal_incident, first_name: 'John "Jonny"',
+          last_name: "Hoover"
+      end
+
+      let!(:matching_officer) do
+        create :officer, first_name: "JOHN", last_name: "HOOVER"
+      end
+
+      it { is_expected.to eq([matching_officer]) }
+    end
   end
 end
