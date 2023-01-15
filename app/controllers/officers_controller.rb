@@ -3,7 +3,7 @@ class OfficersController < ApplicationController
 
   expose :agency
   expose :officer, decorate: ->(officer) { authorize officer }
-  expose :officers, -> { policy_scope Officer.in_agency(agency) }
+  expose :officers, -> { policy_scope agency.officers }
 
   def index
     @agency = agency

@@ -50,6 +50,7 @@ RSpec.describe OfficersController do
       context "when the officer is in the agency" do
         before do
           create :position, officer: officer, agency: agency
+          Scenic.database.refresh_materialized_view('agencies_officers')
         end
 
         it "assigns the officers" do
@@ -66,6 +67,7 @@ RSpec.describe OfficersController do
       before do
         create :position, officer: officer_b, agency: agency
         create :position, officer: officer_a, agency: agency
+        Scenic.database.refresh_materialized_view('agencies_officers')
       end
 
       it "puts the officers in alphabetical order" do
