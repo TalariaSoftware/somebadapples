@@ -1,0 +1,2 @@
+class CaCriminalIncident < ApplicationRecord
+end

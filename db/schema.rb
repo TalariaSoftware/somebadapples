@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_14_055854) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_15_203803) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -22,6 +22,27 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_14_055854) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.index ["name"], name: "index_agencies_on_name", unique: true, order: :desc
+  end
+
+  create_table "ca_criminal_incidents", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "crime_date"
+    t.string "charge1"
+    t.string "charge2"
+    t.string "charge3"
+    t.string "currently_employed"
+    t.string "department"
+    t.string "rank"
+    t.string "conviction1"
+    t.string "conviction2"
+    t.string "conviction3"
+    t.string "conviction4"
+    t.string "news_links"
+    t.bigint "incident_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["incident_id"], name: "index_ca_criminal_incidents_on_incident_id"
   end
 
   create_table "documents", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
