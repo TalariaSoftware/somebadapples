@@ -13,5 +13,5 @@ task import_ca_criminal_incidents: :environment do
   attributes = table.map(&:to_hash)
 
   puts "Creating CA criminal incident records"
-  CaCriminalIncident.insert_all(attributes)
+  CaCriminalIncident.insert_all(attributes) # rubocop:disable Rails/SkipsModelValidations
 end

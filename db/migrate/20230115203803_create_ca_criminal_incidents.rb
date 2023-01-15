@@ -1,5 +1,5 @@
 class CreateCaCriminalIncidents < ActiveRecord::Migration[7.0]
-  def change
+  def change # rubocop:disable Metrics/AbcSize
     create_table :ca_criminal_incidents, id: :uuid do |t|
       t.string :first_name
       t.string :last_name
