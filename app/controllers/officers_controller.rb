@@ -7,7 +7,15 @@ class OfficersController < ApplicationController
 
   def index
     @agency = agency
-    @pagy, @officers = pagy_arel(officers.alphabetical, items: 50)
+    @officers = officers.alphabetical
+
+    respond_to do |format|
+      format.html do
+        @pagy, @officers = pagy_arel(@officers, items: 50)
+      end
+
+      format.csv
+    end
   end
 
   def show

@@ -1,0 +1,4 @@
+Last name,First name,Middle name,Suffix,POST ID
+<%- officers.each do |officer| %>
+<%= officer.last_name %>,<%= officer.first_name %>,<%= officer.middle_name %>,<%= officer.suffix %>,<%= officer.post_id %>
+<%- end %>

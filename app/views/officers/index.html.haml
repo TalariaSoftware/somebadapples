@@ -3,6 +3,11 @@
     = @agency.name
     Officers
 
+  %p.text-right
+    = link_to agency_officers_path(@agency, format: :csv), class: %i[text-no-underline], download: "#{@agency.name} Officers.csv" do
+      %span.text-top CSV
+      %img{ aria: { hidden: true }, focusable: 'false', role: :img, src: 'https://cdn.jsdelivr.net/npm/uswds@2.13.0/dist/img/usa-icons/file_download.svg' }
+
   = render UswdsComponents::TableComponent.new(striped: true, borderless: true) do
     %thead
       %tr

@@ -13,9 +13,22 @@ RSpec.describe OfficersController do
       expect(response).to be_ok
     end
 
-    it "paginates the list" do
-      get :index, params: params
-      expect(assigns(:pagy)).to be_a(Pagy)
+    context "when the format is HTML" do
+      let(:params) { { agency_id: agency.id, format: :html } }
+
+      it "paginates the list" do
+        get :index, params: params
+        expect(assigns(:pagy)).to be_a(Pagy)
+      end
+    end
+
+    context "when the format is CSV" do
+      let(:params) { { agency_id: agency.id, format: :csv } }
+
+      it "does not paginate the list" do
+        get :index, params: params
+        expect(assigns(:pagy)).to be_nil
+      end
     end
 
     context "when there is an officer" do
