@@ -1,0 +1,7 @@
+= render UswdsComponents::PaginationComponent.new do
+  = render previous_page
+
+  - pagy.series.each do |item|
+    = render SearchPaginationComponent::Item.new(item: item, query: query)
+
+  = render next_page
