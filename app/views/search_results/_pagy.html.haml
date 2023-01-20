@@ -1,0 +1,17 @@
+= render UswdsComponents::PaginationComponent.new do
+  - if pagy.prev
+    = render UswdsComponents::PaginationComponent::Previous.new(url: url_for(page: pagy.prev, q: params[:q]))
+
+  - pagy.series.each do |item|
+    - case item
+    - when Integer
+      = render UswdsComponents::PaginationComponent::Page.new(url: url_for(page: item, q: params[:q]), index: item)
+
+    - when String
+      = render UswdsComponents::PaginationComponent::Page.new(url: url_for(page: item, q: params[:q]), index: item, current: true)
+
+    - when :gap
+      = render UswdsComponents::PaginationComponent::Overflow.new
+
+  - if pagy.next
+    = render UswdsComponents::PaginationComponent::Next.new(url: url_for(page: pagy.next, q: params[:q]))
