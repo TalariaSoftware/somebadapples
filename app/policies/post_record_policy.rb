@@ -1,0 +1,2 @@
+class PostRecordPolicy < ApplicationPolicy
+end

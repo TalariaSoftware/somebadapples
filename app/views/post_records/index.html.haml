@@ -1,0 +1,25 @@
+%section.grid-container.usa-section
+  %h1
+    Post Records
+
+  = render UswdsComponents::TableComponent.new(striped: true, borderless: true) do
+    %thead
+      %tr
+        %th{ scope: :col } Post ID
+        %th{ scope: :col } Name
+        %th{ scope: :col } Agency
+        %th{ scope: :col } Rank
+        %th{ scope: :col } Employment dates
+    %tbody
+      - @post_records.each do |post_record|
+        %tr
+          %th{ scope: :row }= post_record.post_id
+          %td= post_record.officer_name
+          %td= post_record.agency
+          %td= post_record.rank
+          %td
+            = post_record.employment_start_date
+            \-
+            = post_record.employment_end_date if post_record.employment_end_date.present?
+
+  = render partial: 'pagy', object: @pagy

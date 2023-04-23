@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     resources :officers, only: %i[index]
   end
 
+  resources :post_records, only: %i[index]
+
   get '/search', to: 'search_results#index'
 
   devise_for :users
