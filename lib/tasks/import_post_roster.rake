@@ -13,13 +13,13 @@ task import_post_roster: :environment do
   attributes = table.map(&:to_hash)
 
   puts "Creating POST position records"
-  PostPosition.insert_all(attributes)
+  PostRecord.insert_all(attributes)
 end
 
 desc "Populate agencies from POST roster"
 task create_post_agencies: :environment do
   puts "Getting agency names"
-  agencies = PostPosition.distinct.pluck(:agency)
+  agencies = PostRecord.distinct.pluck(:agency)
 
   agency_parameters = agencies.map do |name|
     {
@@ -35,9 +35,9 @@ end
 desc "Populate officers from POST roster"
 task create_post_officers: :environment do
   puts "Getting officers from POST positions"
-  officers = PostPosition.all
-                         .select(:officer_id, :officer_name, :post_id)
-                         .group(:officer_id, :officer_name, :post_id)
+  officers = PostRecord.all
+                       .select(:officer_id, :officer_name, :post_id)
+                       .group(:officer_id, :officer_name, :post_id)
 
   puts "Getting officer attributes"
   officer_attributes = officers.map do |officer|
@@ -56,9 +56,9 @@ task create_post_officers: :environment do
 end
 
 desc "Populate positions from POST roster"
-task create_post_positions: :environment do # rubocop:disable Metrics/BlockLength
-  puts "Getting POST positions"
-  post_positions = PostPosition.all.select(
+task create_post_records: :environment do # rubocop:disable Metrics/BlockLength
+  puts "Getting POST records"
+  post_records = PostRecord.all.select(
     :officer_id, :post_id, :agency, :rank,
     :employment_start_date, :employment_end_date
   )
@@ -75,19 +75,19 @@ task create_post_positions: :environment do # rubocop:disable Metrics/BlockLengt
     agency_hash[agency.name] = agency.id
   end
 
-  puts "Getting position attributes"
-  position_attributes = post_positions.map do |post_position|
+  puts "Getting record attributes"
+  record_attributes = post_records.map do |post_record|
     {
-      officer_id: officer_hash[post_position.derived_post_id],
-      agency_id: agency_hash[post_position.agency.split.join(' ')],
-      employment_start: post_position.employment_start,
-      employment_end: post_position.employment_end,
-      rank: post_position.rank,
+      officer_id: officer_hash[post_record.derived_post_id],
+      agency_id: agency_hash[post_record.agency.split.join(' ')],
+      employment_start: post_record.employment_start,
+      employment_end: post_record.employment_end,
+      rank: post_record.rank,
     }
   end
 
   puts "Creating position records"
-  Position.upsert_all(position_attributes)
+  Position.upsert_all(record_attributes)
 
   puts "Updating agency/officer join table"
   Scenic.database.refresh_materialized_view('agencies_officers')

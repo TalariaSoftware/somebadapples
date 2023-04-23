@@ -1,4 +1,4 @@
-class PostPosition < ApplicationRecord
+class PostRecord < ApplicationRecord
   SUFFIXES = %w[SR JR JR. JRS II III IV ESQ MR MRS MS].freeze
 
   belongs_to :position

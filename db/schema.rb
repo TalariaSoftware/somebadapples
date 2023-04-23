@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_15_203803) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_23_185154) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -102,7 +102,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_15_203803) do
     t.index ["officer_id"], name: "index_positions_on_officer_id"
   end
 
-  create_table "post_positions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "post_records", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "officer_id"
     t.string "officer_name"
     t.string "post_id"
@@ -113,7 +113,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_15_203803) do
     t.bigint "position_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["position_id"], name: "index_post_positions_on_position_id"
+    t.index ["position_id"], name: "index_post_records_on_position_id"
   end
 
   create_table "roles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

@@ -67,7 +67,7 @@ to reimport it.
 #### Development
 
 ```sh
-rake db:reset import_post_roster create_post_agencies create_post_officers create_post_positions
+rake db:reset import_post_roster create_post_agencies create_post_officers create_post_records
 ```
 
 #### Production
@@ -75,7 +75,7 @@ rake db:reset import_post_roster create_post_agencies create_post_officers creat
 ```
 heroku maintenance:on
 heroku pg:reset
-heroku run -s standard-2x rake db:schema:load import_post_roster create_post_agencies create_post_officers create_post_positions
+heroku run -s standard-2x rake db:schema:load import_post_roster create_post_agencies create_post_officers create_post_records
 heroku maintenance:off
 ```
 

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe PostPosition do
+RSpec.describe PostRecord do
   it { is_expected.to belong_to(:position) }
 
   describe "#last_name" do
