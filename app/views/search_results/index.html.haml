@@ -6,12 +6,7 @@
 
   %h2 Results
 
-  = render UswdsComponents::TableComponent.new(striped: true, borderless: true) do
-    %thead
-      %tr
-        %th{ scope: :col } Name
-    %tbody
-      - @search_results.each do |result|
-        = render result
+  - @search_results.each do |result|
+    = render result
 
   = render SearchPaginationComponent.new(pagy: @pagy, query: params[:q])

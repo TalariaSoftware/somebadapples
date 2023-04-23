@@ -1,0 +1,21 @@
+- if document.searchable.is_a? PostRecord
+  - post_record = document.searchable
+
+  = render UswdsComponents::TableComponent.new(striped: true, borderless: true) do
+    %thead
+      %tr
+        %th{ scope: :col } Post ID
+        %th{ scope: :col } Name
+        %th{ scope: :col } Agency
+        %th{ scope: :col } Rank
+        %th{ scope: :col } Employment dates
+    %tbody
+      %tr
+        %th{ scope: :row }= post_record.post_id
+        %td= post_record.officer_name
+        %td= post_record.agency
+        %td= post_record.rank
+        %td
+          = post_record.employment_start_date
+          \-
+          = post_record.employment_end_date
