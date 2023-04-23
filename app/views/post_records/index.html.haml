@@ -20,6 +20,6 @@
           %td
             = post_record.employment_start_date
             \-
-            = post_record.employment_end_date if post_record.employment_end_date.present?
+            = post_record.employment_end_date
 
   = render partial: 'pagy', object: @pagy
