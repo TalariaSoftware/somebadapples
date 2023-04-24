@@ -1,4 +1,7 @@
 class PostRecord < ApplicationRecord
+  extend Pagy::Searchkick
+  searchkick
+
   SUFFIXES = %w[SR JR JR. JRS II III IV ESQ MR MRS MS].freeze
 
   validates :officer_id, :officer_name, :post_id, :agency,

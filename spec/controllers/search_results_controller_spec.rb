@@ -14,30 +14,48 @@ RSpec.describe SearchResultsController do
       end
     end
 
-    context "when there are officer results" do
-      let!(:officer) { create :officer, :reindex, first_name: 'Bob' }
+    context "when there are post record results" do
+      before do
+        create :post_record, :reindex, officer_name: 'PINKERTON, BOB'
+      end
 
       it "returns the results" do
         get :index, params: { q: 'bob' }
-        expect(assigns(:search_results).to_a).to eq([officer])
+        expect(assigns(:search_results).first.officer_name)
+          .to eq('PINKERTON, BOB')
+      end
+    end
+
+    context "when there are officer results" do
+      before do
+        create :officer, :reindex, first_name: 'Bob'
+      end
+
+      it "returns the results" do
+        get :index, params: { q: 'bob' }
+        expect(assigns(:search_results).first.first_name).to eq('Bob')
       end
     end
 
     context "when there are incident results" do
-      let!(:incident) { create :incident, :reindex, heading: 'The fruit saga' }
+      before do
+        create :incident, :reindex, heading: 'The fruit saga'
+      end
 
       it "returns the results" do
         get :index, params: { q: 'fruit' }
-        expect(assigns(:search_results).to_a).to eq([incident])
+        expect(assigns(:search_results).first.heading).to eq('The fruit saga')
       end
     end
 
     context "when there are document results" do
-      let!(:document) { create :document, :reindex, name: 'Frooty Tooty' }
+      before do
+        create :document, :reindex, name: 'Frooty Tooty'
+      end
 
       it "returns the results" do
         get :index, params: { q: 'frooty' }
-        expect(assigns(:search_results).to_a).to eq([document])
+        expect(assigns(:search_results).first.name).to eq('Frooty Tooty')
       end
     end
   end
