@@ -39,7 +39,7 @@ RSpec.describe LapdHeadshotsController do
   end
 
   describe '#show' do
-    let(:params) { {id: headshot.id} }
+    let(:params) { { id: headshot.id } }
 
     let(:headshot) { create :lapd_headshot }
 

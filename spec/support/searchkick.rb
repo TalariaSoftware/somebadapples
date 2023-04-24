@@ -5,6 +5,7 @@ RSpec.configure do |config|
     Incident.reindex
     Document.reindex
     PostRecord.reindex
+    LapdHeadshot.reindex
 
     Searchkick.disable_callbacks
   end

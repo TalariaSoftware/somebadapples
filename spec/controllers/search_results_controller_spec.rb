@@ -26,6 +26,18 @@ RSpec.describe SearchResultsController do
       end
     end
 
+    context "when there are LAPD headshot results" do
+      before do
+        create :lapd_headshot, :reindex, file_name: 'PINKERTON, BOB - 12345.jpg'
+      end
+
+      it "returns the results" do
+        get :index, params: { q: 'bob' }
+        expect(assigns(:search_results).first.file_name)
+          .to eq('PINKERTON, BOB - 12345.jpg')
+      end
+    end
+
     context "when there are officer results" do
       before do
         create :officer, :reindex, first_name: 'Bob'

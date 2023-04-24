@@ -1,7 +1,9 @@
 class SearchResultsController < ApplicationController
   include Pagy::Backend
 
-  SEARCH_MODELS = [Agency, Document, Incident, Officer, PostRecord].freeze
+  SEARCH_MODELS = [
+    Agency, Document, Incident, Officer, PostRecord, LapdHeadshot
+  ].freeze
 
   def index
     skip_policy_scope
