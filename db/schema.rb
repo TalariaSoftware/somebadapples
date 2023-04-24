@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_24_012845) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_24_030726) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "pgcrypto"
@@ -72,6 +72,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_24_012845) do
     t.string "heading", default: "", null: false
     t.string "description", default: "", null: false
     t.datetime "datetime"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "lapd_headshots", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "file_name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
