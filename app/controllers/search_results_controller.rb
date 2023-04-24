@@ -4,8 +4,11 @@ class SearchResultsController < ApplicationController
   def index
     skip_policy_scope
 
-    search_results = PgSearch.multisearch(params[:q])
+    search_results = Searchkick.pagy_search(
+      params[:q],
+      models: [Agency, Document, Incident, Officer],
+    )
 
-    @pagy, @search_results = pagy(search_results, items: 50)
+    @pagy, @search_results = pagy_searchkick(search_results, items: 50)
   end
 end

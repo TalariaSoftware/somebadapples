@@ -14,12 +14,30 @@ RSpec.describe SearchResultsController do
       end
     end
 
-    context "when there are matching POST record results" do
-      before { create :post_record, officer_name: 'PINKERTON, ROBERT' }
+    context "when there are officer results" do
+      let!(:officer) { create :officer, :reindex, first_name: 'Bob' }
 
       it "returns the results" do
-        get :index, params: { q: 'pinkerton' }
-        expect(assigns(:search_results).count).to eq(1)
+        get :index, params: { q: 'bob' }
+        expect(assigns(:search_results).to_a).to eq([officer])
+      end
+    end
+
+    context "when there are incident results" do
+      let!(:incident) { create :incident, :reindex, heading: 'The fruit saga' }
+
+      it "returns the results" do
+        get :index, params: { q: 'fruit' }
+        expect(assigns(:search_results).to_a).to eq([incident])
+      end
+    end
+
+    context "when there are document results" do
+      let!(:document) { create :document, :reindex, name: 'Frooty Tooty' }
+
+      it "returns the results" do
+        get :index, params: { q: 'frooty' }
+        expect(assigns(:search_results).to_a).to eq([document])
       end
     end
   end

@@ -1,8 +1,4 @@
 class PostRecord < ApplicationRecord
-  include PgSearch::Model
-
-  multisearchable against: %i[officer_name agency rank]
-
   SUFFIXES = %w[SR JR JR. JRS II III IV ESQ MR MRS MS].freeze
 
   validates :officer_id, :officer_name, :post_id, :agency,
