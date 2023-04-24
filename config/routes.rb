@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   end
 
   resources :post_records, only: %i[index]
+  get '/post_records/:post_id', to: 'post_records#index', as: 'post_id'
 
   get '/search', to: 'search_results#index'
 
