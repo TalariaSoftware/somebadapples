@@ -1,4 +1,7 @@
 class LapdHeadshot < ApplicationRecord
+  extend FriendlyId
+  friendly_id :file_name, use: :slugged
+
   validates :file_name, presence: true, uniqueness: true
 
   def file_path
