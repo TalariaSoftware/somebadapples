@@ -4,5 +4,6 @@ RemoveUnusedMethodsInModelsCheck: {
     'Document#youtube_embed_src',
     'Officer#select_choices',
     'Officer#slug_candidate',
+    'LapdHeadshot#serial_number',
   ]
 }
