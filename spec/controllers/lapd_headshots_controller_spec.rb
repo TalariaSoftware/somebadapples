@@ -37,4 +37,20 @@ RSpec.describe LapdHeadshotsController do
       end
     end
   end
+
+  describe '#show' do
+    let(:params) { {id: headshot.id} }
+
+    let(:headshot) { create :lapd_headshot }
+
+    it "returns http success" do
+      get :show, params: params
+      expect(response).to be_ok
+    end
+
+    it "assigns the headshot" do
+      get :show, params: params
+      expect(assigns(:lapd_headshot)).to eq(headshot)
+    end
+  end
 end
