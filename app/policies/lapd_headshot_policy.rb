@@ -1,0 +1,2 @@
+class LapdHeadshotPolicy < ApplicationPolicy
+end

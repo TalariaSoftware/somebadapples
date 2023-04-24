@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   resources :post_records, only: %i[index]
   get '/post_records/:post_id', to: 'post_records#index', as: 'post_id'
 
+  resources :lapd_headshots, only: %i[index show]
+
   get '/search', to: 'search_results#index'
 
   devise_for :users

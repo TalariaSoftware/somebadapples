@@ -1,0 +1,11 @@
+%section.grid-container.usa-section
+  %h1 LAPD Headshots
+
+  - @lapd_headshots.each do |headshot|
+    %section
+      %h2= headshot.file_name
+
+      %img{ src: headshot.file_path }
+    %hr
+
+  = render partial: 'pagy', object: @pagy
