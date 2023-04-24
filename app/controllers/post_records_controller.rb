@@ -2,18 +2,29 @@ class PostRecordsController < ApplicationController
   include Pagy::Backend
 
   expose :post_record, decorate: ->(post_record) { authorize post_record }
-  expose :post_records, -> { policy_scope PostRecord.all.order(:officer_name) }
 
-  def index # rubocop:disable Metrics/AbcSize
-    @post_records = post_records
+  before_action :ensure_uppercase_post_id, only: :index
 
-    if params[:post_id].present?
-      if params[:post_id] != params[:post_id].upcase
-        redirect_to post_id_path(post_id: params[:post_id].upcase)
-      end
-      @post_records = @post_records.where(post_id: params[:post_id])
-    end
+  def index
+    @pagy, @post_records = pagy_arel(post_records, items: 50)
+  end
 
-    @pagy, @post_records = pagy_arel(@post_records, items: 50)
+  private
+
+  def post_records
+    records = PostRecord.all.order(:officer_name)
+    records = records.where(post_id: post_id) if post_id.present?
+    policy_scope records
+  end
+
+  def ensure_uppercase_post_id
+    return if post_id.blank?
+    return if post_id == post_id.upcase
+
+    redirect_to post_id_path(post_id: post_id.upcase)
+  end
+
+  def post_id
+    params[:post_id]
   end
 end
