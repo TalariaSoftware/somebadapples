@@ -6,4 +6,7 @@
           %h2.usa-card__heading= lapd_headshot.file_name
         .usa-card__media
           .usa-card__img
-            %img{alt: lapd_headshot.file_name, src: lapd_headshot.file_path}
+            %img{ alt: lapd_headshot.file_name, src: lapd_headshot.file_path }
+        .usa-card__footer
+          = link_to lapd_headshot, class: 'usa-button' do
+            = lapd_headshot.officer_name
