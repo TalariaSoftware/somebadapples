@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_24_053704) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_28_053420) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "pgcrypto"
@@ -139,6 +139,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_24_053704) do
     t.uuid "incident_id", null: false
     t.index ["incident_id"], name: "index_roles_on_incident_id"
     t.index ["officer_id"], name: "index_roles_on_officer_id"
+  end
+
+  create_table "us_ca_los_angeles_police_roster20220820_entries", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "employee_name", null: false
+    t.string "serial_no", null: false
+    t.string "rank_tile", null: false
+    t.string "area", null: false
+    t.string "sex", null: false
+    t.string "ethicity", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["serial_no"], name: "by_serial_no", unique: true
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

@@ -66,6 +66,7 @@ end
 group :test do
   gem 'capybara'
   gem 'factory_bot'
+  gem 'factory_bot-namespaced_factories'
   gem 'faker'
   gem 'pundit-matchers'
   gem 'rails-controller-testing'

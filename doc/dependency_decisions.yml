@@ -66,3 +66,9 @@
     :why:
     :versions: []
     :when: 2021-12-12 02:32:07.551920000 Z
+- - :approve
+  - factory_bot-namespaced_factories
+  - :who:
+    :why:
+    :versions: []
+    :when: 2023-04-28 16:28:32.963174000 Z
