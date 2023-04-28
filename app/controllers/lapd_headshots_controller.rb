@@ -5,7 +5,7 @@ class LapdHeadshotsController < ApplicationController
   expose :lapd_headshots, -> { policy_scope LapdHeadshot.all.order(:file_name) }
 
   def index
-    @pagy, @lapd_headshots = pagy_arel(lapd_headshots, items: 10)
+    @pagy, @lapd_headshots = pagy_arel(lapd_headshots, items: 12)
   end
 
   def show

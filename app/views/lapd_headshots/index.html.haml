@@ -1,14 +1,5 @@
 %section.grid-container.usa-section
   %h1 LAPD Headshots
 
-  - @lapd_headshots.each do |headshot|
-    %section
-      %h2
-        = link_to headshot do
-          = headshot.file_name
-
-
-      %img{ src: headshot.file_path }
-    %hr
-
+  = render LapdHeadshotListComponent.new(lapd_headshots: @lapd_headshots)
   = render partial: 'pagy', object: @pagy
