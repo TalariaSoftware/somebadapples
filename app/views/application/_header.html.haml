@@ -1,7 +1,7 @@
 = render UswdsComponents::BasicHeaderComponent.new(image_path: 'https://cdn.jsdelivr.net/npm/uswds@2.13.0/dist/img') do |header|
   - header.logo(href: root_path, title: 'Bad Apples')
 
-  - header.primary_item(title: 'LAPD headshots', href: us_ca_los_angeles_police_roster20220820_entries_path)
+  - header.primary_item(title: 'LAPD Roster', href: us_ca_los_angeles_police_roster20220820_entries_path)
   - header.primary_item(title: 'POST records', href: post_records_path)
 
   = render UswdsComponents::SearchComponent.new(form_options: { url: search_path, method: :get }, size: :small, submit_icon: 'https://cdn.jsdelivr.net/npm/uswds@2.13.0/src/img/usa-icons-bg/search--white.svg')
