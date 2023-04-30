@@ -16,6 +16,17 @@ Rails.application.routes.draw do
   get '/post_records/:post_id', to: 'post_records#index', as: 'post_id'
 
   resources :lapd_headshots, only: %i[index show]
+  namespace :us do
+    namespace :ca do
+      namespace :los_angeles do
+        namespace :police do
+          namespace :roster20220820 do
+            resources :entries, only: %i[index show]
+          end
+        end
+      end
+    end
+  end
 
   get '/search', to: 'search_results#index'
 

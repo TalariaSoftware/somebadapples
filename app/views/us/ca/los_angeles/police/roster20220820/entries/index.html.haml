@@ -1,0 +1,24 @@
+%section.grid-container.usa-section
+  %h1 LAPD roster as of August 20, 2022
+
+  = render UswdsComponents::TableComponent.new(striped: true) do
+    %thead
+      %tr
+        %th{ scope: :col } Employee Name
+        %th{ scope: :col } Serial No
+        %th{ scope: :col } Rank Tile
+        %th{ scope: :col } Area
+        %th{ scope: :col } Sex
+        %th{ scope: :col } Ethnicity
+
+    %tbody
+      - @entries.each do |entry|
+        %tr
+          %td= entry.employee_name
+          %td= link_to entry.serial_no, entry
+          %td= entry.rank_tile
+          %td= entry.area
+          %td= entry.sex
+          %td= entry.ethicity
+
+  = render partial: 'pagy', object: @pagy
