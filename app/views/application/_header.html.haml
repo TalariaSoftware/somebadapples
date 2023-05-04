@@ -2,6 +2,7 @@
   - header.logo(href: root_path, title: 'Bad Apples')
 
   - header.primary_item(title: 'LAPD Roster', href: us_ca_los_angeles_police_roster20220820_entries_path)
+  - header.primary_item(title: 'LAPD Headshots', href: us_ca_los_angeles_police_headshots20230321_headshots_path)
   - header.primary_item(title: 'POST records', href: post_records_path)
 
   = render UswdsComponents::SearchComponent.new(form_options: { url: search_path, method: :get }, size: :small, submit_icon: 'https://cdn.jsdelivr.net/npm/uswds@2.13.0/src/img/usa-icons-bg/search--white.svg')

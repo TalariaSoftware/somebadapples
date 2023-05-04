@@ -20,6 +20,9 @@ Rails.application.routes.draw do
     namespace :ca do
       namespace :los_angeles do
         namespace :police do
+          namespace :headshots20230321 do
+            resources :headshots, only: %i[index show]
+          end
           namespace :roster20220820 do
             resources :entries, only: %i[index show]
           end
