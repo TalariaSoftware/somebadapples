@@ -15,7 +15,6 @@ Rails.application.routes.draw do
   resources :post_records, only: %i[index]
   get '/post_records/:post_id', to: 'post_records#index', as: 'post_id'
 
-  resources :lapd_headshots, only: %i[index show]
   namespace :us do
     namespace :ca do
       namespace :los_angeles do

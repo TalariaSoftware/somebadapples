@@ -5,7 +5,7 @@ RSpec.configure do |config|
     Incident.reindex
     Document.reindex
     PostRecord.reindex
-    LapdHeadshot.reindex
+    Us::Ca::LosAngeles::Police::Headshots20230321::Headshot.reindex
 
     Searchkick.disable_callbacks
   end

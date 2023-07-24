@@ -28,7 +28,8 @@ RSpec.describe SearchResultsController do
 
     context "when there are LAPD headshot results" do
       before do
-        create :lapd_headshot, :reindex, file_name: 'PINKERTON, BOB - 12345.jpg'
+        create :'us/ca/los_angeles/police/headshots20230321_headshot', :reindex,
+          file_name: 'PINKERTON, BOB - 12345.jpg'
       end
 
       it "returns the results" do

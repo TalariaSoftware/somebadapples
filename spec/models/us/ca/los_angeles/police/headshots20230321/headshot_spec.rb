@@ -13,7 +13,7 @@ RSpec.describe Us::Ca::LosAngeles::Police::Headshots20230321::Headshot do
     subject(:file_path) { headshot.file_path }
 
     let(:expected_path) do
-      '/data/us/ca/police/headshots_20230321/MOORE%20MICHEL,%20R%20-%20%23%2023506.jpg' # rubocop:disable Layout/LineLength
+      '/data/us/ca/police/los_angeles/headshots_20230321/MOORE%20MICHEL,%20R%20-%20%23%2023506.jpg' # rubocop:disable Layout/LineLength
     end
 
     it { is_expected.to eq(expected_path) }

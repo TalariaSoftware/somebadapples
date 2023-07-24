@@ -8,7 +8,7 @@ class Us::Ca::LosAngeles::Police::Headshots20230321::Headshot < ApplicationRecor
 
   validates :file_name, presence: true, uniqueness: true
 
-  FILE_DIR = '/data/us/ca/police/headshots_20230321'.freeze
+  FILE_DIR = '/data/us/ca/police/los_angeles/headshots_20230321'.freeze
 
   def file_path
     "#{FILE_DIR}/#{URI::DEFAULT_PARSER.escape(file_name)}"

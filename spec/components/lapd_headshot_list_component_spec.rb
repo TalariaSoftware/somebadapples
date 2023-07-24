@@ -5,12 +5,17 @@ RSpec.describe LapdHeadshotListComponent, type: :component do
 
   subject(:component) { described_class.new lapd_headshots: [lapd_headshot] }
 
-  let(:lapd_headshot) { build :lapd_headshot, file_name: 'pig.jpg' }
+  let(:lapd_headshot) do
+    build :'us/ca/los_angeles/police/headshots20230321_headshot',
+      file_name: 'pig.jpg'
+  end
 
   before { render_inline component }
 
   it "includes the headshot" do
-    expect(page).to have_css("img[src='/data/lapd_headshots/pig.jpg']")
+    expect(page).to have_css(
+      "img[src='/data/us/ca/police/los_angeles/headshots_20230321/pig.jpg']",
+    )
   end
 
   it "includes the file name" do
