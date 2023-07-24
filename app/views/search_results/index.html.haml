@@ -14,5 +14,4 @@
       - @search_results.each do |result|
         = render result
 
-
   = render SearchPaginationComponent.new(pagy: @pagy, query: params[:q])

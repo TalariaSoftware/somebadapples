@@ -1,6 +1,5 @@
 = render UswdsComponents::PaginationComponent.new do
-  - if pagy.prev
-    = render UswdsComponents::PaginationComponent::Previous.new(url: url_for(page: pagy.prev))
+  = render UswdsComponents::PaginationComponent::Previous.new(url: url_for(page: pagy.prev)) if pagy.prev
 
   - pagy.series.each do |item|
     - case item
@@ -13,5 +12,4 @@
     - when :gap
       = render UswdsComponents::PaginationComponent::Overflow.new
 
-  - if pagy.next
-    = render UswdsComponents::PaginationComponent::Next.new(url: url_for(page: pagy.next))
+  = render UswdsComponents::PaginationComponent::Next.new(url: url_for(page: pagy.next)) if pagy.next
