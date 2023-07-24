@@ -1,5 +1,6 @@
 require:
   - rubocop-capybara
+  - rubocop-factory_bot
   - rubocop-performance
   - rubocop-rails
   - rubocop-rspec
@@ -12,6 +13,9 @@ AllCops:
     - db/schema.rb
     - node_modules/**/*
     - vendor/bundle/**/*
+
+FactoryBot/ConsistentParenthesesStyle:
+  EnforcedStyle: omit_parentheses
 
 Style/Documentation:
   Enabled: false
@@ -78,9 +82,6 @@ RSpec/ContextWording:
 
 RSpec/DescribedClass:
   Enabled: false
-
-RSpec/FactoryBot/ConsistentParenthesesStyle:
-  EnforcedStyle: omit_parentheses
 
 Rails/SkipsModelValidations:
   Exclude:

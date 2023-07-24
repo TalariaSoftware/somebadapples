@@ -19,7 +19,7 @@ RSpec.describe ApplicationController do
     context "when the user is logged in" do
       controller do
         def current_user
-          @current_user ||= FactoryBot.create :user # rubocop:disable RSpec/FactoryBot/SyntaxMethods
+          @current_user ||= FactoryBot.create :user # rubocop:disable FactoryBot/SyntaxMethods
         end
       end
 
