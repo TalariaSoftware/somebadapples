@@ -14,17 +14,6 @@ GIT
       rails (>= 6.1.4.1)
       view_component (< 3)
 
-GIT
-  remote: https://github.com/heartcombo/devise.git
-  revision: ec0674523e7909579a5a008f16fb9fe0c3a71712
-  specs:
-    devise (4.9.2)
-      bcrypt (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (>= 4.1.0)
-      responders
-      warden (~> 1.2.3)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -127,6 +116,12 @@ GEM
       reline (>= 0.3.1)
     decent_exposure (3.0.4)
       activesupport (>= 4.0)
+    devise (4.9.2)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 4.1.0)
+      responders
+      warden (~> 1.2.3)
     diff-lcs (1.5.0)
     docile (1.4.0)
     dotenv (2.8.1)
@@ -479,7 +474,7 @@ DEPENDENCIES
   capybara
   debug (< 1.7.0)
   decent_exposure
-  devise!
+  devise
   dotenv-rails
   elasticsearch (<= 7.13)
   factory_bot
