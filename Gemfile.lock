@@ -487,7 +487,7 @@ DEPENDENCIES
   iron_teapot!
   jbuilder
   license_finder
-  lookbook (>= 2.0.0.pre.rc2)
+  lookbook
   pagy
   pg
   public_suffix
