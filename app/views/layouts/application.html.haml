@@ -6,8 +6,8 @@
     %meta{ content: 'width=device-width,initial-scale=1', name: 'viewport' }
     = csrf_meta_tags
     = csp_meta_tag
-    %script{ src: 'https://cdn.jsdelivr.net/npm/uswds@2.13.0/dist/js/uswds-init.min.js', integrity: 'sha256-s8ivtssrvlThzW9kP7IobVBTgrj2tXanipFmUrGRadE=', crossorigin: :anonymous }
     = stylesheet_link_tag 'application', 'data-turbo-track': 'reload'
+    = javascript_include_tag 'js/uswds-init.min.js'
     = javascript_importmap_tags
   %body
     = render partial: 'application/header'
@@ -18,4 +18,4 @@
 
     = render 'application/footer'
 
-    %script{ src: 'https://cdn.jsdelivr.net/npm/uswds@2.13.0/dist/js/uswds.min.js', integrity: 'sha256-wFSqIde7dSXUsICyl/9wZcm9Cer7aPhCloW7nMjsvPs=', crossorigin: :anonymous }
+    = javascript_include_tag 'js/uswds.min.js'
