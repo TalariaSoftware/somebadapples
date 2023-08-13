@@ -7,8 +7,6 @@ class PostRecord < ApplicationRecord
   validates :officer_id, :officer_name, :post_id, :agency,
     :employment_start_date, :rank, presence: true
 
-  belongs_to :position
-
   def first_name
     return nil if name_withheld?
 

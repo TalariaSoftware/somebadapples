@@ -1,7 +1,5 @@
 RSpec.configure do |config|
   config.before(:suite) do
-    Agency.reindex
-    Officer.reindex
     Incident.reindex
     Document.reindex
     PostRecord.reindex

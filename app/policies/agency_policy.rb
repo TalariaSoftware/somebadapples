@@ -1,2 +1,0 @@
-class AgencyPolicy < ApplicationPolicy
-end

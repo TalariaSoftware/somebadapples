@@ -1,7 +1,5 @@
 FactoryBot.define do
   factory :post_record do
-    position
-
     sequence(:officer_id)
     officer_name do
       given_names = [Faker::Name.first_name, Faker::Name.first_name].join(' ')

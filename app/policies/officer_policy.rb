@@ -1,2 +1,0 @@
-class OfficerPolicy < ApplicationPolicy
-end

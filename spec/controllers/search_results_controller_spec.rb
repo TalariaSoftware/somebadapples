@@ -39,17 +39,6 @@ RSpec.describe SearchResultsController do
       end
     end
 
-    context "when there are officer results" do
-      before do
-        create :officer, :reindex, first_name: 'Bob'
-      end
-
-      it "returns the results" do
-        get :index, params: { q: 'bob' }
-        expect(assigns(:search_results).first.first_name).to eq('Bob')
-      end
-    end
-
     context "when there are incident results" do
       before do
         create :incident, :reindex, heading: 'The fruit saga'

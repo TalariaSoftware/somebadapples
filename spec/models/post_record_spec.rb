@@ -8,8 +8,6 @@ RSpec.describe PostRecord do
   it { is_expected.to validate_presence_of(:employment_start_date) }
   it { is_expected.to validate_presence_of(:rank) }
 
-  it { is_expected.to belong_to(:position) }
-
   describe "#last_name" do
     subject { record.last_name }
 

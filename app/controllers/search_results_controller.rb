@@ -2,10 +2,8 @@ class SearchResultsController < ApplicationController
   include Pagy::Backend
 
   SEARCH_MODELS = [
-    Agency,
     Document,
     Incident,
-    Officer,
     PostRecord,
     Us::Ca::LosAngeles::Police::Headshots20230321::Headshot,
   ].freeze
