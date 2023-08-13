@@ -10,6 +10,7 @@ gem 'simplecov', require: false, group: :test
 gem 'rails'
 
 gem 'bootsnap', require: false
+gem 'cssbundling-rails'
 gem 'decent_exposure'
 gem 'devise'
 gem 'elasticsearch', '<=7.13' # https://docs.bonsai.io/article/99-searchkick
