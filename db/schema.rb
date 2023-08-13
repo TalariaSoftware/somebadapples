@@ -10,21 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_04_204129) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_13_180112) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
   enable_extension "unaccent"
-
-  create_table "agencies", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "name", default: "", null: false
-    t.string "short_name", default: "", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "slug"
-    t.index ["name"], name: "index_agencies_on_name", unique: true, order: :desc
-  end
 
   create_table "ca_criminal_incidents", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "first_name"
@@ -76,34 +67,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_04_204129) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "officers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "slug"
-    t.string "middle_name", default: "", null: false
-    t.string "suffix", default: "", null: false
-    t.string "post_id"
-    t.index ["last_name", "first_name", "middle_name"], name: "index_officers_on_last_name_and_first_name_and_middle_name", order: :desc
-    t.index ["post_id"], name: "index_officers_on_post_id", unique: true
-    t.index ["slug"], name: "index_officers_on_slug", unique: true
-  end
-
-  create_table "positions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "officer_id", null: false
-    t.uuid "agency_id", null: false
-    t.string "badge_number"
-    t.string "serial_number"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.date "employment_start"
-    t.date "employment_end"
-    t.string "rank"
-    t.index ["agency_id"], name: "index_positions_on_agency_id"
-    t.index ["officer_id"], name: "index_positions_on_officer_id"
-  end
-
   create_table "post_records", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "officer_id", null: false
     t.string "officer_name", null: false
@@ -120,16 +83,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_04_204129) do
     t.index ["position_id"], name: "index_post_records_on_position_id"
     t.index ["post_id"], name: "index_post_records_on_post_id"
     t.index ["rank"], name: "index_post_records_on_rank"
-  end
-
-  create_table "roles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "description", default: "", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.uuid "officer_id", null: false
-    t.uuid "incident_id", null: false
-    t.index ["incident_id"], name: "index_roles_on_incident_id"
-    t.index ["officer_id"], name: "index_roles_on_officer_id"
   end
 
   create_table "us_ca_los_angeles_police_headshots20230321_headshots", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -164,19 +117,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_04_204129) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
-
-  add_foreign_key "positions", "agencies"
-  add_foreign_key "positions", "officers"
-  add_foreign_key "roles", "incidents"
-  add_foreign_key "roles", "officers"
-
-  create_view "agencies_officers", materialized: true, sql_definition: <<-SQL
-      SELECT officers.id AS officer_id,
-      positions.agency_id
-     FROM (officers
-       JOIN positions ON ((officers.id = positions.officer_id)));
-  SQL
-  add_index "agencies_officers", ["agency_id"], name: "index_agencies_officers_on_agency_id"
-  add_index "agencies_officers", ["officer_id"], name: "index_agencies_officers_on_officer_id"
 
 end
