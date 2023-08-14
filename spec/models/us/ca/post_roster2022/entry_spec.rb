@@ -235,4 +235,40 @@ RSpec.describe Us::Ca::PostRoster2022::Entry do
       it { is_expected.to be_post_id_withheld }
     end
   end
+
+  describe ".import" do
+    let(:input_file) do
+      Tempfile.create.tap do |file|
+        file.write <<~CSV
+          officer_id,officer_name,post_id,agency,employment_start_date,employment_end_date,rank
+          1,"DOE, JON",A12-B34,ARCADIA PD,11/13/2017,05/20/2018,PO
+        CSV
+
+        file.close
+      end
+    end
+
+    after { File.unlink input_file }
+
+    it do
+      expect {
+        described_class.import input_file
+      }.to change(described_class, :count).by(1)
+    end
+
+    describe "new entry" do
+      subject(:new_entry) do
+        described_class.import input_file
+        described_class.last
+      end
+
+      specify { expect(new_entry.officer_id).to eq(1) }
+      specify { expect(new_entry.officer_name).to eq("DOE, JON") }
+      specify { expect(new_entry.post_id).to eq("A12-B34") }
+      specify { expect(new_entry.agency).to eq("ARCADIA PD") }
+      specify { expect(new_entry.employment_start_date).to eq(Date.parse("2017-11-13")) }
+      specify { expect(new_entry.employment_end_date).to eq(Date.parse("2018-05-20")) }
+      specify { expect(new_entry.rank).to eq("PO") }
+    end
+  end
 end

@@ -9,6 +9,7 @@ gem 'simplecov', require: false, group: :test
 
 gem 'rails'
 
+gem 'american_date'
 gem 'bootsnap', require: false
 gem 'cssbundling-rails'
 gem 'decent_exposure'

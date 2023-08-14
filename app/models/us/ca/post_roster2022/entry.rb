@@ -13,6 +13,14 @@ class Us::Ca::PostRoster2022::Entry < ApplicationRecord
     :employment_start_date, :rank, presence: true
   validates :officer_id, uniqueness: true
 
+  def self.import(input_file)
+    table = File.open(input_file) do |file|
+      CSV.parse(file, headers: true)
+    end
+    attributes = table.map(&:to_hash)
+    insert_all attributes
+  end
+
   def first_name
     return nil if name_withheld?
 
