@@ -117,7 +117,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_14_174714) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["agency"], name: "index_us_ca_post_roster2022_entries_on_agency"
-    t.index ["officer_id"], name: "index_us_ca_post_roster2022_entries_on_officer_id"
+    t.index ["officer_id"], name: "index_us_ca_post_roster2022_entries_on_officer_id", unique: true
     t.index ["post_id"], name: "index_us_ca_post_roster2022_entries_on_post_id"
   end
 

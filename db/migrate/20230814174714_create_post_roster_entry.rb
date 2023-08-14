@@ -1,7 +1,7 @@
 class CreatePostRosterEntry < ActiveRecord::Migration[7.0]
   def change
     create_table :us_ca_post_roster2022_entries, id: :uuid do |t|
-      t.integer :officer_id, null: false, index: true, unique: true
+      t.integer :officer_id, null: false, index: {unique: true}
       t.string :officer_name, null: false
       t.string :post_id, null: false, index: true
       t.string :agency, null: false, index: true
