@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_13_180112) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_14_174714) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "pgcrypto"
@@ -104,6 +104,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_13_180112) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["serial_no"], name: "by_serial_no", unique: true
+  end
+
+  create_table "us_ca_post_roster2022_entries", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "officer_id", null: false
+    t.string "officer_name", null: false
+    t.string "post_id", null: false
+    t.string "agency", null: false
+    t.date "employment_start_date", null: false
+    t.date "employment_end_date"
+    t.string "rank", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["agency"], name: "index_us_ca_post_roster2022_entries_on_agency"
+    t.index ["officer_id"], name: "index_us_ca_post_roster2022_entries_on_officer_id"
+    t.index ["post_id"], name: "index_us_ca_post_roster2022_entries_on_post_id"
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
