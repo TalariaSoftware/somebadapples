@@ -14,11 +14,9 @@ class Us::Ca::PostRoster2022::Entry < ApplicationRecord
   validates :officer_id, uniqueness: true
 
   def self.import(input_file)
-    table = File.open(input_file) do |file|
+    insert_all File.open(input_file) { |file|
       CSV.parse(file, headers: true)
-    end
-    attributes = table.map(&:to_hash)
-    insert_all attributes
+    }.map(&:to_hash)
   end
 
   def first_name
