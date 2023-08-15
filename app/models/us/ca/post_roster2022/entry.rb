@@ -13,7 +13,7 @@ class Us::Ca::PostRoster2022::Entry < ApplicationRecord
     :employment_start_date, :rank, presence: true
   validates :officer_id, uniqueness: true
 
-  def self.import(input_file)
+  def self.import(input_file = Rails.public_path.join('data/us/ca/post-roster-2022.csv'))
     insert_all File.open(input_file) { |file|
       CSV.parse(file, headers: true)
     }.map(&:to_hash)
