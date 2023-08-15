@@ -23,6 +23,10 @@ interface to identify some of the bad apples in policing agencies.
 The list of officers and their positions was acquired by [Police
 Files](https://policefiles.org/2022/12/24/half-million-cops/) via a public records request to the [California Commission on Peace Officer Standards and Traning](https://post.ca.gov)
 
+The raw data is located at `public/data/us/ca/post-roster-2022.csv`.
+
+Import it to your environment with the command `./bin/rails runner "::Us::Ca::PostRoster2022::Entry.import"`. On a development environment, creating all 400,000+ entries takes about 30 seconds.
+
 ## Development
 
 ### Setup
