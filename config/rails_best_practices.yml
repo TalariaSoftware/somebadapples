@@ -6,5 +6,7 @@ RemoveUnusedMethodsInModelsCheck: {
     'Officer#slug_candidate',
     'LapdHeadshot#serial_number',
     'Us::Ca::LosAngeles::Police::Headshots20230321::Headshot#serial_number',
+    'Us::Ca::PostRoster2022::Entry#import',
+    'Us::Ca::PostRoster2022::Entry#post_id_withheld?',
   ]
 }
