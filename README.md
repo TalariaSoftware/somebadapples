@@ -33,10 +33,10 @@ Import it to your environment with the command `./bin/rails runner "::Us::Ca::Po
 
 1. Install Ruby (version in `.ruby-version`)
 2. Install PosgreSQL
-2. Install bundler: `gem install bundler`
-3. Install gems: `bundle`
-4. Setup database: `rake db:setup`
-5. Install and start ElasticSearch
+3. Install bundler: `gem install bundler`
+4. Install gems: `bundle`
+5. Setup database: `rake db:setup`
+6. Install and start ElasticSearch
   Via Homebrew:
     ```sh
     brew install elastic/tap/elasticsearch-full
