@@ -266,8 +266,15 @@ RSpec.describe Us::Ca::PostRoster2022::Entry do
       specify { expect(new_entry.officer_name).to eq("DOE, JON") }
       specify { expect(new_entry.post_id).to eq("A12-B34") }
       specify { expect(new_entry.agency).to eq("ARCADIA PD") }
-      specify { expect(new_entry.employment_start_date).to eq(Date.parse("2017-11-13")) }
-      specify { expect(new_entry.employment_end_date).to eq(Date.parse("2018-05-20")) }
+
+      specify do
+        expect(new_entry.employment_start_date).to eq(Date.parse("2017-11-13"))
+      end
+
+      specify do
+        expect(new_entry.employment_end_date).to eq(Date.parse("2018-05-20"))
+      end
+
       specify { expect(new_entry.rank).to eq("PO") }
     end
   end

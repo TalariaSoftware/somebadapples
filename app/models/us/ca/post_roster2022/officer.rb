@@ -7,4 +7,3 @@ class Us::Ca::PostRoster2022::Officer
     Us::Ca::PostRoster2022::Entry.where(post_id: post_id)
   end
 end
-
