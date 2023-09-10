@@ -28,6 +28,8 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  get '/officers/:id', to: ->(_env) { [404, {}, ['Not found']] }
+
   mount Lookbook::Engine, at: '/lookbook'
   mount IronTeapot::Engine => '/'
 end
