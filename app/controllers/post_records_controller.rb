@@ -12,7 +12,7 @@ class PostRecordsController < ApplicationController
   private
 
   def post_records
-    records = PostRecord.all.order(:officer_name)
+    records = PostRecord.order(:officer_name)
     records = records.where(post_id: post_id) if post_id.present?
     policy_scope records
   end

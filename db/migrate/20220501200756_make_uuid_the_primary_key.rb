@@ -33,12 +33,14 @@ class MakeUuidThePrimaryKey < ActiveRecord::Migration[7.0]
     remove_column :users, :id, :bigint, null: false
 
     # Replace primary key columns with UUID columns
+    # rubocop:disable Rails/DangerousColumnNames
     rename_column :external_documents, :uuid, :id
     rename_column :friendly_id_slugs, :uuid, :id
     rename_column :incident_roles, :uuid, :id
     rename_column :incidents, :uuid, :id
     rename_column :officers, :uuid, :id
     rename_column :users, :uuid, :id
+    # rubocop:enable Rails/DangerousColumnNames
 
     # Promote UUID columns to primary keys
     execute 'ALTER TABLE external_documents ADD PRIMARY KEY (id);'

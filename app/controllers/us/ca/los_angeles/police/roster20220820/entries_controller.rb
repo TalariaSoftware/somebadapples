@@ -15,7 +15,6 @@ class Us::Ca::LosAngeles::Police::Roster20220820::EntriesController < Applicatio
   def entries
     policy_scope(
       Us::Ca::LosAngeles::Police::Roster20220820::Entry
-      .all
       .order(:employee_name),
     )
   end

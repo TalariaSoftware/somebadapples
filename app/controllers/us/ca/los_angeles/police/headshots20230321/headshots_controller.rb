@@ -16,7 +16,6 @@ class Us::Ca::LosAngeles::Police::Headshots20230321::HeadshotsController < Appli
   def headshots
     policy_scope(
       Us::Ca::LosAngeles::Police::Headshots20230321::Headshot
-      .all
       .order(:file_name),
     )
   end

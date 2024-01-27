@@ -63,7 +63,7 @@ RSpec.describe IncidentsController do
     describe "new incident" do
       subject(:incident) do
         post :create, params: params
-        Incident.all.order(:created_at).last
+        Incident.order(:created_at).last
       end
 
       specify { expect(incident.heading).to eq("Violence") }

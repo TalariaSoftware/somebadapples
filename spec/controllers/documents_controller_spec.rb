@@ -52,7 +52,7 @@ RSpec.describe DocumentsController do
     describe "new document" do
       subject(:document) do
         post :create, params: params
-        Document.all.order(:created_at).last
+        Document.order(:created_at).last
       end
 
       specify { expect(document.incident).to eq(incident) }

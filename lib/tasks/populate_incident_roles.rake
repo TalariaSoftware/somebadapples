@@ -4,7 +4,7 @@ end
 desc "Populate incident roles from deprecated incident table"
 task populate_incident_roles: :environment do
   ActiveRecord::Base.transaction do
-    DeprecatedIncident.all.each do |old_incident|
+    DeprecatedIncident.find_each do |old_incident|
       new_incident = Incident.create!(
         heading: old_incident.heading,
         description: old_incident.description,

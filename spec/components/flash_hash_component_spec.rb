@@ -21,7 +21,7 @@ RSpec.describe FlashHashComponent, type: :component do
 
     it "is an success alert" do
       render_component
-      expect(page).to have_selector('.usa-alert.usa-alert--success')
+      expect(page).to have_css('.usa-alert.usa-alert--success')
     end
   end
 
@@ -30,7 +30,7 @@ RSpec.describe FlashHashComponent, type: :component do
 
     it "is an error alert" do
       render_component
-      expect(page).to have_selector('.usa-alert.usa-alert--error')
+      expect(page).to have_css('.usa-alert.usa-alert--error')
     end
   end
 

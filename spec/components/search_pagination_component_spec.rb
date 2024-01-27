@@ -106,7 +106,7 @@ RSpec.describe SearchPaginationComponent, type: :component do
         end
 
         it "is not styled as the current page" do
-          expect(page).not_to have_css('.usa-current')
+          expect(page).to have_no_css('.usa-current')
         end
       end
 
