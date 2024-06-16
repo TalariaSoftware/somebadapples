@@ -541,6 +541,8 @@ DEPENDENCIES
   rspec-its
   rspec-rails
   rubocop
+  rubocop-capybara
+  rubocop-factory_bot
   rubocop-performance
   rubocop-rails
   rubocop-rake

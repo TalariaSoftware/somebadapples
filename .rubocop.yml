@@ -95,13 +95,6 @@ Rails/LexicallyScopedActionFilter:
   Exclude:
     - app/controllers/application_controller.rb
 
-RSpec/Capybara/FeatureMethods:
-  EnabledMethods:
-    - feature
-    - scenario
-    - xfeature
-    - xscenario
-
 RSpec/ExampleLength:
   Exclude:
     - spec/features/*

@@ -53,6 +53,8 @@ group :development do
   gem 'license_finder'
   gem 'rails_best_practices'
   gem 'rubocop'
+  gem 'rubocop-capybara'
+  gem 'rubocop-factory_bot'
   gem 'rubocop-performance'
   gem 'rubocop-rails'
   gem 'rubocop-rake'
