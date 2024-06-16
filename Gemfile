@@ -37,8 +37,10 @@ gem 'scout_apm'
 gem 'searchkick'
 gem 'stimulus-rails'
 gem 'turbo-rails'
-gem 'uswds_components', github: 'TalariaSoftware/uswds_components'
+gem 'uswds_components', github: 'TalariaSoftware/uswds_components',
+  ref: '04c347c109e06374ebcae7fb0859705744beaca4'
 gem 'uuid'
+gem 'view_component', '< 3'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

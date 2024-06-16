@@ -7,12 +7,13 @@ GIT
 
 GIT
   remote: https://github.com/TalariaSoftware/uswds_components.git
-  revision: 7b6d7c826cdb47aa3f62ff545bea06a01c9744ff
+  revision: 04c347c109e06374ebcae7fb0859705744beaca4
+  ref: 04c347c109e06374ebcae7fb0859705744beaca4
   specs:
     uswds_components (0.1.0)
       haml-rails
       rails (>= 6.1.4.1)
-      view_component (>= 3)
+      view_component (< 3)
 
 GEM
   remote: https://rubygems.org/
@@ -467,7 +468,7 @@ GEM
     unicode-display_width (2.5.0)
     uuid (2.3.9)
       macaddr (~> 1.0)
-    view_component (3.12.1)
+    view_component (2.83.0)
       activesupport (>= 5.2.0, < 8.0)
       concurrent-ruby (~> 1.0)
       method_source (~> 1.0)
@@ -557,6 +558,7 @@ DEPENDENCIES
   tzinfo-data
   uswds_components!
   uuid
+  view_component (< 3)
   web-console
   webdrivers
 
