@@ -3,7 +3,7 @@ class MakeUuidThePrimaryKey < ActiveRecord::Migration[7.0]
     # Make UUID association columns not nullable
     change_column_null :external_documents, :incident_uuid, false
     change_column_null :friendly_id_slugs, :sluggable_uuid, false
-    change_column_null :incident_roles, :officer_uuid, false
+    change_column_null :incident_roles, :officer_uuid, false # rubocop:disable Rails/BulkChangeTable
     change_column_null :incident_roles, :incident_uuid, false
 
     # Remove integer association columns
