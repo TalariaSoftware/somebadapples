@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/TalariaSoftware/iron_teapot.git
-  revision: 3b0fe03935123448c1ca03a9cd85e75de3dd55c3
+  revision: 98d0ac1b3ce34777b5edce5a0f277dda2f18d24d
   specs:
     iron_teapot (0.1.0)
       rails (>= 6.1.4)
@@ -118,7 +118,7 @@ GEM
     code_analyzer (0.5.5)
       sexp_processor
     concurrent-ruby (1.3.4)
-    connection_pool (2.4.1)
+    connection_pool (2.5.0)
     crass (1.0.6)
     css_parser (1.21.0)
       addressable
@@ -228,7 +228,7 @@ GEM
       tomlrb (>= 1.3, < 2.1)
       with_env (= 1.1.0)
       xml-simple (~> 1.1.9)
-    logger (1.6.4)
+    logger (1.6.5)
     loofah (2.24.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -259,7 +259,7 @@ GEM
     msgpack (1.7.5)
     multi_json (1.15.0)
     multipart-post (2.4.1)
-    net-imap (0.5.4)
+    net-imap (0.5.5)
       date
       net-protocol
     net-pop (0.1.2)
@@ -303,7 +303,8 @@ GEM
     rack-canonical-host (1.3.0)
       addressable (> 0, < 3)
       rack (>= 1.6, < 4)
-    rack-session (2.0.0)
+    rack-session (2.1.0)
+      base64 (>= 0.1.0)
       rack (>= 3.0.0)
     rack-test (2.2.0)
       rack (>= 1.3)
@@ -482,7 +483,8 @@ GEM
       rubyzip (>= 1.3.0)
       selenium-webdriver (~> 4.0, < 4.11)
     websocket (1.2.11)
-    websocket-driver (0.7.6)
+    websocket-driver (0.7.7)
+      base64
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     with_env (1.1.0)
