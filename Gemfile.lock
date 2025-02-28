@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/TalariaSoftware/iron_teapot.git
-  revision: 98d0ac1b3ce34777b5edce5a0f277dda2f18d24d
+  revision: 0c0f8c6db3fc07c70c555d31dba9eda50541c88d
   specs:
     iron_teapot (0.1.0)
       rails (>= 6.1.4)
@@ -454,7 +454,7 @@ GEM
     simplecov_json_formatter (0.1.4)
     stimulus-rails (1.3.4)
       railties (>= 6.0.0)
-    stringio (3.1.3)
+    stringio (3.1.5)
     sysexits (1.2.0)
     systemu (2.6.5)
     temple (0.10.3)
@@ -499,7 +499,7 @@ GEM
     xpath (3.2.0)
       nokogiri (~> 1.8)
     yard (0.9.37)
-    zeitwerk (2.7.1)
+    zeitwerk (2.7.2)
 
 PLATFORMS
   arm64-darwin-22
