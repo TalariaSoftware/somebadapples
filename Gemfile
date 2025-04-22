@@ -61,6 +61,7 @@ group :development do
   gem 'rubocop-rails'
   gem 'rubocop-rake'
   gem 'rubocop-rspec'
+  gem 'rubocop-rspec_rails'
   gem 'web-console'
 end
 
